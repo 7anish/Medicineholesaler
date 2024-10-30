@@ -54,7 +54,7 @@ function BrowseByCat() {
                 <div className='grid place-content-center grid-cols-2 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 gap-4 xl:gap-10 lg:px-4 xl:px-10 lg:py-8  xl:py-16'>
                     {
                         categories.map((category, index) => (
-                            <HashLink to={`/category/#${category.category}`} key={index}  className={`${category.bg} ${category.text}  rounded-xl cursor-pointer flex flex-col items-center justify-center p-3 hover:scale-105 duration-300`}>
+                            <HashLink  to={`/category/#${category.category}`} key={index}  className={`rounded-xl cursor-pointer flex flex-col items-center justify-center p-3 hover:scale-105 duration-300`} style={{backgroundColor : category.bg , color : category.text}}>
                                 <div className='flex flex-col justify-between gap-2 items-center'>
                                     <ion-icon name={category.img} class='text-3xl xl:text-4xl'></ion-icon>
                                     <h1 className='text-xl font-semibold text-center capitalize'>{(category.category).split('-')[0]+ " " +((category.category).split('-')[1] ? (category.category).split('-')[1] : ""  )}</h1>

@@ -39,6 +39,14 @@ function LogInPage() {
                     path : '/',
                     expires : ''
                 })
+                const details = {
+                    username : res.data.name,
+                    usermail : res.data.email,
+                    userphone : res.data.phonenumber
+
+                }
+
+                localStorage.setItem("information" , JSON.stringify(details))
                 Swal.fire({
                     title : "LoggedIn Sucessfully",
                     icon : 'success'
@@ -56,7 +64,7 @@ function LogInPage() {
         }catch(e){
             console.log(e)
             Swal.fire({
-                title : "Somthing went wrong",
+                title : "User id or password did't matched",
                 icon : 'error'
             })
         }

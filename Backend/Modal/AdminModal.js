@@ -19,6 +19,7 @@ const adminSchema = new mongoose.Schema({
     },
     lcno : {
         type : String,
+        default : "none"
     },
     salt: {
         type: String,

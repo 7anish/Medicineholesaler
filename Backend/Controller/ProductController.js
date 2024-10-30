@@ -18,6 +18,7 @@ const handleaddproduct =async (req,res)=>{
             range : range,
             productimage : req.file.path
         });
+        
 
         // if any error 
         if(!result) return res.status(500).json({"Error" : "Somthing went wrong Try After sometime"})
@@ -62,7 +63,6 @@ const handledeleteproduct = async (req,res)=>{
 const handlGetProductList = async (req , res)=>{
     try{
         const param =  req.query
-        console.log(param)
         const result = await product.find(param)
 
         if (!result) return res.status(404).json({"error" : "No Product Found"});

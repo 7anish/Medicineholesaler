@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import logo from '../assets/Logo.png'
 import { NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux';
 import { useCookies } from 'react-cookie';
+import { useSelector } from 'react-redux';
 
 function Navbar() {
     const [cookies, setCookie] = useCookies(['name']);
@@ -14,6 +13,10 @@ function Navbar() {
         },
     ]
 
+    const Quant = useSelector((state) => {
+        return state.carteditems.totalquatity
+      })
+
     useEffect(() => {
         if (cookies.lgthusr) {
             setlogin(false)
@@ -21,16 +24,6 @@ function Navbar() {
     }, [])
 
 
-
-    const { cart } = useSelector((state) => state.cart);
-    const Qnt = (item) => {
-        let quant = 0;
-        for (let index = 0; index < item.length; index++) {
-            const element = item[index];
-            quant += element.quantity
-        }
-        return quant;
-    };
 
     const [open, setOpen] = useState(false);
     const linkClass = ({ isActive }) => isActive ? "text-[#2dd1dd] text-xl rounded-md px-3 py-2" : "text-gray-500 text-xl hover:text-[#2dd1dd]  rounded-md px-3 py-2";
@@ -49,15 +42,15 @@ function Navbar() {
                     {
                         Links.map((link) => (
                             <div key={link.name} className='lg:my-0'>
-                                <NavLink to={link.link} className={linkClass}>
+                                <NavLink to={link.link} className={linkClass} onClick={() => setOpen(!open)}>
                                     {link.name}
                                 </NavLink>
                             </div>
                         ))
                     }
-                    <NavLink to={'/cart'} className='text-orange-600 hover:text-[#2dd1dd] text-3xl px-5 flex items-center justify-center'>
+                    <NavLink to={'/cart'} className='text-orange-600 hover:text-[#2dd1dd] text-3xl px-5 flex items-center justify-center' onClick={() => setOpen(!open)}>
                         <ion-icon name="cart-outline" size='large' className="font-extrabold "></ion-icon>
-                        <span className='text-lg'>{isNaN(Qnt(cart)) ? '0' : `${Qnt(cart)}`}</span>
+                        <span className='text-lg'>{Quant}</span>
                         {/* <button className='text-white px-7 py-4 font-semibold'>Cart</button> */}
                     </NavLink>
                     {
@@ -65,7 +58,7 @@ function Navbar() {
                             (
                                 <NavLink to={'/login'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5'>
                                     {/* <span className='text-lg'>(0)</span> */}
-                                    <button className='text-white px-6 py-2 rounded-xl bg-orange-500 font-semibold'>LogIn</button>
+                                    <button className='text-white px-6 py-2 rounded-xl bg-orange-500 font-semibold' onClick={() => setOpen(!open)}>LogIn</button>
                                 </NavLink>
                             )
                             : null

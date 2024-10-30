@@ -2,6 +2,7 @@ import React from 'react'
 import {
   BrowserRouter as Router, Routes, Route
 } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import MainLayout from './Layout/MainLayout';
@@ -18,6 +19,7 @@ import Subcatpage from './Components/Subcatpage';
 export default function App() {
   return (
     <Router >
+    <ToastContainer />
       <Scrolltotop />
       <Navbar/>
       <Routes>
@@ -25,7 +27,7 @@ export default function App() {
         <Route index path="/category" element={<Subcatpage />} />
         <Route path="/doctors" element={<DoctorPage />} />
         <Route path="/products" element={<ShopPage />} />
-        <Route path="/products/:id" element={<ProductPage />} />
+        <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/singup" element={<Singup />} />

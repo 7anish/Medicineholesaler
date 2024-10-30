@@ -61,7 +61,7 @@ const Subcatpage = () => {
                                 {
                                     item.subcat.map((subitem, index) => {
                                         return (
-                                            <div key={index} className={`${subitem.bg} ${subitem.text} rounded-xl cursor-pointer flex flex-col flex-wrap items-center  justify-center p-3 hover:scale-105 duration-300`} onClick={()=> handleclick(subitem.route)}>
+                                            <div key={index} className={`rounded-xl cursor-pointer flex flex-col flex-wrap items-center  justify-center p-3 hover:scale-105 duration-300`} onClick={()=> handleclick(subitem.route)} style={{backgroundColor : subitem.bg , color : subitem.text}}>
                                                 <div className='w-[120px] sm:w-[200px] h-[80px] flex flex-col  justify-between items-center gap-2'>
                                                     <ion-icon name={subitem.icon} class='text-3xl xl:text-4xl'></ion-icon>
                                                     <h1 className='text-xl font-semibold text-center capitalize'>{(subitem.name).split('-')[0] + " " + ((subitem.name).split('-')[1] ? (subitem.name).split('-')[1] : "")}</h1>
