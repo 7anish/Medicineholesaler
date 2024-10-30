@@ -30,7 +30,7 @@ function Singup() {
         }
 
         try{
-            const res = await axios.post('http://localhost:8000/api/v1/admin/createaccount' , {
+            const res = await axios.post('https://medicineholesaler-production.up.railway.app/api/v1/admin/createaccount' , {
                 name : e.target.name.value,
                 email : e.target.email.value,
                 phonenumber : e.target.number.value,

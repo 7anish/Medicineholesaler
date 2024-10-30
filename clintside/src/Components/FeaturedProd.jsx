@@ -9,7 +9,7 @@ function FeaturedProd() {
     useEffect(() => {
         const fetchdata = async () => {
           try {
-            const { data } = await axios.get(`http://localhost:8000/api/v1/med/getproduct`)
+            const { data } = await axios.get(`https://medicineholesaler-production.up.railway.app/api/v1/med/getproduct`)
             console.log(data)
             setdata(data);
           } catch (e) {

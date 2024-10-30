@@ -29,7 +29,7 @@ function LogInPage() {
         }
         
         try{
-            const res = await axios.post('http://localhost:8000/api/v1/admin/logintoaccount' , {
+            const res = await axios.post('https://medicineholesaler-production.up.railway.app/api/v1/admin/logintoaccount' , {
                 email : e.target.email.value,
                 password : e.target.password.value,
             })

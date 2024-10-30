@@ -19,7 +19,7 @@ function ShopPage() {
         else if (searchparams.get('category')) {
           url = `category=${searchparams.get('category')}`
         }
-        const { data } = await axios.get(`http://localhost:8000/api/v1/med/getproduct?${url}`)
+        const { data } = await axios.get(`https://medicineholesaler-production.up.railway.app/api/v1/med/getproduct?${url}`)
         console.log(data)
         setdata(data);
       } catch (e) {

@@ -10,7 +10,7 @@ const Subcatpage = () => {
     useEffect(() => {
         const fetchcat = async () => {
             try {
-                const { data } = await axios.get("http://localhost:8000/api/v1/med/getcategory")
+                const { data } = await axios.get("https://medicineholesaler-production.up.railway.app/api/v1/med/getcategory")
                 setcatdata(data)
                 
                 seterror(false)
