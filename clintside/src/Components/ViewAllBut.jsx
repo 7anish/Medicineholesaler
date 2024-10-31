@@ -1,9 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-function ViewAllBut() {
+function ViewAllBut({path}) {
     const navigation = useNavigate();
     const viewClick = ()=>{
-        navigation('/category/allcategory')
+        navigation(path)
     }
     return (
         <div>

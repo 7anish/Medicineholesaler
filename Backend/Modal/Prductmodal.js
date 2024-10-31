@@ -25,6 +25,10 @@ const productScheam = new mongoose.Schema({
         type : String,
         required : true
     },
+    subdesc : {
+        type : String,
+        required : true
+    },
     category : {
         type : String,
         enum : ["cosmetic" , "surgical" , "patent" , "medicine" , "generic" , "medicine" , "ayurvedic-medicine"],

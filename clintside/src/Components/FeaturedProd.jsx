@@ -26,7 +26,7 @@ function FeaturedProd() {
             <section className='lg:py-10 xl:pt-20 xl:py-20 lg:px-16' >
                 <div className='flex flex-wrap gap-2 px-4 sm:gap-0 py-4 justify-between items-center'>
                     <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>Featured Products</h1>
-                    <ViewAllBut />
+                    <ViewAllBut path={'/products'} />
                 </div>
                 <div className='flex  flex-wrap  py-4 gap-5 justify-center'>
                     {

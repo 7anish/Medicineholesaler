@@ -3,6 +3,7 @@ const product = require('../Modal/Prductmodal');
 const handleaddproduct =async (req,res)=>{
     try{
         const data = req.body
+        console.log(data)
         if(Object.keys(data).length == 0) return res.status(400).json({error : "All fields are required"});
 
         const range = JSON.parse(data.range)
@@ -10,6 +11,7 @@ const handleaddproduct =async (req,res)=>{
         const result = await product.create({
             name : data.name,
             description : data.description,
+            subdesc : data.subdescription,
             category : data.category,
             subcategory : data.subcategory,
             discountprice : data.discountprice,
@@ -71,6 +73,7 @@ const handlGetProductList = async (req , res)=>{
                 const data = { id : item._id,
                  name : item.name,
                  description : item.description,
+                 subdescription : item.subdesc,
                  category : item.category,
                  subcategory : item.subcategory,
                  actualprice : item.actualprice,   

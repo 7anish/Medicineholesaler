@@ -19,6 +19,7 @@ import Checkout from './Pages/Checkout';
 
 import { useDispatch } from 'react-redux';
 import { initialreducer } from './Store/Room';
+import Wishlist from './Pages/Wishlist';
 
 export default function App() {
   const dispatch =  useDispatch()
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/singup" element={<Singup />} />
+        <Route path='/wishlist' element={<Wishlist />} />
         <Route path='/checkout' element={<Checkout />} />
       </Routes>
       <Footer />

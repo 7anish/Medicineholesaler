@@ -33,8 +33,9 @@ function ShopPage() {
       <DiscountShop />
       <section className="sm:pb-10 bg-[#eef4f4]">
         <div className="flex flex-wrap bg-white justify-between items-center px-2 sm:px-8 ">
-          <h1 className="text-3xl text-orange-500 leading-relaxed tracking-wider font-semibold px-2 py-2 text-center">
-            All Products
+          <h1 className="text-3xl text-orange-500 leading-relaxed tracking-wider font-semibold px-2 py-2 text-center capitalize">
+            {/* {`All Products / ${searchparams.get('category').split('-')[0]+ " " +((searchparams.get('category')).split('-')[1] ? (searchparams.get('category')).split('-')[1] : ""  )  || ""} / ${searchparams.get('subcategory').split('-')[0]+ " " +((searchparams.get('subcategory')).split('-')[1] ? (searchparams.get('subcategory')).split('-')[1] : ""  )  || ""}`} */}
+            Products
           </h1>
         </div>
         <section className="flex justify-start flex-wrap sm:flex-nowrap">

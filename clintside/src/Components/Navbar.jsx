@@ -61,7 +61,11 @@ function Navbar() {
                                     <button className='text-white px-6 py-2 rounded-xl bg-orange-500 font-semibold' onClick={() => setOpen(!open)}>LogIn</button>
                                 </NavLink>
                             )
-                            : null
+                            : (
+                                <NavLink to={'/wishlist'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5'>
+                                <ion-icon name="heart-outline" size='large' className="font-extrabold "></ion-icon>
+                                </NavLink>
+                            )
                     }
                 </div>
             </div>

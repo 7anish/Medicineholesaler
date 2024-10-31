@@ -115,11 +115,11 @@ function Cart() {
               <h1 className='font-bold text-xl sm:text-2xl'>Total Payable Amount:</h1>
               <span className='font-semibold text-xl sm:text-2xl text-blue-600'>₹&nbsp;{data.totaldiscountprice}</span>
             </div>
-            <div className='flex items-center rounded-xl bg-orange-500 hover:bg-white transition-all duration-500 w-full px-6 py-2 text-white hover:text-black cursor-pointer'>
+            <div className='flex items-center rounded-xl bg-orange-500 hover:bg-white transition-all duration-500 w-full px-6 py-2 text-white hover:text-black cursor-pointer'  onClick={checkout}>
               <span>
                 <ion-icon name="checkmark-done-circle-outline" size="large"></ion-icon>
               </span>
-              <button className='w-full h-full text-lg' onClick={checkout}>Place Order</button>
+              <button className='w-full h-full text-lg'>Place Order</button>
             </div>
           </section>
         </div>
