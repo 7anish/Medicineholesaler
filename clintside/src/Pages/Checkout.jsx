@@ -66,7 +66,8 @@ const Checkout = () => {
         const order = data.allcartitem.map((item)=>{
             return {
                 quantity : item.quantity,
-                productId : item.id
+                productId : item.id,
+                productpricee : ((+item.quantity)*(+item.discountprice))
             }
         })
         const deatails = {

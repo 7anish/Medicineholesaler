@@ -3,25 +3,25 @@ const product = require('../Modal/Prductmodal');
 const handleaddproduct =async (req,res)=>{
     try{
         const data = req.body
-        console.log(data)
+        console.log("hello")
+        console.log(req.body)
         if(Object.keys(data).length == 0) return res.status(400).json({error : "All fields are required"});
 
         const range = JSON.parse(data.range)
-        console.log(req.file)
+        console.log(range)
         const result = await product.create({
             name : data.name,
             description : data.description,
-            subdesc : data.subdescription,
+            subdescription : data.subdescription,
             category : data.category,
             subcategory : data.subcategory,
             discountprice : data.discountprice,
             actualprice : data.actualprice,
             itemtype : data.itemtype,
             range : range,
-            productimage : req.file.path
+            productimage : data.productimage
         });
         
-
         // if any error 
         if(!result) return res.status(500).json({"Error" : "Somthing went wrong Try After sometime"})
         
@@ -29,6 +29,7 @@ const handleaddproduct =async (req,res)=>{
         return res.status(201).json({"Message" : "Producta added Sucessfully"});
     }catch(e){
         // catch block
+        console.log('enajla')
         console.log(e);
         return res.status(400).json({"Error" : "Somthing went wrong in adding product"})
     }
@@ -38,10 +39,10 @@ const handleaddproduct =async (req,res)=>{
 const handleupdateproduct = async (req,res)=>{
     try{
         const id = req.params.id
-        const productimage =  req?.file?.path
-        const data = productimage ?  {...req.body , productimage} : req.body;
+        // const productimage =  req?.file?.path
+        // const data = productimage ?  {...req.body , productimage} : req.body;
 
-        const result =  await product.findByIdAndUpdate(id , data)
+        const result =  await product.findByIdAndUpdate(id , req.body)
         if (!result) return res.status(404).json({"error" : "Error in deleting the Product"});
         return res.status(200).json({"Message" : "Product Updated Sucesfully"});
     }catch(e){

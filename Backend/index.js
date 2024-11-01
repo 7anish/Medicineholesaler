@@ -20,8 +20,9 @@ const PORT = process.env.PORT || 8001;
 const URL = process.env.DB_URL;
 
 connectDataBase(URL);
-app.use(express.urlencoded({extended : true}))
 app.use(express.json())
+app.use(express.urlencoded({ extended: false}));
+
 
 app.get('/testbackend' , (req,res)=>{
     res.status(200).json({Message : "Happy happy happy"})

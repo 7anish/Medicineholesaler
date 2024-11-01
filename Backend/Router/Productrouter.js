@@ -5,8 +5,8 @@ const {upload} = require('../Storage/Storage')
 
 route.get("/getproduct" , handlGetProductList )
 route.get("/getproduct/:id" , handleGetSpecficProduct)
-route.post('/addproduct', upload.single('productimage') ,handleaddproduct);
-route.patch('/updateproduct/:id',upload.single('productimage'), handleupdateproduct);
+route.post('/addproduct',  handleaddproduct);
+route.patch('/updateproduct/:id', handleupdateproduct);
 route.delete('/deleteproduct/:id' , handledeleteproduct);
 
 

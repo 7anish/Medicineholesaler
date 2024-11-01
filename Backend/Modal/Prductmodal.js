@@ -25,7 +25,7 @@ const productScheam = new mongoose.Schema({
         type : String,
         required : true
     },
-    subdesc : {
+    subdescription : {
         type : String,
         required : true
     },

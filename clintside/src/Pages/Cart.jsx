@@ -42,11 +42,13 @@ function Cart() {
           <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
             {cartdata.length === 0 ? (
               <div className="w-full h-[60vh] text-center flex items-center justify-center font-bold text-4xl">No products in the cart.</div>
-            ) : (
+            ) 
+            : 
+            (
               cartdata.map((medicine, index) => (
                 <div key={medicine.id} className='bg-[#ffffffda] shadow-card-shadow hover:shadow-card-hover transition-all duration-500 rounded-xl p-4 flex flex-col gap-3 cursor-pointer h-fit'>
                   <div className='flex flex-col lg:flex-row gap-2'>
-                    <img src={medicine.img} alt="" className='lg:w-[40%] w-[100%] h-46 object-cover rounded-md border-black border-[1px]' />
+                    <img src={medicine.img} alt="" className='lg:w-[40%] w-[100%] sm:max-h-[500px] lg:max-h-[250px] max-h-[250px] object-cover rounded-md border-black border-[1px]' />
                     <div className="w-full flex flex-col  justify-between p-2 sm:p-5 gap-4">
                       <div className='flex flex-col w-full gap-2'>
                         <div className='flex gap-2'>
@@ -80,7 +82,7 @@ function Cart() {
                       </div>
                       <div className='flex flex-wrap items-center justify-between gap-3 '>
                       <div>
-                      <h1 className='text-xl font-bold'>Total : ₹&nbsp;{(+medicine.discountprice)*(+medicine.quantity)}</h1>
+                      <h1 className='text-xl font-bold'>Total : ₹&nbsp;{((+medicine.discountprice)*(+medicine.quantity)).toFixed(2)}</h1>
                       <h1 className='text-sm font-bold text-red-600 line-through'>₹&nbsp;{(+medicine.actualprice)*(+medicine.quantity)}</h1>
                       </div>
                         <div className='w-full sm:w-[40%] flex items-center justify-center rounded-xl bg-rose-500 hover:bg-gray-100 transition-all duration-500  px-6 py-2 text-white hover:text-black cursor-pointer' onClick={()=> {
@@ -109,7 +111,7 @@ function Cart() {
             </div>
             <div className='flex justify-between  pb-1'>
               <h1 className='font-bold text-xl sm:text-2xl'>Discount:</h1>
-              <span className='font-semibold text-xl sm:text-2xl text-blue-600'>₹&nbsp;{data.totalactualprice-data.totaldiscountprice}</span>
+              <span className='font-semibold text-xl sm:text-2xl text-blue-600'>₹&nbsp;{(data.totalactualprice-data.totaldiscountprice).toFixed(2)}</span>
             </div>
             <div className='flex justify-between border-y-2 py-2'>
               <h1 className='font-bold text-xl sm:text-2xl'>Total Payable Amount:</h1>

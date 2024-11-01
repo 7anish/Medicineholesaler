@@ -1,4 +1,3 @@
-
 const admin = require('../Modal/AdminModal')
 const {generateToken} = require('../Config/Jwtauthentication');
 

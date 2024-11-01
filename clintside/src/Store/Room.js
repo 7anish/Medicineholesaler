@@ -21,9 +21,9 @@ const cartitem = createSlice({
     reducers: {
         initialreducer(state , action){
             const suming = () => {
-                state.totalactualprice = state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.actualprice * currentValue.quantity), 0)
-                state.totaldiscountprice = state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.discountprice * currentValue.quantity), 0)
-                state.totalquatity = state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.quantity), 0)
+                state.totalactualprice = (state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.actualprice * currentValue.quantity), 0)).toFixed(2)
+                state.totaldiscountprice = (state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.discountprice * currentValue.quantity), 0)).toFixed(2)
+                state.totalquatity = (state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.quantity), 0)).toFixed(2)
             }
             suming();
         },
@@ -57,9 +57,9 @@ const cartitem = createSlice({
             }
 
             const suming = () => {
-                state.totalactualprice = state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.actualprice * currentValue.quantity), 0)
-                state.totaldiscountprice = state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.discountprice * currentValue.quantity), 0)
-                state.totalquatity = state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.quantity), 0)
+                state.totalactualprice = (state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.actualprice * currentValue.quantity), 0)).toFixed(2)
+                state.totaldiscountprice = (state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.discountprice * currentValue.quantity), 0)).toFixed(2)
+                state.totalquatity = (state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.quantity), 0)).toFixed(2)
             }
             const Priceaccordingtorange = (() => {
                 state.allcartitem.map((item) => {
@@ -90,9 +90,9 @@ const cartitem = createSlice({
             })
 
             const suming = () => {
-                state.totalactualprice = state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.actualprice * currentValue.quantity), 0)
-                state.totaldiscountprice = state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.discountprice * currentValue.quantity), 0)
-                state.totalquatity = state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.quantity), 0)
+                state.totalactualprice = (state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.actualprice * currentValue.quantity), 0)).toFixed(2)
+                state.totaldiscountprice = (state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.discountprice * currentValue.quantity), 0)).toFixed(2)
+                state.totalquatity = (state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.quantity), 0)).toFixed(2)
             }
             const Priceaccordingtorange = (() => {
                 state.allcartitem.map((item) => {
@@ -126,9 +126,9 @@ const cartitem = createSlice({
             })
 
             const suming = () => {
-                state.totalactualprice = state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.actualprice * currentValue.quantity), 0)
-                state.totaldiscountprice = state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.discountprice * currentValue.quantity), 0)
-                state.totalquatity = state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.quantity), 0)
+                state.totalactualprice = (state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.actualprice * currentValue.quantity), 0)).toFixed(2)
+                state.totaldiscountprice = (state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.discountprice * currentValue.quantity), 0)).toFixed(2)
+                state.totalquatity = (state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.quantity), 0)).toFixed(2)
             }
             suming()
             const Priceaccordingtorange = () => {
@@ -168,9 +168,9 @@ const cartitem = createSlice({
                 }
             })
             const suming = () => {
-                state.totalactualprice = state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.actualprice * currentValue.quantity), 0)
-                state.totaldiscountprice = state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.discountprice * currentValue.quantity), 0)
-                state.totalquatity = state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.quantity), 0)
+                state.totalactualprice = (state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.actualprice * currentValue.quantity), 0)).toFixed(2)
+                state.totaldiscountprice = (state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.discountprice * currentValue.quantity), 0)).toFixed(2)
+                state.totalquatity = (state.allcartitem.reduce((accumulator, currentValue) => accumulator + (currentValue.quantity), 0)).toFixed(2)
             }
             suming()
             const Priceaccordingtorange = () => {

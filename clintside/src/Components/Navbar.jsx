@@ -14,7 +14,7 @@ function Navbar() {
     ]
 
     const Quant = useSelector((state) => {
-        return state.carteditems.totalquatity
+        return state.carteditems.allcartitem
       })
 
     useEffect(() => {
@@ -50,7 +50,7 @@ function Navbar() {
                     }
                     <NavLink to={'/cart'} className='text-orange-600 hover:text-[#2dd1dd] text-3xl px-5 flex items-center justify-center' onClick={() => setOpen(!open)}>
                         <ion-icon name="cart-outline" size='large' className="font-extrabold "></ion-icon>
-                        <span className='text-lg'>{Quant}</span>
+                        <span className='text-lg'>{Quant.length}</span>
                         {/* <button className='text-white px-7 py-4 font-semibold'>Cart</button> */}
                     </NavLink>
                     {

@@ -1,9 +1,9 @@
 const order = require('../Modal/Ordermodal');
-const { connect } = require('../Router/orderRouter');
 
 const handleCreateOrder = async (req, res) => {
     try {
         const data = req.body
+        console.log(req.body.order)
         if (Object.keys(data).length == 0) return res.status(400).json({ error: "All fields are required" });
 
         const result = await order.create({
@@ -47,17 +47,23 @@ const handleUpdateOrder = async (req, res) => {
 
 const handleGetOrderList = async (req,res)=>{
     try{
-        const result = await order.find({})
-
+        const param =  req.query
+        const result = await order.find(param)
         if (!result) return res.status(500).json({"Error" : "Error In getting Orders"});
         return res.status(200).json(
             result.map((item)=>{
             const data = {
                 id : item._id,
                 name : item.name,
+                email : item.email,
                 phoneNumber : item.phoneNumber,
                 address : item.address,
                 createdAt : item.createdAt,
+                total : item.totalPrice,
+                pincode : item.pincode,
+                city : item.city,
+                landmark : item.landmark,
+                OrderStatus : item.OrderStatus
             }
             return data
         }));
@@ -67,12 +73,12 @@ const handleGetOrderList = async (req,res)=>{
     }
 }
 
-const handleGetSpecficProduct = async (req,res)=>{
+const handleGetSpecficorder = async (req,res)=>{
     try{
         const param =  req.params.id
         if(!param) return res.status(500).json({"error" : "Product Id is required"});
 
-        const result = await order.findById(req.params.id).populate('ordersid.productId');
+        const result = await order.findById(req.params.id).populate('orders.productId');
 
         if (!result) return res.status(404).json({"error" : "No Product Found"});
         return res.status(200).json(result);
@@ -86,5 +92,5 @@ module.exports = {
     handleCreateOrder,
     handleUpdateOrder,
     handleGetOrderList,
-    handleGetSpecficProduct
+    handleGetSpecficorder
 }

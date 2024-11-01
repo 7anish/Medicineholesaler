@@ -5,6 +5,10 @@ const productSchema = new mongooes.Schema({
         type: Number,
         required: true
     },
+    productpricee : {
+        type: Number,
+        required: true
+    },
     productId: {
         type: mongooes.Schema.Types.ObjectId,
         ref: 'product',
