@@ -8,10 +8,14 @@ const handleCreateOrder = async (req, res) => {
 
         const result = await order.create({
             name: data.name,
+            email : data.email,
             phoneNumber: data.phoneNumber,
+            pincode : data.pincode,
+            landmark : data.landmark,
             address: data.address,
-            order: data.order,
-            totalPrice : data.totalPrice
+            orders : data.order,
+            totalPrice : data.totalPrice,
+            city : data.city
         })
         // if any error 
         if (!result) return res.status(500).json({ "Error": "Somthing went wrong Try After sometime" })

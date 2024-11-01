@@ -3,13 +3,14 @@ import axios from 'axios';
 import lotion from '../assets/lotion.jpg';
 import ViewAllBut from './ViewAllBut';
 import ProductCard from './ProductCard';
+import Url from '../../Url';
 
 function FeaturedProd() {
     const [data , setdata] = useState([])
     useEffect(() => {
         const fetchdata = async () => {
           try {
-            const { data } = await axios.get(`https://medicineholesaler-production.up.railway.app/api/v1/med/getproduct`)
+            const { data } = await axios.get(`${Url}/api/v1/med/getproduct`)
             console.log(data)
             setdata(data);
           } catch (e) {

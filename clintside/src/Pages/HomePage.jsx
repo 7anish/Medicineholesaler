@@ -22,9 +22,9 @@ return (
       {/* Products */}
       <FeaturedProd />
       {/* Discount Banner */}
-      <DiscountHome />
+      {/* <DiscountHome /> */}
       {/* Care */}
-      <Care />
+      {/* <Care /> */}
     </div>
   )
 }

@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import Login from '../assets/LogIn.jpg'
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import Url from '../../Url';
 function Singup() {
     const navigate = useNavigate();
 
@@ -16,10 +17,21 @@ function Singup() {
         return re.test(String(number));
     };
 
+    const checkothers = (value) => {
+        return /^(?!\s*$).+/.test(value);
+    };
+
     const handleSignupSubmit = async (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const number = e.target.number.value;
+        const password = e.target.password.value;
+        const name = e.target.name.value;
+
+        if(!checkothers(name)){
+            Swal.fire("plese enter a valid name")
+            return
+        }
         if (!validateEmail(email)) {
             Swal.fire("Please enter a valid email address.");
             return;
@@ -29,8 +41,13 @@ function Singup() {
             return;
         }
 
+        if(!checkothers(password)){
+            Swal.fire("Plese enter a valid password")
+            return
+        }
+
         try{
-            const res = await axios.post('https://medicineholesaler-production.up.railway.app/api/v1/admin/createaccount' , {
+            const res = await axios.post(`${Url}/api/v1/admin/createaccount` , {
                 name : e.target.name.value,
                 email : e.target.email.value,
                 phonenumber : e.target.number.value,

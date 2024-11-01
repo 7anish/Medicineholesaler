@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   BrowserRouter as Router, Routes, Route
 } from 'react-router-dom';
@@ -15,8 +15,16 @@ import LogInPage from './Pages/LogInPage';
 import Scrolltotop from './Components/Scrolltotop'
 import Singup from './Pages/Singup'
 import Subcatpage from './Components/Subcatpage';
+import Checkout from './Pages/Checkout';
+
+import { useDispatch } from 'react-redux';
+import { initialreducer } from './Store/Room';
 
 export default function App() {
+  const dispatch =  useDispatch()
+  useEffect(()=>{
+    dispatch(initialreducer())
+  })
   return (
     <Router >
     <ToastContainer />
@@ -24,13 +32,14 @@ export default function App() {
       <Navbar/>
       <Routes>
         <Route index path="/" element={<HomePage />} />
-        <Route index path="/category" element={<Subcatpage />} />
+        <Route index path="/category/:id" element={<Subcatpage />} />
         <Route path="/doctors" element={<DoctorPage />} />
         <Route path="/products" element={<ShopPage />} />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/singup" element={<Singup />} />
+        <Route path='/checkout' element={<Checkout />} />
       </Routes>
       <Footer />
     </Router>

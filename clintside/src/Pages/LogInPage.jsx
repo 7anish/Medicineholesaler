@@ -4,6 +4,7 @@ import Login from '../assets/LogIn.jpg'
 import { useCookies } from 'react-cookie'
 import Swal from 'sweetalert2'
 import axios from 'axios'
+import Url from '../../Url'
 function LogInPage() {
     const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'], {
         doNotParse: true,
@@ -20,16 +21,28 @@ function LogInPage() {
         return re.test(String(number));
     };
 
+
+    const checkothers = (value) => {
+        return /^(?!\s*$).+/.test(value);
+    };
+
     const handleLoginSubmit =async (e) => {
         e.preventDefault();
         const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        if(!checkothers(password)){
+            Swal.fire("Plese enter a valid password")
+            return
+        }
+        
         if (!validateEmail(email)) {
             Swal.fire("Please enter a valid email address.");
             return;
         }
         
         try{
-            const res = await axios.post('https://medicineholesaler-production.up.railway.app/api/v1/admin/logintoaccount' , {
+            const res = await axios.post(`${Url}/api/v1/admin/logintoaccount` , {
                 email : e.target.email.value,
                 password : e.target.password.value,
             })
@@ -43,7 +56,6 @@ function LogInPage() {
                     username : res.data.name,
                     usermail : res.data.email,
                     userphone : res.data.phonenumber
-
                 }
 
                 localStorage.setItem("information" , JSON.stringify(details))

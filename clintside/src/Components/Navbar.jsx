@@ -28,8 +28,8 @@ function Navbar() {
     const [open, setOpen] = useState(false);
     const linkClass = ({ isActive }) => isActive ? "text-[#2dd1dd] text-xl rounded-md px-3 py-2" : "text-gray-500 text-xl hover:text-[#2dd1dd]  rounded-md px-3 py-2";
     return (
-        <nav className='w-full  m-0 pr-6 md:pr-0 py-4 md::py-4 shadow-card-shadow  bg-white font-poppins z-50 sticky top-0'>
-            <div className='md:flex justify-between items-center font-poppins px-4 md:px-20'>
+        <nav className='w-full  m-0 pr-6 md:pr-0 sm:py-4 md::py-4 shadow-card-shadow  bg-white font-poppins z-50 sticky top-0'>
+            <div className='md:flex justify-between items-center font-poppins px-2  md:px-20'>
                 <div className='flex lg:justify-center items-center justify-between '>
                     <NavLink to={'/'}>
                         <div className=' font-bold text-xl lg:text-4xl '>Medical<span className='text-orange-600 text-lg lg:text-3xl'>Wholesale</span> </div>

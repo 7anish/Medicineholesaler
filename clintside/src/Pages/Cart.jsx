@@ -6,7 +6,9 @@ import { deletefmcart } from "../Store/Room";
 import { increasequat } from "../Store/Room";
 import { decresequat } from "../Store/Room";
 
+
 function Cart() {
+  const navigate = useNavigate()
   const dispatc = useDispatch()
   const deleteitem = (payload)=>{
     dispatc(deletefmcart(payload))
@@ -25,7 +27,13 @@ function Cart() {
   })
 
   const cartdata = data.allcartitem
-  console.log(cartdata)
+  const checkout = ()=>{
+    if(cartdata.length === 0 ){
+
+    }else{
+      navigate('/checkout')
+    }
+  }
   return (
     <div>
       <div className="container mx-auto py-16 sm:py-28 px-3 sm:px-0">
@@ -111,7 +119,7 @@ function Cart() {
               <span>
                 <ion-icon name="checkmark-done-circle-outline" size="large"></ion-icon>
               </span>
-              <button className='w-full h-full text-lg'>Place Order</button>
+              <button className='w-full h-full text-lg' onClick={checkout}>Place Order</button>
             </div>
           </section>
         </div>
@@ -119,5 +127,6 @@ function Cart() {
     </div>
   );
 }
+
 
 export default Cart;

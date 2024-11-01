@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 function ViewAllBut() {
     const navigation = useNavigate();
     const viewClick = ()=>{
-        navigation('/category')
+        navigation('/category/allcategory')
     }
     return (
         <div>

@@ -4,6 +4,7 @@ import Syrup from "../assets/syrup.jpg";
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addtocart } from '../Store/Room';
+import Url from '../../Url';
 
 function ProductPage() {
     const params = useParams()
@@ -18,7 +19,7 @@ function ProductPage() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const { data } = await axios.get(`https://medicineholesaler-production.up.railway.app/api/v1/med/getproduct/${params.id}`)
+                const { data } = await axios.get(`${Url}/api/v1/med/getproduct/${params.id}`)
                 console.log(data)
                 setdata(data);
             } catch (e) {

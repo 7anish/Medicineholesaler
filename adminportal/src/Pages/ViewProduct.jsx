@@ -9,7 +9,7 @@ function ViewProduct() {
     return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   };
 
-  const [productdata, setproductdata] = useState([]);
+  // const [productdata, setproductdata] = useState([]);
 
   const products = [
     {
@@ -103,9 +103,9 @@ function ViewProduct() {
     <div className='p-4 absolute top-[8vh] w-[79vw] right-0'>
       <h1 className="text-xl lg:text-3xl font-bold mb-4">View Product</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {productdata.map((medicine) => (
+        {products.map((medicine) => (
           <div key={medicine.id} className='bg-[#ffffffda] shadow-card-shadow hover:shadow-card-hover transition-all duration-500 rounded-xl p-4 flex flex-col justify-around gap-3'>
-            <img src={medicine.imageurl} alt="" className='w-full h-60 object-cover rounded-md cursor-pointer' />
+            <img src={syrup} alt="" className='w-full h-60 object-cover rounded-md cursor-pointer' />
             <div className='flex gap-2'>
               <span className='text-sm flex px-2 border rounded-lg bg-[#ddeff1] font-medium w-fit'>{medicine.category}</span>
               <span className='text-sm flex px-2 border rounded-lg bg-[#ddeff1] w-fit'>{medicine.subcategory}</span>

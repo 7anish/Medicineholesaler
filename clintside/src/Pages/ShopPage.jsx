@@ -3,7 +3,7 @@ import ProductCard from "../Components/ProductCard";
 import DiscountShop from "../Components/DiscountShop";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
-
+import Url from "../../Url";
 
 function ShopPage() {
   const [searchparams] = useSearchParams();
@@ -19,7 +19,7 @@ function ShopPage() {
         else if (searchparams.get('category')) {
           url = `category=${searchparams.get('category')}`
         }
-        const { data } = await axios.get(`https://medicineholesaler-production.up.railway.app/api/v1/med/getproduct?${url}`)
+        const { data } = await axios.get(`${Url}/api/v1/med/getproduct?${url}`)
         console.log(data)
         setdata(data);
       } catch (e) {
