@@ -34,18 +34,17 @@ const Deliveredorder = () => {
 
     if (error) {
         return(
-            <div className='p-4 absolute top-[8vh] w-full md:w-[79vw] right-0'>
-            <div className='w-full h-full flex items-center justify-center'>
-                <h1>Error in Featching Products</h1>
-            </div>
-        </div>
-
-        )
+         <div className='absolute top-[8vh] w-full md:w-[79vw] right-0'>
+         <div className='w-scre h-screen flex items-center justify-center'>
+             <h1 className='text-2xl font-bold'>Error in Featching Products</h1>
+         </div>
+     </div>
+    )
     }
     return (
         <div className='p-4 absolute top-[8vh] w-full md:w-[79vw] right-0 h-fit'>
             <h1 className="text-xl lg:text-3xl font-bold mb-4">Delivered Orders</h1>
-            <div className="w-full h-fit flex flex-wrap  gap-4 items-center justify-center px-10 py-3">
+            <div className="w-full h-fit flex flex-wrap gap-7 md:gap-4 items-center justify-center px-2 md:px-10 py-3">
                 {data?.map((order) => (
                     <div key={order.id} className='bg-[#ffffffda] w-[320px] min-h-[450px]  shadow-card-shadow hover:shadow-card-hover transition-all duration-500 rounded-xl p-4 flex flex-col justify-around gap-3 relative'>
                         <h1 className={`absolute -top-1 right-2 text-4xl ${order.OrderStatus === "Pending"? 'text-yellow-500' : order.OrderStatus === "Delivered" ? 'text-green-600' : 'text-red-700'  }`}><FaBookmark /></h1>

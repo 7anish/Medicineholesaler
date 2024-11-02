@@ -25,7 +25,7 @@ function Sidebar() {
     },[])
 
     return (
-        <div className={`${location.pathname == '/login' ? 'hidden' : '' } w-[80vw] md:w-[20vw] h-screen absolute sm:fixed bg-gray-800 text-white transition-all duration-300 ${open ?  'translate-x-[0%]' : 'translate-x-[-100%]' } sm:left-0 z-40`}>
+        <div className={`${location.pathname == '/login' ? 'hidden' : '' } w-[80vw] md:w-[20vw] h-screen  fixed  bg-gray-800 text-white transition-all duration-300 ${open ?  'translate-x-[0%]' : 'translate-x-[-100%]' } sm:left-0 z-40`}>
             <div className="h-[8vh] flex items-center px-4 border-b">
                 <NavLink to="/" className="text-2xl font-bold hidden sm:block">
                     <h2 className="text-xl lg:text-3xl font-bold">Admin Panel</h2>
@@ -33,23 +33,23 @@ function Sidebar() {
             </div>
             <div>
                 <div className="flex flex-col gap-4 border-b py-4 pl-2 h-fit relative">
-                    <div className="ml-auto text-xl block absolute md:hidden left-[100%] top-0 p-1 sm: bg-gray-800 rounded-r-2xl" onClick={() => setOpen(!open)}>
+                    <div className="ml-auto text-xl block absolute md:hidden left-[100%] top-14 p-2 sm: bg-gray-800 rounded-r-2xl" onClick={() => setOpen(!open)}>
                         {open ? <RxCross2 /> : <FaBars />}
                     </div>
                     <h3 className="text-xl lg:text-2xl">Product Section</h3>
                     <ul className="flex flex-col pl-2">
                         <li className="">
-                            <NavLink to="/" className={linkClass}>
-                                <FaClipboardList className="mr-2" /> Dashboard
+                            <NavLink to="/" className={linkClass} onClick={()=> setOpen(!open)}>
+                                <FaClipboardList className="mr-2"  /> Dashboard
                             </NavLink>
                         </li>
                         <li className="">
-                            <NavLink to="/add-product" className={linkClass}>
+                            <NavLink to="/add-product" className={linkClass} onClick={()=> setOpen(!open)}>
                                 <FaPlus className="mr-2" /> Add Product
                             </NavLink>
                         </li>
                         <li className="">
-                            <NavLink to="/view-product" className={linkClass}>
+                            <NavLink to="/view-product" className={linkClass} onClick={()=> setOpen(!open)}>
                                 <FaEye className="mr-2" /> View Product
                             </NavLink>
                         </li>
@@ -59,23 +59,23 @@ function Sidebar() {
                     <h3 className="text-xl lg:text-2xl">Orders Section</h3>
                     <ul className="flex flex-col gap-1">
                         <li className="">
-                            <NavLink to="/orders" className={linkClass}>
+                            <NavLink to="/orders" className={linkClass} onClick={()=> setOpen(!open)}>
                                 <FaBoxArchive className="mr-2" /> All Orders
                             </NavLink>
                         </li>
                         <li className="">
-                            <NavLink to={`/delivered`} className={linkClass}>
+                            <NavLink to={`/delivered`} className={linkClass} onClick={()=> setOpen(!open)}>
                                 <TbTruckDelivery className="mr-2" /> Delivered Orders
                             </NavLink>
                         </li>
                         
                         <li className="">
-                            <NavLink to={`/pending`} className={linkClass}>
+                            <NavLink to={`/pending`} className={linkClass} onClick={()=> setOpen(!open)}>
                                 <IoIosTimer className="mr-2" /> Pending  Orders
                             </NavLink>
                         </li>
                         <li className="">
-                            <NavLink to={`/cancleorder`} className={linkClass}>
+                            <NavLink to={`/cancleorder`} className={linkClass} onClick={()=> setOpen(!open)}>
                                 <MdDoNotDisturb className="mr-2" /> Cancled Order
                             </NavLink>
                         </li>

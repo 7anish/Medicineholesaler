@@ -100,7 +100,7 @@ const Specficorder = () => {
             <h1 className='font-bold'>Landmark: <span className='font-normal'>{order.landmark}</span></h1>
             {
               order.OrderStatus === "Pending" ?
-                <div className='w-full h-fit flex justify-end gap-5 px-5'>
+                <div className='w-full h-fit flex justify-center sm:justify-end gap-5 px-5 mt-3'>
                   <button className='bg-green-600 p-2 rounded-lg font-semibold' onClick={() => handleupdate("Delivered")}>Deliverd</button>
                   <button className='bg-red-500 p-2 rounded-lg font-semibold' onClick={() => handleupdate("Cancled")}>Cancled</button>
                 </div>
