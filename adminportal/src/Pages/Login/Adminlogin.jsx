@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import Login from '../assets/LogIn.jpg'
 import { useCookies } from 'react-cookie'
 import Swal from 'sweetalert2'
 import axios from 'axios'
-import Url from '../../Url'
-function LogInPage() {
+import Url from '../../../Url'
+function Adminlogin() {
     const [isporocessing , setisprocessing ] = useState(false)
     const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'], {
         doNotParse: true,
@@ -16,12 +15,6 @@ function LogInPage() {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
     };
-
-    const validatePhoneNumber = (number) => {
-        const re = /^\d{10}$/;
-        return re.test(String(number));
-    };
-
 
     const checkothers = (value) => {
         return /^(?!\s*$).+/.test(value);
@@ -52,18 +45,23 @@ function LogInPage() {
             })
 
             if(res.status == 200){
-                setisprocessing(false)
-                setCookie('lgthusr' , res.data.token , {
-                    path : '/',
-                    expires : ''
-                })
-                const details = {
-                    username : res.data.name,
-                    usermail : res.data.email,
-                    userphone : res.data.phonenumber
+                if(res.data.role == "NONE"){
+                    Swal.fire({
+                        title : "You are Not an Admin",
+                        icon : 'warning'
+                    })
+                    setisprocessing(false)
+                    return
                 }
-
-                localStorage.setItem("information" , JSON.stringify(details))
+                setisprocessing(false)
+                setCookie('lgthusr', res.data.token, {
+                    path: '/',
+                    expires: new Date(Date.now() +(30 * 24 * 60 * 60 * 1000))
+                }); 
+                setCookie('lgrole', res.data.role, {
+                    path: '/',
+                    expires: new Date(Date.now() +(30 * 24 * 60 * 60 * 1000))
+                });        
                 Swal.fire({
                     title : "LoggedIn Sucessfully",
                     icon : 'success'
@@ -89,11 +87,11 @@ function LogInPage() {
         }
     };
     return (
-        <div className="w-full py-10 flex justify-center items-center md:bg-login bg-center bg-no-repeat bg-cover md:min-h-screen pt-20">
-            <div className="bg-[#ffffffd8]  sm:p-16 rounded-3xl w-[90vw] md:w-[40vw] lg:w-[35vw] h-full md:h-fit transition-all duration-300">
+        <div className="w-[100vw] py-10 flex justify-center items-center md:bg-login bg-center bg-no-repeat bg-cover h-[100vh] pt-20 z-40 fixed top-0">
+            <div className="bg-[#ffffffd8]  sm:p-16 rounded-3xl w-[90vw] md:w-[40vw] lg:w-[35vw] h-full md:h-fit transition-all duration-300 shadow-card-shadow">
                 <div>
-                    <h2 className="text-3xl font-bold mb-6 text-center text-orange-500">Login</h2>
-                    <form className="mb-4" onSubmit={handleLoginSubmit}>
+                    <h2 className="text-3xl font-bold mb-6 text-center text-orange-500">Admin Login</h2>
+                    <form className="mb-4 " onSubmit={handleLoginSubmit}>
                         <div className="mb-4">
                             <label className="block text-gray-700">Email ID:</label>
                             <input type="email" name="email" required className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-shadow duration-300" />
@@ -122,4 +120,4 @@ function LogInPage() {
     )
 }
 
-export default LogInPage
+export default Adminlogin

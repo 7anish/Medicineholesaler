@@ -2,10 +2,11 @@ import React from 'react'
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-
+import { Cookies } from 'react-cookie';
 import Url from '../../Url';
 
 function AddProduct() {
+    const cookie = new Cookies()
     const [data, setData] = useState({
         name: '',
         description: '',
@@ -66,7 +67,11 @@ function AddProduct() {
 
         const details = Object.fromEntries(formdata);
         try {
-            const res = await axios.post(`${Url}/api/v1/med/addproduct`, details)
+            const res = await axios.post(`${Url}/api/v1/med/addproduct`, details , {
+                headers : {
+                    "Authorization": "Bearer " + cookie.get('lgthusr')
+                }
+            })
 
             if (res.status === 201) {
                 Swal.fire({
@@ -109,11 +114,11 @@ function AddProduct() {
                     <label className="block text-gray-700 font-semibold">Category:</label>
                     <select name="category" id="cat" className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm uppercase focus:outline-none focus:ring-2 focus:ring-blue-500"  onChange={handleChange} value={data.category}>
                     <option value="">Select Item Type</option>
-                        <option value="cosmetic">Cosmatic</option>
+                        <option value="cosmetic">Cosmetic</option>
                         <option value="surgical">surgical</option>
                         <option value="patent-medicine">patent medicine</option>
-                        <option value="generic-medicine">genericmedicine</option>
-                        <option value="ayurvedic-medicine">ayurvedic-medicine</option>
+                        <option value="generic-medicine">generic medicine</option>
+                        <option value="ayurvedic-medicine">ayurvedic medicine</option>
                     </select>
                 </div>
                 <div className="form-group">

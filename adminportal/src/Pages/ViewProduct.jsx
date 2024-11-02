@@ -5,9 +5,10 @@ import axios from 'axios';
 import Url from '../../Url';
 import Swal from 'sweetalert2';
 import { MdDelete } from "react-icons/md";
-
+import { Cookies } from 'react-cookie';
 
 function ViewProduct() {
+  const cookie = new Cookies()
   const navigate = useNavigate()
   const [data, setdata] = useState()
   const [isdelete, setisdelete] = useState(true)
@@ -29,7 +30,13 @@ function ViewProduct() {
 
   const handledelete = async (id) => {
     try {
-      const res = await axios.delete(`${Url}/api/v1/med/deleteproduct/${id}`)
+      const res = await axios.delete(`${Url}/api/v1/med/deleteproduct/${id}` , 
+        {
+          headers : {
+              "Authorization": "Bearer " + cookie.get('lgthusr')
+          }
+      }
+      )
       if (res.status == 200) {
         setisdelete(!isdelete)
         Swal.fire({

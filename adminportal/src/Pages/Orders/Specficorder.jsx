@@ -1,19 +1,28 @@
-import React , {useState , useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaEye } from 'react-icons/fa'
 import { FaBookmark } from "react-icons/fa";
 import Url from '../../../Url';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import { Cookies } from 'react-cookie';
 
 const Specficorder = () => {
+  const cookie = new Cookies()
   const params = useParams()
+  const [re, setre] = useState(true)
   const [order, setorder] = useState([])
   const [error, seterror] = useState(false)
-
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const {data}= await axios.get(`${Url}/api/v1/med/getorder/${params.id}`)
+        const { data } = await axios.get(`${Url}/api/v1/med/getorder/${params.id}`,
+          {
+            headers: {
+              "Authorization": "Bearer " + cookie.get('lgthusr')
+            }
+          }
+        )
         console.log(data)
         setorder(data)
       } catch (e) {
@@ -22,23 +31,53 @@ const Specficorder = () => {
       }
     }
     fetchdata()
-  }, [])
+  }, [re])
 
 
-  const handleupdate = ()=>{
+  const handleupdate = async (status) => {
+    try {
+      const res = await axios.patch(`${Url}/api/v1/med/upadateorder/${params.id}`, {
+        status: status
+      },
+        {
+          headers: {
+            "Authorization": "Bearer " + cookie.get('lgthusr')
+          }
+        }
+      )
 
+      if (res.status == 200) {
+        Swal.fire({
+          title: "Ordered Upadeted Sucessfully",
+          icon: "success"
+        })
+        setre(!re)
+        return;
+      } else {
+        Swal.fire({
+          title: "Error In Updating Order",
+          icon: "error"
+        });
+        return
+      }
+    } catch (e) {
+      Swal.fire({
+        title: "Error In Updating Order",
+        icon: "error"
+      });
+    };
   }
 
-    if (error) {
-      return(
-        <div className='p-4 absolute top-[8vh] w-[79vw] right-0'>
+  if (error) {
+    return (
+      <div className='p-4 absolute top-[8vh] w-[79vw] right-0'>
         <div className='w-full h-full flex items-center justify-center'>
           <h1>Error in Featching Products</h1>
         </div>
       </div>
-      )
-  
-    }
+    )
+
+  }
 
 
   return (
@@ -59,6 +98,17 @@ const Specficorder = () => {
             <h1 className='font-bold'>Pin Code: <span className='font-normal'>{order.pincode}</span></h1>
             <h1 className='font-bold'>City: <span className='font-normal'>{order.city}</span></h1>
             <h1 className='font-bold'>Landmark: <span className='font-normal'>{order.landmark}</span></h1>
+            {
+              order.OrderStatus === "Pending" ?
+                <div className='w-full h-fit flex justify-end gap-5 px-5'>
+                  <button className='bg-green-600 p-2 rounded-lg font-semibold' onClick={() => handleupdate("Delivered")}>Deliverd</button>
+                  <button className='bg-red-500 p-2 rounded-lg font-semibold' onClick={() => handleupdate("Cancled")}>Cancled</button>
+                </div>
+                :
+                <div className='w-full h-fit flex justify-end gap-5 px-5'>
+                  <h1 className={`text-xl font-bold ${order.OrderStatus === "Delivered" ? 'text-green-600' : 'text-red-500'}`}>{order.OrderStatus}</h1>
+                </div>
+            }
           </div>
         </div>
         {

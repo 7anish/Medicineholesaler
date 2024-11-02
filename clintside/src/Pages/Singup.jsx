@@ -6,7 +6,7 @@ import axios from 'axios';
 import Url from '../../Url';
 function Singup() {
     const navigate = useNavigate();
-
+    const [isprocess , setisprocess] = useState(false)
     const validateEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
@@ -23,25 +23,30 @@ function Singup() {
 
     const handleSignupSubmit = async (e) => {
         e.preventDefault();
+        setisprocess(true)
         const email = e.target.email.value;
         const number = e.target.number.value;
         const password = e.target.password.value;
         const name = e.target.name.value;
 
         if(!checkothers(name)){
+            setisprocess(false)
             Swal.fire("plese enter a valid name")
             return
         }
         if (!validateEmail(email)) {
+            setisprocess(false)
             Swal.fire("Please enter a valid email address.");
             return;
         }
         if (!validatePhoneNumber(number)) {
+            setisprocess(false)
             Swal.fire("Please enter a valid phone number.");
             return;
         }
 
         if(!checkothers(password)){
+            setisprocess(false)
             Swal.fire("Plese enter a valid password")
             return
         }
@@ -56,6 +61,7 @@ function Singup() {
             })
 
             if(res.status == 201){
+                setisprocess(false)
                 Swal.fire({
                     title : "Account Created",
                     icon : 'success'
@@ -64,12 +70,14 @@ function Singup() {
                 return
             }
             else{
+                setisprocess(false)
                 Swal.fire({
                     title : "Bad Request",
                     icon : 'error'
                 })
             }
         }catch(e){
+            setisprocess(false)
             Swal.fire({
                 title : "Somthing went wrong",
                 icon : 'error'
@@ -103,7 +111,14 @@ function Singup() {
                         <label className="block text-gray-700">B2B Licence Number (optional):</label>
                         <input name='b2b' type="text" className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-shadow duration-300" />
                     </div>
-                    <button type="submit" className="w-full bg-orange-500 text-white py-2 rounded hover:bg-orange-600 shadow-md transition-all duration-300 mb-4">Signup</button>
+                    <button type="submit" className="w-full bg-orange-500 text-white py-2 mb-4 rounded hover:bg-orange-600 shadow-md transition-all duration-300 items-center flex justify-center">
+                            {
+                                isprocess ? 
+                                <div className='w-6 h-6 border-r-4 border-white animate-spin rounded-[50%]'></div>
+                                :
+                                "Login"
+                            }
+                        </button>
                     <div className="text-center">
                         <NavLink to={'/login'} className="text-blue-500 hover:text-blue-700 transition-colors duration-300" >
                             Already a user? Log-in

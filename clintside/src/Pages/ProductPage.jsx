@@ -10,6 +10,9 @@ function ProductPage() {
     const params = useParams()
     const [count, setCount] = useState(1);
     const [data, setdata] = useState([]);
+    const [error, seterror] = useState(false)
+    const [loading, setloading] = useState(true)
+
     const dispach = useDispatch()
 
     const addtocartitem = (payload) => {
@@ -22,7 +25,10 @@ function ProductPage() {
                 const { data } = await axios.get(`${Url}/api/v1/med/getproduct/${params.id}`)
                 console.log(data)
                 setdata(data);
+                setloading(false)
             } catch (e) {
+                seterror(true)
+                setloading(false)
                 console.log(e)
             }
         }
@@ -30,7 +36,26 @@ function ProductPage() {
     }, [])
 
 
+    if (error) {
+        return (
+            <>
+                <section className='w-full h-[80vh] py-10 xl:pt-10 xl:py-0 px-4 lg:px-20 items-center justify-center'>
+                    <h1 className='text-3xl font-bold font-poppins text-center py-20 text-orange-500'>Error in fetching Product !!!</h1>
+                </section>
+            </>
+        )
+    }
     return (
+        loading ? 
+        <>
+                <section className='w-full h-[80vh]  py-0 xl:pt-10 xl:py-0 px-4 lg:px-20 flex items-center justify-center'>
+                    <div className='my-20 flex items-center justify-center'>
+                        <div class="w-16 h-16 rounded-full animate-spin 
+                    border-x-4 border-solid border-orange-500 border-t-transparent"></div>
+                    </div>
+                </section>
+            </>
+        :        
         <div className='h-fit font-poppins px-4 sm:px-8 md:px-12 lg:px-20 lg:py-20 py-10'>
             {/* Product Section */}
             <section className='flex flex-col lg:flex-row py-10  lg:gap-10 justify-between items-center'>

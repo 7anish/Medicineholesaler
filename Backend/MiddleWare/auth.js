@@ -19,5 +19,5 @@ const checkisadmin = (req,res,next)=>{
 }
 
 module.exports = {
-    checkisadmin,
+    checkisadmin
 }

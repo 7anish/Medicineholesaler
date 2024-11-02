@@ -12,10 +12,15 @@ import Allorders from './Pages/Orders/Allorders';
 import Pendingorder from './Pages/Orders/Pendingorder';
 import Specficorder from './Pages/Orders/Specficorder';
 import Cancledorder from './Pages/Orders/Cancledorder';
+import Adminlogin from './Pages/Login/Adminlogin';
+import Auth from './Pages/Login/Auth';
+
+
 
 function App() {
   return (
     <Router>
+    <Auth />
       <div className="flex">
         <Sidebar />
         <div className="flex-1">
@@ -31,6 +36,7 @@ function App() {
             <Route path="/pending" element={<Pendingorder />} />
             <Route path="/delivered" element={<Deliveredorder />} />
             <Route path="/cancleorder" element={<Cancledorder />} />
+            <Route path='/login' element={<Adminlogin />} />
           </Routes>
         </div>
       </div>

@@ -4,7 +4,9 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Url from '../../Url';
 import Swal from 'sweetalert2';
+import { Cookies } from 'react-cookie';
 function EditProduct() {
+    const cookie = new Cookies()
     const navigate = useNavigate()
     const params = useParams()
     console.log(params.id)
@@ -56,7 +58,11 @@ function EditProduct() {
         // if alert this "Swal.fire("Enter All the fields Properly");" and return
 
         try {
-            const res = await axios.patch(`${Url}/api/v1/med/updateproduct/${params.id}` , data)
+            const res = await axios.patch(`${Url}/api/v1/med/updateproduct/${params.id}` , data , {
+                headers : {
+                    "Authorization": "Bearer " + cookie.get('lgthusr')
+                }
+            })
 
             if (res.status == 200) {
                 Swal.fire({

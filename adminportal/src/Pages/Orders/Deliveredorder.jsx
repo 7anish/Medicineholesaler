@@ -4,8 +4,10 @@ import axios from 'axios'
 import Url from '../../../Url'
 import { FaEye } from 'react-icons/fa'
 import { FaBookmark } from "react-icons/fa";
+import { Cookies } from 'react-cookie';
 
 const Deliveredorder = () => {
+    const cookie = new Cookies()
     const navigate = useNavigate()
     const [data, setdata] = useState([])
     const [error, seterror] = useState(false)
@@ -13,7 +15,13 @@ const Deliveredorder = () => {
     useEffect(()=>{
         const fetchdata = async ()=>{
             try{
-                const {data} = await axios.get(`${Url}/api/v1/med/getorder?OrderStatus=Delivered`)
+                const {data} = await axios.get(`${Url}/api/v1/med/getorder?OrderStatus=Delivered` ,
+                    {
+                        headers : {
+                            "Authorization": "Bearer " + cookie.get('lgthusr')
+                        }
+                    }
+                )
                 console.log(data)
                 setdata(data)
             }catch(e){

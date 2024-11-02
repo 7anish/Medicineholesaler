@@ -5,7 +5,9 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Url from '../../Url';
+import { Cookies } from 'react-cookie';
 function ViewEach() {
+    const cookie = new Cookies()
     const params = useParams()
     const [data , setdata] =  useState([])
     const [count, setCount] = useState(1);
@@ -16,7 +18,13 @@ function ViewEach() {
     useEffect(()=>{
         const fetchdata = async ()=>{
             try{
-                const {data} = await axios.get(`${Url}/api/v1/med/getproduct/${params.id}`)
+                const {data} = await axios.get(`${Url}/api/v1/med/getproduct/${params.id}` , 
+                    {
+                        headers : {
+                            "Authorization": "Bearer " + cookie.get('lgthusr')
+                        }
+                    }
+                )
                 setdata(data)
                 console.log(data)
             }catch(e){

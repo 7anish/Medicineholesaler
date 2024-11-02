@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useParams } from 'react-router-dom';
 import { RxCross2 } from "react-icons/rx";
 import { FaClipboardList } from "react-icons/fa";
 import { TbTruckDelivery } from "react-icons/tb";
@@ -9,10 +9,10 @@ import { MdDoNotDisturb } from "react-icons/md";
 
 
 
-
 import { FaPlus, FaEye, FaBox, FaBars } from 'react-icons/fa';
 
 function Sidebar() {
+    const location = useLocation()
     const linkClass = ({ isActive }) => isActive ? "flex text-lg items-center bg-white text-black p-2 m-3 rounded-2xl" : "flex text-lg items-center text-white bg-gray-800 hover:bg-white hover:text-black p-2 m-3 rounded-2xl";
     const [open, setOpen] = useState(true);
 
@@ -25,7 +25,7 @@ function Sidebar() {
     },[])
 
     return (
-        <div className={`w-[80vw] md:w-[20vw] h-screen absolute sm:fixed bg-gray-800 text-white transition-all duration-300 ${open ?  'translate-x-[0%]' : 'translate-x-[-100%]' } sm:left-0 z-40`}>
+        <div className={`${location.pathname == '/login' ? 'hidden' : '' } w-[80vw] md:w-[20vw] h-screen absolute sm:fixed bg-gray-800 text-white transition-all duration-300 ${open ?  'translate-x-[0%]' : 'translate-x-[-100%]' } sm:left-0 z-40`}>
             <div className="h-[8vh] flex items-center px-4 border-b">
                 <NavLink to="/" className="text-2xl font-bold hidden sm:block">
                     <h2 className="text-xl lg:text-3xl font-bold">Admin Panel</h2>

@@ -28,11 +28,10 @@ const handleLoginAsAdmin = async (req,res)=>{
         const result = await admin.matchpassword( data.email , data.password);
 
         if(!result) return res.status(404).json(("Error User not Found"))
-        console.log(result)
         // if(result.role === 'NONE') return res.status(403).json({ error: "Unauthorised" });
         const token = generateToken(result.email , result._id , result.role); // Generatin the Jwt tokern
         
-        return res.status(200).json({ token : token , name : result.name , email : result.email , phonenumber : result.phonenumber});
+        return res.status(200).json({ token : token , name : result.name , email : result.email , phonenumber : result.phonenumber , role : result.role});
 
     }catch(e){
         console.log(e);

@@ -6,7 +6,7 @@ import axios from 'axios';
 import Url from '../../Url';
 const Checkout = () => {
 
-
+    const[ isprocess, setisprocess ] = useState(false)
     const [name , setname]= useState("");
     const [email, setemail]= useState("");
     const [phoneNumber , setphoneNumber] = useState("")
@@ -62,7 +62,7 @@ const Checkout = () => {
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
-
+        setisprocess(true)
         const order = data.allcartitem.map((item)=>{
             return {
                 quantity : item.quantity,
@@ -84,30 +84,37 @@ const Checkout = () => {
 
         console.log(deatails)
         if(!checkothers(e.target.name.value)){
+            setisprocess(false)
             Swal.fire("plese enter a valid name")
             return
         }
         if (!validateEmail(e.target.email.value)) {
+            setisprocess(false)
             Swal.fire("Please enter a valid email address.");
             return;
         }
         if (!validatePincode(e.target.pincode.value)) {
+            setisprocess(false)
             Swal.fire("Please enter a valid Pincode");
             return;
         }
         if (!validatePhoneNumber(e.target.phoneNumber.value)) {
+            setisprocess(false)
             Swal.fire("Please enter a valid phone number.");
             return;
         }
         if(!checkothers(e.target.address.value)){
+            setisprocess(false)
             Swal.fire("Plese enter a Adderss")
             return
         }
         if(!checkothers(e.target.city.value)){
+            setisprocess(false)
             Swal.fire("Plese enter a city")
             return
         }
         if(!checkothers(e.target.landmark.value)){
+            setisprocess(false)
             Swal.fire("Plese enter a landmark")
             return
         }
@@ -117,6 +124,7 @@ const Checkout = () => {
             const res = await axios.post(`${Url}/api/v1/med/createorder` , deatails)
 
             if(res.status == 201){
+                setisprocess(false)
                 sessionStorage.setItem('cartitem' , JSON.stringify([]))
                 Swal.fire({
                     title : "Ordered Placed Sucessfully",
@@ -127,13 +135,14 @@ const Checkout = () => {
                 return
             }
             else{
+                setisprocess(false)
                 Swal.fire({
                     title : "Bad Request",
                     icon : 'error'
                 })
             }
         }catch(e){
-            console.log(e)
+            setisprocess(false)
             Swal.fire({
                 title : "Unable tO place order",
                 icon : 'error'
@@ -153,7 +162,6 @@ const Checkout = () => {
                             Cart
                         </span>
                     </li>
-
                     <li className="after:border-1 flex items-center text-primary-700 after:mx-6 after:hidden after:h-1 after:w-full after:border-b after:border-gray-200 sm:after:inline-block sm:after:content-[''] md:w-full xl:after:mx-10 ">
                         <span className="flex items-center after:mx-2 text-orange-600 after:content-['/']  sm:after:hidden">
                             <svg className="me-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -162,7 +170,6 @@ const Checkout = () => {
                             Checkout
                         </span>
                     </li>
-
                     <li className="flex shrink-0 items-center">
                         <svg className="me-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -170,7 +177,6 @@ const Checkout = () => {
                         Ordered Completed
                     </li>
                 </ol>
-
                 <div className="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12 xl:gap-16">
                     <div className="min-w-0 flex-1 space-y-8">
                         <div className="space-y-4">
@@ -231,9 +237,15 @@ const Checkout = () => {
                                         </dl>
                                     </div>
                                 </div>
-
                                 <div className="space-y-3">
-                                    <button type="submit" className="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 bg-orange-600">Confirm Your Order</button>
+                                    <button type="submit" className="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 bg-orange-600">
+                                        {
+                                            isprocess ? 
+                                            <div className='w-6 h-6 border-r-4 border-white animate-spin rounded-[50%]'></div>
+                                            :
+                                            "Confirm Your Order"
+                                        }
+                                    </button>
                                 </div>
                             </div>
                         </div>
