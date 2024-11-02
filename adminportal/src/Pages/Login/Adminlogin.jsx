@@ -88,7 +88,7 @@ function Adminlogin() {
     };
     return (
         <div className="w-[100vw] py-10 flex justify-center items-center md:bg-login bg-center bg-no-repeat bg-cover h-[100vh] pt-20 z-40 fixed top-0">
-            <div className="bg-[#ffffffd8]  sm:p-16 rounded-3xl w-[90vw] md:w-[40vw] lg:w-[35vw] h-full md:h-fit transition-all duration-300 shadow-card-shadow">
+            <div className="bg-[#ffffffd8]  sm:p-16 rounded-3xl w-[90vw] md:w-[40vw] lg:w-[35vw] h-full md:h-fit transition-all duration-300 md:shadow-card-shadow">
                 <div>
                     <h2 className="text-3xl font-bold mb-6 text-center text-orange-500">Admin Login</h2>
                     <form className="mb-4 " onSubmit={handleLoginSubmit}>
