@@ -1,6 +1,6 @@
 const express = require('express')
 const route = express.Router();
-const { handleaddproduct, handledeleteproduct, handleupdateproduct , handlGetProductList ,  handleGetSpecficProduct  } = require('../Controller/ProductController');
+const { handleaddproduct, handledeleteproduct, handleupdateproduct , handlGetProductList ,  handleGetSpecficProduct , handleaddtowishlist  } = require('../Controller/ProductController');
 const {upload} = require('../Storage/Storage')
 const {checkisadmin} = require('../MiddleWare/auth')
 

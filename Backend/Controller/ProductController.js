@@ -3,8 +3,6 @@ const product = require('../Modal/Prductmodal');
 const handleaddproduct =async (req,res)=>{
     try{
         const data = req.body
-        console.log("hello")
-        console.log(req.body)
         if(Object.keys(data).length == 0) return res.status(400).json({error : "All fields are required"});
 
         const range = JSON.parse(data.range)
@@ -28,8 +26,6 @@ const handleaddproduct =async (req,res)=>{
         // Sucessfully created
         return res.status(201).json({"Message" : "Producta added Sucessfully"});
     }catch(e){
-        // catch block
-        console.log('enajla')
         console.log(e);
         return res.status(400).json({"Error" : "Somthing went wrong in adding product"})
     }
@@ -105,10 +101,13 @@ const handleGetSpecficProduct = async (req,res)=>{
         return res.status(500).json({"Error" : "Somthing Went Wrong Try adter Some Time"})
     }
 }
+
+
+
 module.exports={
     handleaddproduct,
     handledeleteproduct,
     handleupdateproduct,
     handlGetProductList,
-    handleGetSpecficProduct
+    handleGetSpecficProduct,
 }

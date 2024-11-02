@@ -4,8 +4,9 @@ import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import Url from '../../Url';
+import { Cookies } from 'react-cookie';
 const Checkout = () => {
-
+    const cookie = new Cookies()
     const[ isprocess, setisprocess ] = useState(false)
     const [name , setname]= useState("");
     const [email, setemail]= useState("");
@@ -79,7 +80,8 @@ const Checkout = () => {
             pincode : e.target.pincode.value,
             landmark : e.target.landmark.value,
             totalPrice : data.totaldiscountprice,
-            order : order      
+            order : order,
+            createdBy :   cookie.get('lgid') || undefined
         }
 
         console.log(deatails)

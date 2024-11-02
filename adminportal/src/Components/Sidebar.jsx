@@ -25,7 +25,7 @@ function Sidebar() {
     },[])
 
     return (
-        <div className={`${location.pathname == '/login' ? 'hidden' : '' } w-[80vw] md:w-[20vw] h-screen  fixed  bg-gray-800 text-white transition-all duration-300 ${open ?  'translate-x-[0%]' : 'translate-x-[-100%]' } sm:left-0 z-40`}>
+        <div className={`${location.pathname == '/login' ? 'hidden' : '' } w-[80vw] md:w-[20vw] h-screen  fixed  bg-gray-800 text-white transition-all duration-300 ${open ?  'translate-x-[0%]' : 'translate-x-[-100%] md:translate-x-[0%]' } sm:left-0 z-40`}>
             <div className="h-[8vh] flex items-center px-4 border-b">
                 <NavLink to="/" className="text-2xl font-bold hidden sm:block">
                     <h2 className="text-xl lg:text-3xl font-bold">Admin Panel</h2>

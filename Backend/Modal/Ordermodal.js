@@ -55,7 +55,11 @@ const orderScheam = new mongooes.Schema({
         type: String,
         required: true
     },
-    orders: [productSchema]
+    orders: [productSchema],
+    createdBy : {
+        type : mongooes.Schema.Types.ObjectId,
+        ref : 'admin'
+    }
 }, { timestamps: true })
 
 const order = mongooes.model('order', orderScheam)

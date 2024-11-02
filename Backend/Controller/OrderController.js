@@ -15,8 +15,11 @@ const handleCreateOrder = async (req, res) => {
             address: data.address,
             orders : data.order,
             totalPrice : data.totalPrice,
-            city : data.city
+            city : data.city,
+            createdBy : data.createdBy
         })
+
+        console.log(result)
         // if any error 
         if (!result) return res.status(500).json({ "Error": "Somthing went wrong Try After sometime" })
 
@@ -88,9 +91,22 @@ const handleGetSpecficorder = async (req,res)=>{
     }
 }
 
+
+const handlegetordehistory =async (req,res)=>{
+    try{
+        const id = req.query.id
+        const result = await order.find({createdBy : id}).populate('orders.productId')
+        res.status(200).json(result)
+    }catch(e){
+        console.log(e)
+        return res.status(500).json({"Error" : "Somthing Went Wrong Try adter Some Time"})
+    }
+}
+
 module.exports = {
     handleCreateOrder,
     handleUpdateOrder,
     handleGetOrderList,
-    handleGetSpecficorder
+    handleGetSpecficorder,
+    handlegetordehistory
 }

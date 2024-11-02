@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 const { createHmac, randomBytes } = require('crypto');
 const { type } = require('os');
 
+const wishlist = new mongoose.Schema({
+    productid : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'product'
+    }
+})
 
 const adminSchema = new mongoose.Schema({
     name: {
@@ -32,7 +38,8 @@ const adminSchema = new mongoose.Schema({
         type : String,
         enum : ['ADMIN' , 'SUPERADMIN', 'NONE'],
         default : 'NONE',
-    }
+    },
+    wishlist : [wishlist]
 })
 
 adminSchema.pre('save', function (next) {

@@ -57,6 +57,10 @@ function LogInPage() {
                     path : '/',
                     expires : ''
                 })
+                setCookie('lgid' , res.data.id , {
+                    path : '/',
+                    expires : ''
+                })
                 const details = {
                     username : res.data.name,
                     usermail : res.data.email,

@@ -15,7 +15,7 @@ function Navbar() {
 
     const Quant = useSelector((state) => {
         return state.carteditems.allcartitem
-      })
+    })
 
     useEffect(() => {
         if (cookies.lgthusr) {
@@ -62,9 +62,14 @@ function Navbar() {
                                 </NavLink>
                             )
                             : (
-                                <NavLink to={'/wishlist'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5'>
-                                <ion-icon name="heart-outline" size='large' className="font-extrabold "></ion-icon>
-                                </NavLink>
+                                <>
+                                    <NavLink to={'/wishlist'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5'>
+                                        <ion-icon name="heart-outline" size='large' className="font-extrabold "></ion-icon>
+                                    </NavLink>
+                                    <NavLink to={'/orderhistory'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5'>
+                                        <ion-icon name="logo-dropbox" size='large' className="font-extrabold "></ion-icon>
+                                    </NavLink>
+                                </>
                             )
                     }
                 </div>

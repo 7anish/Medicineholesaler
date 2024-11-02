@@ -31,7 +31,7 @@ const handleLoginAsAdmin = async (req,res)=>{
         // if(result.role === 'NONE') return res.status(403).json({ error: "Unauthorised" });
         const token = generateToken(result.email , result._id , result.role); // Generatin the Jwt tokern
         
-        return res.status(200).json({ token : token , name : result.name , email : result.email , phonenumber : result.phonenumber , role : result.role});
+        return res.status(200).json({ token : token , name : result.name , email : result.email , phonenumber : result.phonenumber , role : result.role , id: result._id});
 
     }catch(e){
         console.log(e);
@@ -39,7 +39,27 @@ const handleLoginAsAdmin = async (req,res)=>{
     }
 }
 
+
+const handleaddtowishlist =async (req,res)=>{
+    try{
+        if(Object.keys(data).length == 0) return res.status(400).json({error : "All fields are required"});
+
+        const result = awq
+    }catch(e){
+        console.log(e);
+        return res.status(400).json({"Error" : "Somthing went wrong in adding product"})
+    }
+}
+
+
+const handlegetwishlist =async ()=>{
+}
+
+
+
 module.exports = {
     handleLoginAsAdmin,
-    handleCreateAdmin
+    handleCreateAdmin,
+    handleaddtowishlist,
+    handlegetwishlist
 }

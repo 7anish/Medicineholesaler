@@ -20,6 +20,7 @@ import Checkout from './Pages/Checkout';
 import { useDispatch } from 'react-redux';
 import { initialreducer } from './Store/Room';
 import Wishlist from './Pages/Wishlist';
+import Orderhistory from './Pages/Orderhistory';
 
 export default function App() {
   const dispatch =  useDispatch()
@@ -42,6 +43,7 @@ export default function App() {
         <Route path="/singup" element={<Singup />} />
         <Route path='/wishlist' element={<Wishlist />} />
         <Route path='/checkout' element={<Checkout />} />
+        <Route path='/orderhistory' element={<Orderhistory />} />
       </Routes>
       <Footer />
     </Router>
