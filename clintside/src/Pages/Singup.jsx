@@ -116,7 +116,7 @@ function Singup() {
                                 isprocess ? 
                                 <div className='w-6 h-6 border-r-4 border-white animate-spin rounded-[50%]'></div>
                                 :
-                                "Login"
+                                "Sing Up"
                             }
                         </button>
                     <div className="text-center">

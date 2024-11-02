@@ -4,7 +4,7 @@ const {handleCreateAdmin , handleLoginAsAdmin} = require('../Controller/AdminCon
 const {checkisadmin} = require('../MiddleWare/auth')
 
 
-route.post('/createaccount', checkisadmin, handleCreateAdmin);
+route.post('/createaccount', handleCreateAdmin);
 route.post('/logintoaccount' , handleLoginAsAdmin);
 
 module.exports = route
