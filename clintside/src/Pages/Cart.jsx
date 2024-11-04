@@ -59,6 +59,7 @@ function Cart() {
                           <h1 className='text-2xl font-bold'>{medicine.name}</h1>
                         </div>
                       </div>
+                      <h1 className='text-md font-bold'>{medicine.companyName} || {medicine.size}</h1>
                       <div className='flex justify-between items-center sm:gap-10 gap-2 flex-wrap'>
                           <h1 className='text-xl font-bold'>Price :₹&nbsp;{medicine.discountprice}</h1>
                           <div className='flex items-center justify-center'>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { act } from 'react'
 import { useState } from 'react';
 import Syrup from '../assets/syrup.jpg';
 import { useParams } from 'react-router-dom';
@@ -11,12 +11,13 @@ function ViewEach() {
     const params = useParams()
     const [data , setdata] =  useState([])
     const [count, setCount] = useState(1);
-    const toTitleCase = (str) => {
-        return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-    };
+    const [loading , setloading] = useState(false)
+    const [error , seterror] = useState(false)
+    const [active , setactive ] = useState(0)
 
     useEffect(()=>{
         const fetchdata = async ()=>{
+            setloading(true)
             try{
                 const {data} = await axios.get(`${Url}/api/v1/med/getproduct/${params.id}` , 
                     {
@@ -27,36 +28,63 @@ function ViewEach() {
                 )
                 setdata(data)
                 console.log(data)
+                setloading(false)
             }catch(e){
                 console.log(e)
+                seterror(true)
+                setloading(false)
             }
         }
         fetchdata()
     },[])
 
+    if (error) {
+        return (
+            <>
+                <section className='w-full h-[80vh] py-10 xl:pt-10 xl:py-0 px-4 lg:px-20 items-center justify-center'>
+                    <h1 className='text-3xl font-bold font-poppins text-center py-20 text-orange-500'>Error in fetching Product !!!</h1>
+                </section>
+            </>
+        )
+    }
+
     return (
         <div className='absolute right-0 w-full md:w-[80vw] top-[8vh]'>
             <div className='font-poppins'>
-                {/* Product Section */}
-                <section className='flex flex-col lg:flex-row p-10  lg:gap-10 justify-between items-center'>
-                <section className='w-full xl:w-[40%]'>
-                    <img src={data.productimage} className='rounded-3xl w-full h-full object-cover  border-[1px] border-black' alt="Product Image" />
+                <section className='flex flex-col lg:flex-row p-10  lg:gap-10 justify-between items-center '>
+                <section className='w-full xl:w-[40%] flex flex-col items-center justify-center'>
+                {
+                    data.length === 0 ? "" 
+                    : 
+                    (
+                        <>
+                        <img src={data?.productimage[active]?.imageurl} className='rounded-3xl w-full h-[300px]   sm:w-[500px] sm:h-[400px] object-contain' alt="Product Image" />
+                        <div className='w-full h-fit flex   p-5 gap-2 overflow-x-scroll scrollbar'>
+                        <img src={data?.productimage[0]?.imageurl} className='w-[70px] h-[50px]  object-cover  border-[1px] border-black cursor-pointer rounded-lg' alt="Product Image" onClick={()=>setactive(0)}/>
+                        <img src={data?.productimage[1]?.imageurl} className=' w-[70px] h-[50px] object-cover  border-[1px] border-black cursor-pointer rounded-lg' alt="Product Image" onClick={()=>setactive(1)}/>
+                        <img src={data?.productimage[2]?.imageurl} className=' w-[70px] h-[50px] object-cover  border-[1px] border-black cursor-pointer rounded-lg' alt="Product Image" onClick={()=>setactive(2)}/>
+                        <img src={data?.productimage[3]?.imageurl} className=' w-[70px] h-[50px] object-cover  border-[1px] border-black cursor-pointer rounded-lg' alt="Product Image" onClick={()=>setactive(3)}/>
+                        <img src={data?.productimage[4]?.imageurl} className=' w-[70px] h-[50px] object-cover  border-[1px] border-black cursor-pointer rounded-lg' alt="Product Image" onClick={()=>setactive(4)}/>
+                        </div>
+                        </>
+                    )
+                }
                 </section>
                 <section className='w-full xl:w-[60%]'>
-                    <div className='bg-[#ffffffda] transition-all duration-500 rounded-xl p-4 flex flex-col min-h-[60vh] min-w-full md:min-w-[450px]  gap-3  justify-evenly'>
+                    <div className='bg-[#ffffffda] transition-all duration-500 rounded-xl p-4 py-10 flex flex-col min-h-[60vh] min-w-full md:min-w-[450px]  gap-6  justify-evenly'>
                         <h1 className='text-3xl lg:text-6xl font-bold capitalize'>{data.name}</h1>
-                        <div className='flex gap-2'>
+                        <div className='flex gap-2 flex-wrap'>
                             <span className='px-2 py-1 border rounded-lg bg-[#ddeff1] font-medium text-base lg:text-lg capitalize'>{data.category}</span>
                             <span className='px-2 py-1 border rounded-lg bg-[#ddeff1] text-base lg:text-lg capitalize'>{data.subcategory}</span>
                             <span className='px-2 py-1 border rounded-lg bg-[#ecddf1] text-base lg:text-lg capitalize'>{data.itemtype}</span>
                         </div>
                         <div className='flex flex-col gap-4'>
-                            <p className='text-base lg:text-lg flex-grow'>{data.subdescription}</p>
+                            <p className='text-base lg:text-lg flex-grow'>Size : {data.size}</p>
                             <div className='flex justify-between items-center flex-wrap gap-3'>
-                                <h2 className='text-xl lg:text-2xl font-bold capitalize'>price :₹&nbsp;{data.discountprice}</h2>
+                                <h2 className='text-xl lg:text-2xl font-bold capitalize'>price :₹&nbsp;{data.ourPrice}</h2>
                                 
                             </div>
-                            <h1 className='text-lg lg:text-xl font-bold line-through text-red-600'>₹&nbsp;{data.actualprice}</h1>
+                            <h1 className='text-lg lg:text-xl font-bold line-through text-red-600'>₹&nbsp;{data.mrp}</h1>
                             <div className='bg-[#ffffffda] rounded-lg'>
                                 <h1 className='text-lg md:text-xl font-semibold pb-1'>Price Ranges</h1>
                                 <hr className='my-1 h-1 bg-black'/>
@@ -74,10 +102,6 @@ function ViewEach() {
                         </div>
                     </div>
                 </section>
-            </section>
-            <section className=' px-14'>
-                <h1 className='text-xl lg:text-2xl font-bold capitalize pb-5'>Description</h1>
-                <p className='md:text-justify text-left'>{data.description}</p>
             </section>
             </div>
         </div>

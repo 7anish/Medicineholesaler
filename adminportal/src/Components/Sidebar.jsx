@@ -60,23 +60,7 @@ function Sidebar() {
                     <ul className="flex flex-col gap-1">
                         <li className="">
                             <NavLink to="/orders" className={linkClass} onClick={()=> setOpen(!open)}>
-                                <FaBoxArchive className="mr-2" /> All Orders
-                            </NavLink>
-                        </li>
-                        <li className="">
-                            <NavLink to={`/delivered`} className={linkClass} onClick={()=> setOpen(!open)}>
-                                <TbTruckDelivery className="mr-2" /> Delivered Orders
-                            </NavLink>
-                        </li>
-                        
-                        <li className="">
-                            <NavLink to={`/pending`} className={linkClass} onClick={()=> setOpen(!open)}>
-                                <IoIosTimer className="mr-2" /> Pending  Orders
-                            </NavLink>
-                        </li>
-                        <li className="">
-                            <NavLink to={`/cancleorder`} className={linkClass} onClick={()=> setOpen(!open)}>
-                                <MdDoNotDisturb className="mr-2" /> Cancled Order
+                                <FaBoxArchive className="mr-2" />Orders
                             </NavLink>
                         </li>
                     </ul>

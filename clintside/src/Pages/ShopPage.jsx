@@ -104,8 +104,8 @@ function ShopPage() {
               <div className="w-full right-0">
                 <div className="w-full px-10 flex flex-wrap justify-center items-center gap-10 py-10">
                   {
-                    data?.map((item) => {
-                      return <ProductCard key={item.id} id={item.id} name={item.name} actualprice={item.actualprice} img={item.imageurl} cat={item.category} subcat={item.subcategory} discountprice={item.discountprice} />
+                    data?.map((item , index) => {
+                      return <ProductCard key={item.index} name={item.name} index={index} id={item.id}  cat={item.category} subcat={item.subcategory} img={item.imageurl}  actualprice={item.mrp} discountprice={item.ourPrice} companyname={item.companyName} size={item.size}/>
                     })
                   }
                 </div>

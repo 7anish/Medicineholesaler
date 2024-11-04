@@ -13,8 +13,9 @@ function FeaturedProd() {
     useEffect(() => {
         const fetchdata = async () => {
             try {
-                const { data } = await axios.get(`${Url}/api/v1/med/getproduct`)
+                const { data } = await axios.get(`${Url}/api/v1/med/getproduct?type=feature`)
                 setdata(data);
+                console.log(data)
                 setloading(false)
             } catch (e) {
                 console.log(e)
@@ -62,7 +63,7 @@ function FeaturedProd() {
                         {
                             data.map((item, index) => (
                                 <>
-                                    <ProductCard index={index} id={item.id} name={item.name} actualprice={item.actualprice} img={item.imageurl} cat={item.category} subcat={item.subcategory} discountprice={item.discountprice} />
+                                    <ProductCard index={index} id={item.id} name={item.name} actualprice={item.mrp} img={item.imageurl} cat={item.category} subcat={item.subcategory} discountprice={item.ourPrice} companyname={item.companyName} size={item.size}/>
                                     {/* <ProductCard index={index} id={item.id} name={item.name} actualprice={item.actualprice} img={item.imageurl} cat={item.category} subcat={item.subcategory} discountprice={item.discountprice}/>
                             <ProductCard index={index} id={item.id} name={item.name} actualprice={item.actualprice} img={item.imageurl} cat={item.category} subcat={item.subcategory} discountprice={item.discountprice}/>
                             <ProductCard index={index} id={item.id} name={item.name} actualprice={item.actualprice} img={item.imageurl} cat={item.category} subcat={item.subcategory} discountprice={item.discountprice}/> */}

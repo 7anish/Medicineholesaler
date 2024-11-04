@@ -3,7 +3,6 @@ const order = require('../Modal/Ordermodal');
 const handleCreateOrder = async (req, res) => {
     try {
         const data = req.body
-        console.log(req.body.order)
         if (Object.keys(data).length == 0) return res.status(400).json({ error: "All fields are required" });
 
         const result = await order.create({
@@ -16,7 +15,10 @@ const handleCreateOrder = async (req, res) => {
             orders : data.order,
             totalPrice : data.totalPrice,
             city : data.city,
-            createdBy : data.createdBy
+            createdBy : data.createdBy,
+            druglcnumber : data.druglcnumber,
+            foodlcnumber : data.foodlcnumber,
+            remark : data.remark
         })
 
         console.log(result)
@@ -58,7 +60,6 @@ const handleGetOrderList = async (req,res)=>{
             const data = {
                 id : item._id,
                 name : item.name,
-                email : item.email,
                 phoneNumber : item.phoneNumber,
                 address : item.address,
                 createdAt : item.createdAt,

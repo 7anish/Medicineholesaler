@@ -11,61 +11,139 @@ const Allorders = () => {
     const navigate = useNavigate()
     const [data, setdata] = useState([])
     const [error, seterror] = useState(false)
+    const [loading, setloading] = useState(false)
+    const [type, setype] = useState("")
 
-    useEffect(()=>{
-        const fetchdata = async ()=>{
-            try{
-                const {data} = await axios.get(`${Url}/api/v1/med/getorder` ,
+    useEffect(() => {
+        const fetchdata = async () => {
+            setloading(true)
+            try {
+                let para = ""
+                if (!(type === "")) {
+                    para = `OrderStatus=${type}`
+                }
+                const { data } = await axios.get(`${Url}/api/v1/med/getorder?${para}`,
                     {
-                        headers : {
+                        headers: {
                             "Authorization": "Bearer " + cookie.get('lgthusr')
                         }
                     }
                 )
                 console.log(data)
                 setdata(data)
-            }catch(e){
+                setloading(false)
+            } catch (e) {
+                setloading(false)
                 seterror(true)
                 console.log(e)
             }
         }
         fetchdata()
-    },[])
+    }, [type])
 
     if (error) {
-        return(
-         <div className='absolute top-[8vh] w-full md:w-[79vw] right-0'>
-         <div className='w-scre h-screen flex items-center justify-center'>
-             <h1 className='text-2xl font-bold'>Error in Featching Products</h1>
-         </div>
-     </div>
+        return (
+            <div className='absolute top-[8vh] w-full md:w-[79vw] right-0'>
+                <div className='w-scre h-screen flex items-center justify-center'>
+                    <h1 className='text-2xl font-bold'>Error in Featching Products</h1>
+                </div>
+            </div>
         )
- 
-     }
+    }
     return (
         <div className='p-4 absolute top-[8vh] w-full md:w-[79vw] right-0 h-fit'>
-            <h1 className="text-xl lg:text-3xl font-bold mb-4">All Orders</h1>
-            <div className="w-full h-fit flex flex-wrap gap-7 md:gap-4 items-center justify-center px-2 md:px-10 py-3">
-                {data?.map((order) => (
-                    <div key={order.id} className='bg-[#ffffffda] w-[320px] min-h-[450px]  shadow-card-shadow hover:shadow-card-hover transition-all duration-500 rounded-xl p-4 flex flex-col justify-around gap-3 relative'>
-                        <h1 className={`absolute -top-1 right-2 text-4xl ${order.OrderStatus === "Pending"? 'text-yellow-500' : order.OrderStatus === "Delivered" ? 'text-green-600' : 'text-red-700'  }`}><FaBookmark /></h1>
-                        <h1 className='font-bold'>Name : <span className='font-normal'>{order.name}</span></h1>
-                        <h1 className='font-bold'>Email : <span className='font-normal'>{order.email}</span></h1>
-                        <h1 className='font-bold'>Phone Number : <span className='font-normal'>{order.phoneNumber}</span></h1>
-                        <h1 className='font-bold'>Address :</h1>
-                        <p>{order.address}</p>
-                        <h1 className='font-bold'>Pin Code: <span className='font-normal'>{order.pincode}</span></h1>
-                        <h1 className='font-bold'>City: <span className='font-normal'>{order.city}</span></h1>
-                        <h1 className='font-bold'>Landmark: <span className='font-normal'>{order.landmark}</span></h1>
-                        <div className='w-full h-fit py-3  flex justify-between items-center flex-wrap gap-3'>
-                            <h1 className='font-bold text-xl'>Total : ₹ <span>{order.total}</span></h1>
-                            <button className='w-[100px] h-[35px]  bg-blue-500 text-white flex items-center justify-center gap-2 rounded-lg' onClick={()=> navigate(`/orders/${order.id}`)}>
-                                <FaEye />
-                                <span>View</span>
-                            </button>
-                        </div>
-                    </div>
-                ))}
+            <h1 className="text-xl lg:text-3xl font-bold mb-4">{type != "" ? type : "All"} Orders</h1>
+            <div className="my-5">
+                <label className=" block text-gray-700 font-semibold">Order Type</label>
+                <select name="type" id="cat" className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm uppercase focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={(e) => setype(e.target.value)}>
+                    <option value="">All Order</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Delivered">Deliverde</option>
+                    <option value="Cancled">Cancled</option>
+                </select>
+            </div>
+            <hr className='h-1 bg-gray-300 my-2' />
+            <div className='flex gap-5 flex-wrap md:justify-evenly w-full h-fit p-4 items-start justify-start '>
+                <div className="w-full flex flex-wrap gap-4 items-center md:justify-center  justify-start">
+                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 border border-gray-500 ">
+                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-500">
+                            <tr>
+                                <th scope="col" className="px-6 py-3">
+                                    Owner/Firm Name
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Phone Number
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Address
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Order Amount
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Status
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                loading ?
+                                    <>
+                                        <tr>
+                                            <td colSpan={6}>
+                                                <section className='w-full h-[80vh]  py-0 xl:pt-10 xl:py-0 px-4 lg:px-20 flex items-center justify-center '>
+                                                    <div className='my-20 flex items-center justify-center'>
+                                                    <div className="w-16 h-16 rounded-full animate-spin  border-x-4 border-solid border-gray-500 border-t-transparent"></div>
+                                                    </div>
+                                                </section>
+                                            </td>
+                                        </tr>
+                                    </>
+                                    :
+                                    data.length == 0
+                                        ?
+                                        <>
+                                            <tr>
+                                                <td colSpan={6}>
+                                                    <section className='w-full h-[80vh]  py-0 xl:pt-10 xl:py-0 px-4 lg:px-20 flex items-center justify-center '>
+                                                        <div className='my-20 flex items-center justify-center'>
+                                                            <h1 className='text-xl font-semibold'>Empty {type} Order</h1>
+                                                        </div>
+                                                    </section>
+                                                </td>
+                                            </tr>
+                                        </>
+
+                                        :
+                                        data.map((order)=>(
+                                            <tr>
+                                            <th scope="col" className="px-6 py-3 capitalize">
+                                                {order.name}
+                                            </th>
+                                            <th scope="col" className="px-6 py-3">
+                                                {order.phoneNumber}
+                                            </th>
+                                            <th scope="col" className="px-6 py-3 text-wrap">
+                                                {order.address}
+                                            </th>
+                                            <th scope="col" className="px-6 py-3">
+                                                {order.total}
+                                            </th>
+                                            <th scope="col" className={`px-6 py-3 ${order.OrderStatus === "Pending"? 'text-yellow-500' : order.OrderStatus === "Delivered" ? 'text-green-600' : 'text-red-700'  }`}>
+                                                {order.OrderStatus}
+                                            </th>
+                                            <th scope="col" className="px-6 py-3 hover:underline text-blue-500 cursor-pointer" onClick={()=> navigate(`/orders/${order.id}`)}>
+                                                view
+                                            </th>
+                                        </tr>
+                                        ))      
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     )

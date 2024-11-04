@@ -3,70 +3,49 @@ const route = express.Router()
 
 const cat = [
     {
-        "category": "cosmetic",
+        "category": "cosmetic-products",
         "img": "pencil-outline",
         "bg": "#ffe4e1",
         "text": "#ff6347",
         "subcat": [
             {
-                "name": "hair-care",
-                "route": "cosmetic/hair-care",
+                "name": "baby-and-female-and-elderly-care",
+                "route": "cosmetic-products/baby-and-female-and-elderly-care",
                 "bg": "#ffe8e8",
-                "icon": "cut-outline",
+                "icon": "accessibility-outline",
                 "iconColor": "#ff6347"
             },
             {
-                "name": "oral-care",
-                "route": "cosmetic/oral-care",
+                "name": "face-and-oral-care",
+                "route": "cosmetic-products/face-and-oral-care",
                 "bg": "#ffe8e8",
                 "icon": "happy-outline",
                 "iconColor": "#ff6347"
             },
             {
                 "name": "sexual-wellness",
-                "route": "cosmetic/sexual-wellness",
+                "route": "cosmetic-products/sexual-wellness",
                 "bg": "#ffe8e8",
                 "icon": "heart-outline",
                 "iconColor": "#ff6347"
             },
             {
-                "name": "skin-care",
-                "route": "cosmetic/skin-care",
+                "name": "shampoo-and-body-care",
+                "route": "cosmetic-products/shampoo-and-body-care",
                 "bg": "#ffe8e8",
-                "icon": "rose-outline",
+                "icon": "cut-outline",
                 "iconColor": "#ff6347"
             },
             {
-                "name": "feminine-care",
-                "route": "cosmetic/feminine-care",
+                "name": "health-and-wellness",
+                "route": "cosmetic-products/health-and-wellness",
                 "bg": "#ffe8e8",
-                "icon": "woman-outline",
+                "icon": "pulse-outline",
                 "iconColor": "#ff6347"
             },
             {
-                "name": "baby-care",
-                "route": "cosmetic/baby-care",
-                "bg": "#ffe8e8",
-                "icon": "happy-outline",
-                "iconColor": "#ff6347"
-            },
-            {
-                "name": "elderly-care",
-                "route": "cosmetic/elderly-care",
-                "bg": "#ffe8e8",
-                "icon": "accessibility-outline",
-                "iconColor": "#ff6347"
-            },
-            {
-                "name": "men-grooming",
-                "route": "cosmetic/men-grooming",
-                "bg": "#ffe8e8",
-                "icon": "man-outline",
-                "iconColor": "#ff6347"
-            },
-            {
-                "name": "other",
-                "route": "cosmetic/other",
+                "name": "others",
+                "route": "cosmetic-products/others",
                 "bg": "#ffe8e8",
                 "icon": "ellipsis-horizontal-outline",
                 "iconColor": "#ff6347"
@@ -74,69 +53,150 @@ const cat = [
         ]
     },
     {
-        "category": "surgical",
+        "category": "surgical-items",
         "img": "cut-outline",
         "bg": "#edfefff8",
         "text": "#2dd1dd",
         "subcat": [
             {
                 "name": "bandage",
-                "route": "surgical/bandage",
+                "route": "surgical-items/bandage",
                 "bg": "#ffe8e8",
                 "icon": "bandage-outline",
                 "iconColor": "#2dd1dd"
             },
             {
-                "name": "sugar-care-&-bp-machine",
-                "route": "surgical/sugar-care-&-bp-machine",
+                "name": "sugar-and-bp-care-machine",
+                "route": "surgical-items/sugar-and-bp-care-machine",
                 "bg": "#ffe8e8",
                 "icon": "pulse-outline",
                 "iconColor": "#2dd1dd"
             },
             {
                 "name": "syringe",
-                "route": "surgical/syringe",
+                "route": "surgical-items/syringe",
                 "bg": "#ffe8e8",
                 "icon": "medkit-outline",
                 "iconColor": "#2dd1dd"
             },
             {
-                "name": "injection",
-                "route": "surgical/injection",
-                "bg": "#ffe8e8",
-                "icon": "flash-outline",
-                "iconColor": "#2dd1dd"
-            },
-            {
-                "name": "other",
-                "route": "surgical/other",
+                "name": "others",
+                "route": "surgical-items/others",
                 "bg": "#ffe8e8",
                 "icon": "ellipsis-horizontal-outline",
                 "iconColor": "#2dd1dd"
             }
         ]
-    },
+    },    
     {
         "category": "patent-medicine",
         "img": "medkit-outline",
         "bg": "#ffe8e8",
         "text": "#ff4500",
-        "subcat": []
-    },
+        "subcat": [
+            {
+                "name": "injections",
+                "route": "patent-medicine/injections",
+                "bg": "#ffe8e8",
+                "icon": "flash-outline",
+                "iconColor": "#ff4500"
+            },
+            {
+                "name": "tablet-and-capsule",
+                "route": "patent-medicine/tablet-and-capsule",
+                "bg": "#ffe8e8",
+                "icon": "cube-outline",
+                "iconColor": "#ff4500"
+            },
+            {
+                "name": "syrup",
+                "route": "patent-medicine/syrup",
+                "bg": "#ffe8e8",
+                "icon": "water-outline",
+                "iconColor": "#ff4500"
+            },
+            {
+                "name": "cream-and-ointment",
+                "route": "patent-medicine/cream-and-ointment",
+                "bg": "#ffe8e8",
+                "icon": "color-palette-outline",
+                "iconColor": "#ff4500"
+            }
+        ]
+    },    
     {
         "category": "generic-medicine",
         "img": "bandage-outline",
         "bg": "#f0fff0",
         "text": "#32cd32",
-        "subcat": []
-    },
+        "subcat": [
+            {
+                "name": "injections",
+                "route": "generic-medicine/injections",
+                "bg": "#f0fff0",
+                "icon": "flash-outline",
+                "iconColor": "#32cd32"
+            },
+            {
+                "name": "tablet-and-capsule",
+                "route": "generic-medicine/tablet-and-capsule",
+                "bg": "#f0fff0",
+                "icon": "cube-outline",
+                "iconColor": "#32cd32"
+            },
+            {
+                "name": "syrup",
+                "route": "generic-medicine/syrup",
+                "bg": "#f0fff0",
+                "icon": "water-outline",
+                "iconColor": "#32cd32"
+            },
+            {
+                "name": "cream-and-ointment",
+                "route": "generic-medicine/cream-and-ointment",
+                "bg": "#f0fff0",
+                "icon": "color-palette-outline",
+                "iconColor": "#32cd32"
+            }
+        ]
+    },    
     {
         "category": "ayurvedic-medicine",
         "img": "leaf-outline",
         "bg": "#f5fffa",
         "text": "#228b22",
-        "subcat": []
+        "subcat": [
+            {
+                "name": "bati-tablets-and-capsule",
+                "route": "ayurvedic-medicine/bati-tablets-and-capsule",
+                "bg": "#f5fffa",
+                "icon": "tablet-landscape-outline",
+                "iconColor": "#228b22"
+            },
+            {
+                "name": "asave-and-syrup",
+                "route": "ayurvedic-medicine/asave-and-syrup",
+                "bg": "#f5fffa",
+                "icon": "water-outline",
+                "iconColor": "#228b22"
+            },
+            {
+                "name": "churan-and-powder",
+                "route": "ayurvedic-medicine/churan-and-powder",
+                "bg": "#f5fffa",
+                "icon": "leaf-outline",
+                "iconColor": "#228b22"
+            },
+            {
+                "name": "others",
+                "route": "ayurvedic-medicine/others",
+                "bg": "#f5fffa",
+                "icon": "ellipsis-horizontal-outline",
+                "iconColor": "#228b22"
+            }
+        ]
     }
+    
 ]
 
 route.get('/getcategory', (req, res) => {
@@ -145,7 +205,6 @@ route.get('/getcategory', (req, res) => {
         const param =  cat.find((item)=>{
             return item.category === req.query.category
         });
-        console.log(param)
         return res.status(200).json([param])
     } catch (e) {
         console.log(e)

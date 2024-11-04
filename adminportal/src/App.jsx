@@ -6,12 +6,9 @@ import AddProduct from './Pages/AddProduct';
 import ViewProduct from './Pages/ViewProduct';
 import EditProduct from './Pages/EditProduct';
 import ViewEach from './Pages/ViewEach';
-import Deliveredorder from './Pages/Orders/Deliveredorder';
 import DashBoard from './Pages/DashBoard';
 import Allorders from './Pages/Orders/Allorders';
-import Pendingorder from './Pages/Orders/Pendingorder';
 import Specficorder from './Pages/Orders/Specficorder';
-import Cancledorder from './Pages/Orders/Cancledorder';
 import Adminlogin from './Pages/Login/Adminlogin';
 import Auth from './Pages/Login/Auth';
 
@@ -33,9 +30,6 @@ function App() {
             <Route path="/edit/:id" element={<EditProduct />} />
             <Route path="/orders" element={<Allorders />} />
             <Route path="/orders/:id" element={<Specficorder />} />
-            <Route path="/pending" element={<Pendingorder />} />
-            <Route path="/delivered" element={<Deliveredorder />} />
-            <Route path="/cancleorder" element={<Cancledorder />} />
             <Route path='/login' element={<Adminlogin />} />
           </Routes>
         </div>

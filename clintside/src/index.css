@@ -8,3 +8,8 @@
     scroll-behavior: smooth;
     scroll-padding: 5px;
 }
+
+
+.scrollbar::-webkit-scrollbar{
+    display: none;
+}

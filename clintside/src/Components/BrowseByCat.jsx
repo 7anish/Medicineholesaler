@@ -34,7 +34,7 @@ function BrowseByCat() {
             <>
                 <section className='py-10 xl:pt-10 xl:py-0 px-4 lg:px-20'>
                     <div className='flex flex-wrap gap-2 sm:gap-0 py-2 mb-4 justify-between items-center'>
-                        <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>Browse by Categories</h1>
+                        <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>BShop by Categories</h1>
                         <ViewAllBut path={'/category/allcategory'} />
                     </div>
                     <h1 className='text-3xl font-bold font-poppins text-center py-20 text-orange-500'>Error in fetching Category !!!</h1>
@@ -47,7 +47,7 @@ function BrowseByCat() {
             <>
                 <section className='py-0 xl:pt-10 xl:py-0 px-4 lg:px-20'>
                     <div className='flex flex-wrap gap-2 sm:gap-0 py-2 mb-4 justify-between items-center'>
-                        <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>Browse by Categories</h1>
+                        <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>Shop by Categories</h1>
                         <ViewAllBut path={'/category/allcategory'} />
                     </div>
                     <div className='my-20 flex items-center justify-center'>

@@ -79,6 +79,9 @@ const Checkout = () => {
             city : e.target.city.value,
             pincode : e.target.pincode.value,
             landmark : e.target.landmark.value,
+            foodlcnumber : e.target.foodlcnumber.value,
+            druglcnumber : e.target.druglcnumber.value,
+            remark : e.target.remark.value,
             totalPrice : data.totaldiscountprice,
             order : order,
             createdBy :   cookie.get('lgid') || undefined
@@ -120,8 +123,6 @@ const Checkout = () => {
             Swal.fire("Plese enter a landmark")
             return
         }
-        
-
         try{
             const res = await axios.post(`${Url}/api/v1/med/createorder` , deatails)
 
@@ -186,7 +187,7 @@ const Checkout = () => {
 
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                 <div>
-                                    <label for="your_name" className="mb-2 block text-sm font-medium text-gray-900 "> Your name </label>
+                                    <label for="your_name" className="mb-2 block text-sm font-medium text-gray-900 "> Your name* </label>
                                     <input name='name' type="text" id="your_name" className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 " placeholder="Anish Kumar" required value={name} onChange={(e) => setname(e.target.value)}/>
                                 </div>
 
@@ -198,6 +199,16 @@ const Checkout = () => {
                                 <div>
                                     <label for="your_email" className="mb-2 block text-sm font-medium text-gray-900 "> Your Phone Number* </label>
                                     <input type="text" name='phoneNumber' className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="991331xxx" required value={phoneNumber} onChange={(e) => setphoneNumber(e.target.value)}/>
+                                </div>
+
+                                <div>
+                                    <label for="your_email" className="mb-2 block text-sm font-medium text-gray-900 ">Drug Licence Number </label>
+                                    <input type="text" name='druglcnumber'  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="Drug Licence Number"  />
+                                </div>
+
+                                <div>
+                                    <label for="your_email" className="mb-2 block text-sm font-medium text-gray-900 ">Food Licence Number </label>
+                                    <input type="text" name='foodlcnumber'  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="Food Licence Number"  />
                                 </div>
 
                                 <div>
@@ -219,6 +230,10 @@ const Checkout = () => {
                                     <label for="your_email" className="mb-2 block text-sm font-medium text-gray-900 "> Landmark* </label>
                                     <input type="text" name='landmark' className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="Near some famous place" required />
                                 </div>
+                                <div>
+                                    <label for="your_email" className="mb-2 block text-sm font-medium text-gray-900 "> Addition Remark </label>
+                                    <input type="text" name='remark' className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="Remark"  />
+                                </div>
                                     
                             </div>
                         </div>
@@ -231,7 +246,7 @@ const Checkout = () => {
                                         </dl>
                                         <dl className="flex items-center justify-between gap-4 py-3">
                                             <dt className="text-base font-normal text-gray-500 ">Savings</dt>
-                                            <dd className="text-base font-medium ">-&nbsp;₹&nbsp;{data.totalactualprice - data.totaldiscountprice}</dd>
+                                            <dd className="text-base font-medium ">-&nbsp;₹&nbsp;{(data.totalactualprice - data.totaldiscountprice).toFixed(2)}</dd>
                                         </dl>
                                         <dl className="flex items-center justify-between gap-4 py-3">
                                             <dt className="text-base font-bold text-gray-900">Total</dt>

@@ -13,6 +13,7 @@ function ProductPage() {
     const [data, setdata] = useState([]);
     const [error, seterror] = useState(false)
     const [loading, setloading] = useState(true)
+    const [active , setactive ] = useState(0)
 
     const dispach = useDispatch()
 
@@ -66,24 +67,38 @@ function ProductPage() {
                 {/* Product Section */}
                 <section className='flex flex-col lg:flex-row py-10  lg:gap-10 justify-between items-center '>
                     <section className='w-full xl:w-[40%]'>
-                        <img src={data.productimage} className='rounded-3xl w-full h-full object-cover  border-[1px] border-black relative' alt="Product Image" />
+                    {
+                    data.length === 0 ? "" 
+                    : 
+                    (
+                        <>
+                        <img src={data?.productimage[active]?.imageurl} className='rounded-3xl w-full h-[300px]   sm:w-[500px] sm:h-[400px] object-contain' alt="Product Image" />
+                        <div className='w-full h-fit flex   p-5 gap-2 overflow-x-scroll scrollbar'>
+                        <img src={data?.productimage[0]?.imageurl} className='w-[70px] h-[50px]  object-cover  border-[1px] border-black cursor-pointer rounded-lg' alt="Product Image" onClick={()=>setactive(0)}/>
+                        <img src={data?.productimage[1]?.imageurl} className=' w-[70px] h-[50px] object-cover  border-[1px] border-black cursor-pointer rounded-lg' alt="Product Image" onClick={()=>setactive(1)}/>
+                        <img src={data?.productimage[2]?.imageurl} className=' w-[70px] h-[50px] object-cover  border-[1px] border-black cursor-pointer rounded-lg' alt="Product Image" onClick={()=>setactive(2)}/>
+                        <img src={data?.productimage[3]?.imageurl} className=' w-[70px] h-[50px] object-cover  border-[1px] border-black cursor-pointer rounded-lg' alt="Product Image" onClick={()=>setactive(3)}/>
+                        <img src={data?.productimage[4]?.imageurl} className=' w-[70px] h-[50px] object-cover  border-[1px] border-black cursor-pointer rounded-lg' alt="Product Image" onClick={()=>setactive(4)}/>
+                        </div>
+                        </>
+                    )
+                }
                     </section>
                     <section className='w-full xl:w-[60%]'>
                         <div className='bg-[#ffffffda] transition-all duration-500 rounded-xl p-4 flex flex-col min-h-[60vh] min-w-full md:min-w-[450px]  gap-3  justify-evenly'>
                             <h1 className='text-3xl lg:text-6xl font-bold'>{data.name}</h1>
                             <div className='flex gap-2 my-3'>
-                                <span className='px-2 py-1 border rounded-lg bg-[#ddeff1] font-medium text-base lg:text-lg'>{data.category}</span>
-                                <span className='px-2 py-1 border rounded-lg bg-[#ddeff1] text-base lg:text-lg'>{data.subcategory}</span>
-                                <span className='px-2 py-1 border rounded-lg bg-[#ecddf1] text-base lg:text-lg '>{data.itemtype}</span>
+                                <span className='px-2 py-1 border rounded-lg bg-[#ddeff1] font-medium text-base lg:text-lg capitalize'>{data.category.split('-').join(' ')}</span>
+                                <span className='px-2 py-1 border rounded-lg bg-[#ddeff1] text-base lg:text-lg capitalize'>{data.subcategory.split('-').join(' ')}</span>
+                                <span className='px-2 py-1 border rounded-lg bg-[#ecddf1] text-base lg:text-lg capitalize'>{data.itemtype}</span>
                                 <span  className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5 cursor-pointer' onClick={addtowishlist}>
                                         <FaRegHeart />
                                 </span>
                             </div>
                             <div className='flex flex-col gap-4'>
-                            <p className='text-base lg:text-lg flex-grow my-2'>{data.subdescription}</p>
-                                <p className='text-base lg:text-lg flex-grow my-2'>{data.description}</p>
+                            <h2 className='text-md font-bold cursor-pointer hover:text-blue-500'>{data.companyName} || <span>{data.size}</span></h2>
                                 <div className='flex justify-between items-center flex-wrap gap-3'>
-                                    <h2 className='text-xl lg:text-2xl font-bold'>price :₹&nbsp;{data.discountprice}</h2>
+                                    <h2 className='text-xl lg:text-2xl font-bold'>price :₹&nbsp;{data.ourPrice}</h2>
                                     <div className='flex items-center'>
                                         <button
                                             onClick={() => setCount(count > 1 ? count - 10 : 1)}
@@ -124,7 +139,7 @@ function ProductPage() {
                                         </button>
                                     </div>
                                 </div>
-                                <h1 className='text-lg lg:text-xl font-bold line-through text-red-600'>₹&nbsp;{data.actualprice}</h1>
+                                <h1 className='text-lg lg:text-xl font-bold line-through text-red-600'>₹&nbsp;{data.mrp}</h1>
                                 <div className='bg-[#ffffffda] rounded-lg'>
                                     <h1 className='text-lg md:text-xl font-semibold pb-1'>Price Ranges</h1>
                                     <div className='flex flex-col gap-2'>
@@ -140,14 +155,16 @@ function ProductPage() {
                                        <button className='flex items-center justify-center rounded-xl bg-orange-600 hover:bg-gray-100 transition-all duration-500 w-full px-6 py-3 text-white hover:text-black gap-3' onClick={() => {
                                             addtocartitem({
                                                 id: params.id,
-                                                img: data.productimage,
+                                                img: data.productimage[0].imageurl,
                                                 name: data.name,
-                                                actualprice: data.actualprice,
-                                                discountprice: data.discountprice,
+                                                actualprice: data.mrp,
+                                                discountprice: data.ourPrice,
                                                 cat: data.category,
                                                 subcat: data.subcategory,
                                                 quantity: count,
-                                                range: data.range
+                                                range: data.range,
+                                                size : data.size,
+                                                companyName : data.companyName
                                             })
                                         }}>
                                             <ion-icon name="cart-outline" size="large"></ion-icon>

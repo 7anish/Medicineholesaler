@@ -100,14 +100,14 @@ const Orderhistory = () => {
                                             <div key={index} className="flex max-lg:flex-col items-center gap-8 lg:gap-24 px-3 md:px-11">
                                                 <div className="grid grid-cols-4 w-full">
                                                     <div className="col-span-4 sm:col-span-1">
-                                                        <img src={product.productId.productimage} alt="" className="max-sm:mx-auto object-cover border-[1px] rounded-lg border-black" />
+                                                        <img src={product.productId.productimage[0].imageurl} alt="" className="max-sm:mx-auto object-cover border-[1px] rounded-lg border-black" />
                                                     </div>
                                                     <div
                                                         className="col-span-4 sm:col-span-3 max-sm:mt-4 sm:pl-8 flex flex-col  max-sm:items-center justify-evenly">
-                                                        <h6 className="font-manrope font-semibold text-2xl leading-9 text-black mb-3 whitespace-nowrap">
+                                                        <h6 className="font-manrope font-semibold text-2xl leading-9 text-black mb-3 whitespace-nowrap capitalize">
                                                             {product.productId.name}
                                                         </h6>
-                                                        <p classNameName='flex gap-3 items-center justify-start'><span classNameName=' bg-teal-100 p-1 px-2  capitalize rounded-xl'>{product.productId.category}</span><span classNameName=' bg-teal-100 p-1 px-2  capitalize rounded-xl'>{product.productId.subcategory}</span></p>
+                                                        <p classNameName='flex gap-3 items-center justify-start'><span className=' bg-teal-100 p-1 px-2  capitalize rounded-xl'>{(product.productId.category).split(' ').join(' ')}</span>   <span className='bg-pink-100 p-1 px-2  capitalize rounded-xl'>{(product.productId.subcategory).split('-').join(' ')}</span></p>
                                                         <div className="flex items-center max-sm:flex-col gap-x-10 gap-y-3">
                                                             <span className="font-normal text-lg leading-8 text-gray-500 whitespace-nowrap">Qty:
                                                                 {product.quantity}</span>

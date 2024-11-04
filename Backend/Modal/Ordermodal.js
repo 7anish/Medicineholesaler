@@ -59,6 +59,15 @@ const orderScheam = new mongooes.Schema({
     createdBy : {
         type : mongooes.Schema.Types.ObjectId,
         ref : 'admin'
+    },
+    druglcnumber:{
+        type : String
+    },
+    foodlcnumber : {
+        type : String
+    },
+    remark : {
+        type : String
     }
 }, { timestamps: true })
 
