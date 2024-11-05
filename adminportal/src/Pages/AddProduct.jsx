@@ -58,7 +58,7 @@ function AddProduct() {
             setype(p);
         } else if (data.category == "generic-medicine") {
             setype(g);
-        } else if (data.category == "ayurvedic-medicine") {
+        } else if (data.category == "ayurvedic-product") {
             setype(a);
         }
     }, [data.category])
@@ -99,11 +99,6 @@ function AddProduct() {
                 formdata.append(key, data[key])
             }
         }
-        // const details = Object.fromEntries(formdata);
-        // console.log(JSON.parse(details.range))
-        // console.log(details.images)
-        // console.log(details)
-
         try {
             const res = await axios.post(`${Url}/api/v1/med/addproduct`, formdata, {
                 headers: {
@@ -179,7 +174,7 @@ function AddProduct() {
                             <option value="surgical-items">SURGICAL ITEMS</option>
                             <option value="patent-medicine">patent medicine</option>
                             <option value="generic-medicine">generic medicine</option>
-                            <option value="ayurvedic-medicine">ayurvedic medicine</option>
+                            <option value="ayurvedic-product">ayurvedic product</option>
                         </select>
                     </div>
                     <div className="form-group w-[40%]">
@@ -188,7 +183,7 @@ function AddProduct() {
                             <option value="">Select Category</option>
                             {
                                 type?.map((item) => {
-                                    return <option value={item}>{item}</option>
+                                    return <option value={item} className=' capitalize'>{item.split('-').join(' ')}</option>
                                 })
                             }
                         </select>

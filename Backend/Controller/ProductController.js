@@ -95,7 +95,8 @@ const handlGetProductList = async (req, res) => {
                     inventory: item.inventory,
                     category : item.category,
                     subcategory : item.subcategory,
-                    size : item.size
+                    size : item.size,
+                    composition : item.composition
                 }
                 return data;
             })

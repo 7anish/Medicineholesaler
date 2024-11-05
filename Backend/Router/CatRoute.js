@@ -121,6 +121,20 @@ const cat = [
                 "bg": "#ffe8e8",
                 "icon": "color-palette-outline",
                 "iconColor": "#ff4500"
+            },
+            {
+                "name": "pediatric-drop-and-syrup",
+                "route": "patent-medicine/pediatric-drop-and-syrup",
+                "bg": "#ffe8e8",
+                "icon": "water-outline",
+                "iconColor": "#ff6347"
+            },
+            {
+                "name": "others",
+                "route": "patent-medicine/others",
+                "bg": "#ffe8e8",
+                "icon": "ellipsis-horizontal-outline",
+                "iconColor": "#ff6347"
             }
         ]
     },    
@@ -157,43 +171,57 @@ const cat = [
                 "bg": "#f0fff0",
                 "icon": "color-palette-outline",
                 "iconColor": "#32cd32"
+            },
+            {
+                "name": "pediatric-drop-and-syrup",
+                "route": "generic-medicine/pediatric-drop-and-syrup",
+                "bg": "#ffe8e8",
+                "icon": "water-outline",
+                "iconColor": "#ff6347"
+            },
+            {
+                "name": "others",
+                "route": "generic-medicine/others",
+                "bg": "#ffe8e8",
+                "icon": "ellipsis-horizontal-outline",
+                "iconColor": "#ff6347"
             }
         ]
     },    
     {
-        "category": "ayurvedic-medicine",
+        "category": "ayurvedic-product",
         "img": "leaf-outline",
         "bg": "#f5fffa",
         "text": "#228b22",
         "subcat": [
             {
                 "name": "bati-tablets-and-capsule",
-                "route": "ayurvedic-medicine/bati-tablets-and-capsule",
+                "route": "ayurvedic-product/bati-tablets-and-capsule",
                 "bg": "#f5fffa",
                 "icon": "tablet-landscape-outline",
                 "iconColor": "#228b22"
             },
             {
                 "name": "asave-and-syrup",
-                "route": "ayurvedic-medicine/asave-and-syrup",
+                "route": "ayurvedic-product/asave-and-syrup",
                 "bg": "#f5fffa",
                 "icon": "water-outline",
                 "iconColor": "#228b22"
             },
             {
                 "name": "churan-and-powder",
-                "route": "ayurvedic-medicine/churan-and-powder",
+                "route": "ayurvedic-product/churan-and-powder",
                 "bg": "#f5fffa",
                 "icon": "leaf-outline",
                 "iconColor": "#228b22"
             },
             {
                 "name": "others",
-                "route": "ayurvedic-medicine/others",
+                "route": "ayurvedic-product/others",
                 "bg": "#f5fffa",
                 "icon": "ellipsis-horizontal-outline",
                 "iconColor": "#228b22"
-            }
+            },
         ]
     }
     

@@ -39,9 +39,16 @@ const Specficorder = () => {
 
 
   const handleupdate = async (status) => {
+    const products = order?.orders?.map((item)=>{
+      return {
+        id : item.productId._id,
+        quantity : item.quantity
+      }
+    }) 
     try {
       const res = await axios.patch(`${Url}/api/v1/med/upadateorder/${params.id}`, {
-        status: status
+        status: status,
+        products : products
       },
         {
           headers: {
@@ -74,7 +81,7 @@ const Specficorder = () => {
 
   if (loading) {
     return (
-      <div className="absolute right-0 top-[8vh]  md:w-[80vw] h-[90vh]  add-product-container p-4 sm:p-6 lg:p-8  shadow-md rounded-md bg-purple-100">
+      <div className="absolute right-0 top-[8vh]  md:w-[80vw] h-[90vh]  add-product-container p-4 sm:p-6 lg:p-8  shadow-md rounded-md ">
         <div className='w-full h-full flex items-center justify-center'>
           <div className="w-16 h-16 rounded-full animate-spin  border-x-4 border-solid border-gray-500 border-t-transparent"></div>
         </div>

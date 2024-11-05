@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom'
 import { useCookies } from 'react-cookie';
 import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
 function Navbar() {
-    const [cookies, setCookie] = useCookies(['name']);
+    const [cookies, setCookie , removeCookie] = useCookies(['name']);
     const [login, setlogin] = useState(true)
     const Links = [
         {
@@ -23,7 +24,24 @@ function Navbar() {
         }
     }, [])
 
-
+    const handlelogout = ()=>{
+        console.log("hello")
+        Swal.fire({
+            title: "Do you want Logout",
+            showCancelButton: true,
+            confirmButtonText: "Logout",
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                removeCookie('lgthusr')
+                removeCookie('lgid')
+                removeCookie('lgrole')
+                localStorage.removeItem('information')
+              Swal.fire("Logout Sucessfully");
+              window.location.href = "/"
+            }
+          });
+    }
 
     const [open, setOpen] = useState(false);
     const linkClass = ({ isActive }) => isActive ? "text-[#2dd1dd] text-xl rounded-md px-3 py-2" : "text-gray-500 text-xl hover:text-[#2dd1dd]  rounded-md px-3 py-2";
@@ -38,7 +56,7 @@ function Navbar() {
                         <ion-icon name={open ? 'close' : 'menu-outline'}></ion-icon>
                     </div>
                 </div>
-                <div className={`flex flex-col md:flex-row lg:w-1/2 w-full md:z-auto bg-white z-10 transition-all duration-300 ease-in sm:justify-end gap-10 sm:gap-10 items-center lg:py-0 py-4 absolute md:static ${open ? 'left-0' : 'left-[-100%]'}`}>
+                <div className={`flex flex-col md:flex-row lg:w-1/2 w-full md:z-auto bg-white z-10 transition-all duration-300 ease-in sm:justify-end gap-10 sm:gap-4 items-center lg:py-0 py-4 absolute md:static ${open ? 'left-0' : 'left-[-100%]'}`}>
                     {
                         Links.map((link) => (
                             <div key={link.name} className='lg:my-0'>
@@ -69,6 +87,9 @@ function Navbar() {
                                     <NavLink to={'/orderhistory'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5'>
                                         <ion-icon name="logo-dropbox" size='large' className="font-extrabold "></ion-icon>
                                     </NavLink>
+                                    <div className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5 cursor-pointer' onClick={()=>handlelogout()}>
+                                        <ion-icon name="log-out-outline" size='large' className="font-extrabold "></ion-icon>
+                                    </div>
                                 </>
                             )
                     }

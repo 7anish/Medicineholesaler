@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import Url from '../../Url';
 import { Cookies } from 'react-cookie';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 function ViewEach() {
     const cookie = new Cookies()
     const params = useParams()
@@ -57,21 +59,17 @@ function ViewEach() {
                     data.length === 0 ? "" 
                     : 
                     (
-                        <>
-                        <img src={data?.productimage[active]?.imageurl} className='rounded-3xl w-full h-[300px]   sm:w-[500px] sm:h-[400px] object-contain' alt="Product Image" />
-                        <div className='w-full h-fit flex   p-5 gap-2 overflow-x-scroll scrollbar'>
-                        <img src={data?.productimage[0]?.imageurl} className='w-[70px] h-[50px]  object-cover  border-[1px] border-black cursor-pointer rounded-lg' alt="Product Image" onClick={()=>setactive(0)}/>
-                        <img src={data?.productimage[1]?.imageurl} className=' w-[70px] h-[50px] object-cover  border-[1px] border-black cursor-pointer rounded-lg' alt="Product Image" onClick={()=>setactive(1)}/>
-                        <img src={data?.productimage[2]?.imageurl} className=' w-[70px] h-[50px] object-cover  border-[1px] border-black cursor-pointer rounded-lg' alt="Product Image" onClick={()=>setactive(2)}/>
-                        <img src={data?.productimage[3]?.imageurl} className=' w-[70px] h-[50px] object-cover  border-[1px] border-black cursor-pointer rounded-lg' alt="Product Image" onClick={()=>setactive(3)}/>
-                        <img src={data?.productimage[4]?.imageurl} className=' w-[70px] h-[50px] object-cover  border-[1px] border-black cursor-pointer rounded-lg' alt="Product Image" onClick={()=>setactive(4)}/>
-                        </div>
-                        </>
+                        (
+
+<CustomCarousel data={data} />
+
+)
                     )
                 }
                 </section>
                 <section className='w-full xl:w-[60%]'>
                     <div className='bg-[#ffffffda] transition-all duration-500 rounded-xl p-4 py-10 flex flex-col min-h-[60vh] min-w-full md:min-w-[450px]  gap-6  justify-evenly'>
+                        <h2 className='text-md font-bold cursor-pointer hover:text-blue-500'>{data.companyName}</h2>
                         <h1 className='text-3xl lg:text-6xl font-bold capitalize'>{data.name}</h1>
                         <div className='flex gap-2 flex-wrap'>
                             <span className='px-2 py-1 border rounded-lg bg-[#ddeff1] font-medium text-base lg:text-lg capitalize'>{data.category}</span>
@@ -79,10 +77,9 @@ function ViewEach() {
                             <span className='px-2 py-1 border rounded-lg bg-[#ecddf1] text-base lg:text-lg capitalize'>{data.itemtype}</span>
                         </div>
                         <div className='flex flex-col gap-4'>
-                            <p className='text-base lg:text-lg flex-grow'>Size : {data.size}</p>
+                            <h2 className='text-md font-bold cursor-pointer hover:text-blue-500'><span>{data.size ? `${data.size}` : ""}</span>   <span>{data.composition ? `|| ${data.composition}` : ""}</span></h2>
                             <div className='flex justify-between items-center flex-wrap gap-3'>
-                                <h2 className='text-xl lg:text-2xl font-bold capitalize'>price :₹&nbsp;{data.ourPrice}</h2>
-                                
+                            <h1 className='text-2xl font-bold'>₹&nbsp;{data.ourPrice} <span className='text-lg font-bold text-red-600'>&nbsp;&nbsp;&nbsp;{((((+data.mrp)-(+data.ourPrice))/(+data.mrp))*100).toFixed(1)}% off</span></h1>
                             </div>
                             <h1 className='text-lg lg:text-xl font-bold line-through text-red-600'>₹&nbsp;{data.mrp}</h1>
                             <div className='bg-[#ffffffda] rounded-lg'>
@@ -109,3 +106,41 @@ function ViewEach() {
 }
 
 export default ViewEach
+
+const CustomCarousel = ({ data }) => {
+    // Define a custom function for rendering thumbnails
+    const renderThumbs = () =>
+        data?.productimage?.map((image, index) => (
+            <img
+                key={index}
+                src={image.imageurl}
+                alt={`Thumbnail ${index + 1}`}
+                className="w-12 h-12 object-cover rounded-sm"
+            />
+        ));
+
+    return (
+        <Carousel
+            className='w-full h-full'
+            renderThumbs={renderThumbs} // Custom thumbnails
+            // infiniteLoop
+            // autoPlay
+            // interval={3000}
+            showArrows={false}
+            showIndicators={false}
+            showStatus={false}
+            showThumbs={true}
+            swipeable={true}
+        >
+            {data?.productimage?.map((image, index) => (
+                <div key={index} className=''>
+                    <img
+                        src={image.imageurl}
+                        alt={`Product Image ${index + 1}`}
+                        className='rounded-3xl w-full h-[300px] sm:w-[500px] sm:h-[400px] object-contain'
+                    />
+                </div>
+            ))}
+        </Carousel>
+    );
+};

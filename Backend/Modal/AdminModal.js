@@ -1,13 +1,6 @@
 const mongoose = require('mongoose');
 const { createHmac, randomBytes } = require('crypto');
-const { type } = require('os');
 
-const wishlist = new mongoose.Schema({
-    productid : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'product'
-    }
-})
 
 const adminSchema = new mongoose.Schema({
     name: {
@@ -17,15 +10,15 @@ const adminSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique : true
+        unique: true
     },
-    phonenumber :{
-        type : String,
-        require : true
+    phonenumber: {
+        type: String,
+        require: true
     },
-    lcno : {
-        type : String,
-        default : "none"
+    lcno: {
+        type: String,
+        default: "none"
     },
     salt: {
         type: String,
@@ -34,12 +27,17 @@ const adminSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    role:{
-        type : String,
-        enum : ['ADMIN' , 'SUPERADMIN', 'NONE'],
-        default : 'NONE',
+    role: {
+        type: String,
+        enum: ['ADMIN', 'SUPERADMIN', 'NONE'],
+        default: 'NONE',
     },
-    wishlist : [wishlist]
+    wishlist: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'product'
+        }
+    ]
 })
 
 adminSchema.pre('save', function (next) {
@@ -55,7 +53,7 @@ adminSchema.pre('save', function (next) {
 })
 
 adminSchema.static('matchpassword', async function (email, password) {
-    const admin =await this.findOne({ email: email })
+    const admin = await this.findOne({ email: email })
 
     if (!admin) throw 'Incorrect Mail'
 
@@ -63,7 +61,7 @@ adminSchema.static('matchpassword', async function (email, password) {
         .update(password)
         .digest('hex');
 
-    if(generatedPassword !== admin.password) throw "Incorrect password";
+    if (generatedPassword !== admin.password) throw "Incorrect password";
     return admin
 })
 

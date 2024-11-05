@@ -27,6 +27,7 @@ function ViewProduct() {
   const [error, seterror] = useState(false)
   const [loading, setloading] = useState(false)
   const [type, setype] = useState([])
+  const [Search , setsearch] = useState("")
 
   useEffect(() => {
     if (querry.category == "cosmetic-products") {
@@ -37,17 +38,17 @@ function ViewProduct() {
       setype(p);
     } else if (querry.category == "generic-medicine") {
       setype(g);
-    } else if (querry.category == "ayurvedic-medicine") {
+    } else if (querry.category == "ayurvedic-product") {
       setype(a);
     }
     console.log(type)
   }, [querry.category])
 
   useEffect(() => {
-    const fetchdata = async () => {
+    const fetchdata = async (querrystring) => {
       setloading(true)
       try {
-        const { data } = await axios.get(`${Url}/api/v1/med/getproduct?category=${querry.category}&subcategory=${querry.subcategory}`)
+        const { data } = await axios.get(`${Url}/api/v1/med/getproduct?${querrystring}`)
         setloading(false)
         console.log(data)
         setdata(data);
@@ -58,8 +59,12 @@ function ViewProduct() {
       }
     }
     if (!(querry.category == "" && querry.subcategory == "")) {
-      fetchdata()
+      fetchdata(`category=${querry.category}&subcategory=${querry.subcategory}`)
     }
+    else {
+      fetchdata("")
+    }
+
   }, [isdelete, querry.subcategory])
 
 
@@ -96,6 +101,10 @@ function ViewProduct() {
     };
   }
 
+
+  const filterdata = data.filter((item)=>{
+    return item.name.toLowerCase().includes(Search.toLowerCase());
+  })
   if (error) {
     return (
       <div className='p-4 absolute top-[8vh] w-[79vw] right-0'>
@@ -109,6 +118,10 @@ function ViewProduct() {
   return (
     <div className='p-4 absolute top-[8vh] w-full md:w-[79vw]  right-0'>
       <div className='w-full flex flex-wrap justify-between py-3 mb-5 items-center'>
+      <div className=" w-full form-group">
+            <label className="block text-gray-700 font-semibold">Search By Product Name</label>
+            <input type="text" name="companyName" className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder='Product Name' value={Search} onChange={(e)=> setsearch(e.target.value)} />
+          </div>
         <div className='flex gap-5 flex-wrap md:justify-evenly w-full h-fit p-4 items-start justify-start'>
           <div className="form-group md:w-[40%]">
             <label className=" block text-gray-700 font-semibold">Category:</label>
@@ -118,7 +131,7 @@ function ViewProduct() {
               <option value="surgical-items">SURGICAL ITEMS</option>
               <option value="patent-medicine">patent medicine</option>
               <option value="generic-medicine">generic medicine</option>
-              <option value="ayurvedic-medicine">ayurvedic medicine</option>
+              <option value="ayurvedic-product">ayurvedic product</option>
             </select>
           </div>
           <div className="form-group md:w-[40%]">
@@ -127,7 +140,7 @@ function ViewProduct() {
               <option value="">Select Category</option>
               {
                 type?.map((item) => {
-                  return <option value={item}>{item}</option>
+                  return <option value={item} className=' capitalize'>{item.split('-').join(' ')}</option>
                 })
               }
             </select>
@@ -136,15 +149,21 @@ function ViewProduct() {
       </div>
 
       <hr className='h-1 bg-gray-300 mb-3' />
-      <div className="flex flex-wrap gap-4 items-center md:justify-center  justify-start">
+      <div className="flex flex-wrap gap-4 items-center lg:justify-center  justify-start">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 border border-gray-500 ">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-500">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-500 text-wrap">
             <tr>
               <th scope="col" class="px-6 py-3">
                 Product name
               </th>
               <th scope="col" class="px-6 py-3">
                 Company Name
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Composition
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Mrp
               </th>
               <th scope="col" class="px-6 py-3">
                 Our Price
@@ -173,43 +192,66 @@ function ViewProduct() {
                   </tr>
                 </>
                 :
-                data?.map((item) => {
-                  return (
-                    <tr class="odd:bg-white  even:bg-gray-50  border-b">
-                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap cursor-pointer capitalize hover:underline" onClick={() => navigate(`/view/${item.id}`)}>
-                        {item.name}
-                      </th>
-                      <td class="px-6 py-4 capitalize">
-                        {item.companyName}
-                      </td>
-                      <td class="px-6 py-4 capitalize">
-                        ₹&nbsp;{item.ourPrice}
-                      </td>
-                      <td class="px-6 py-4 capitalize">
-                        {item.inventory}
-                      </td>
-                      <td class="px-6 py-4 flex gap-2">
-                        <NavLink to={`/edit/${item.id}`}><p class="font-medium text-blue-600 hover:underline ml-3">Edit</p></NavLink>
-                        <button class="font-medium text-red-600  hover:underline" onClick={() => {
-                          Swal.fire({
-                            title: "Are you sure?",
-                            text: "You won't be Delete The Product",
-                            icon: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#65A30D",
-                            cancelButtonColor: "#d33",
-                            confirmButtonText: "Yes, delete it!"
-                          }).then((result) => {
-                            if (result.isConfirmed) {
-                              handledelete(item.id)
-                            }
-                          });
 
-                        }}>Delete</button>
+                filterdata.length == 0
+                  ?
+                  <>
+                    <tr>
+                      <td colSpan={6}>
+                        <section className='w-full h-[80vh]  py-0 xl:pt-10 xl:py-0 px-4 lg:px-20 flex items-center justify-center '>
+                          <div className='my-20 flex items-center justify-center'>
+                            <h1 className='text-xl font-semibold'>No Product Found</h1>
+                          </div>
+                        </section>
                       </td>
                     </tr>
-                  )
-                })
+                  </>
+
+                  :
+
+                  filterdata?.map((item) => {
+                    return (
+                      <tr class="odd:bg-white  even:bg-gray-50  border-b">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap cursor-pointer capitalize hover:underline" onClick={() => navigate(`/view/${item.id}`)}>
+                          {item.name}
+                        </th>
+                        <td class="px-6 py-4 capitalize">
+                          {item.companyName}
+                        </td>
+                        <td class="px-6 py-4 capitalize">
+                          {item.composition}
+                        </td>
+                        <td class="px-6 py-4 capitalize">
+                          {item.mrp}
+                        </td>
+                        <td class="px-6 py-4 capitalize">
+                          ₹&nbsp;{item.ourPrice}
+                        </td>
+                        <td class="px-6 py-4 capitalize">
+                          {item.inventory}
+                        </td>
+                        <td class="px-6 py-4 flex gap-2">
+                          <NavLink to={`/edit/${item.id}`}><p class="font-medium text-blue-600 hover:underline ml-3">Edit</p></NavLink>
+                          <button class="font-medium text-red-600  hover:underline" onClick={() => {
+                            Swal.fire({
+                              title: "Are you sure?",
+                              text: "You won't be Delete The Product",
+                              icon: "warning",
+                              showCancelButton: true,
+                              confirmButtonColor: "#65A30D",
+                              cancelButtonColor: "#d33",
+                              confirmButtonText: "Yes, delete it!"
+                            }).then((result) => {
+                              if (result.isConfirmed) {
+                                handledelete(item.id)
+                              }
+                            });
+
+                          }}>Delete</button>
+                        </td>
+                      </tr>
+                    )
+                  })
             }
           </tbody>
         </table>

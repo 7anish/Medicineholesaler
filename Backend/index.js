@@ -20,6 +20,7 @@ const PORT = process.env.PORT || 8001;
 const URL = process.env.DB_URL;
 
 connectDataBase(URL);
+app.use(express.text())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false}));
 

@@ -71,7 +71,7 @@ function EditProduct() {
             setype(p);
         } else if (data.category == "generic-medicine") {
             setype(g);
-        } else if (data.category == "ayurvedic-medicine") {
+        } else if (data.category == "ayurvedic-product") {
             setype(a);
         }
     }, [data.category])
@@ -137,7 +137,7 @@ function EditProduct() {
                             <option value="surgical-items">SURGICAL ITEMS</option>
                             <option value="patent-medicine">patent medicine</option>
                             <option value="generic-medicine">generic medicine</option>
-                            <option value="ayurvedic-medicine">ayurvedic medicine</option>
+                            <option value="ayurvedic-product">ayurvedic product</option>
                         </select>
                     </div>
                     <div className="form-group md:w-[40%]">
@@ -146,7 +146,7 @@ function EditProduct() {
                             <option value="">Select Category</option>
                             {
                                 type?.map((item) => {
-                                    return <option value={item}>{item}</option>
+                                    return <option value={item} className=' capitalize'>{item.split('-').join(' ')}</option>
                                 })
                             }
                         </select>

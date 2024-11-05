@@ -61,6 +61,10 @@ function LogInPage() {
                     path : '/',
                     expires : ''
                 })
+                setCookie('lgrole' , res.data.role , {
+                    path : '/',
+                    expires : ''
+                })
                 const details = {
                     username : res.data.name,
                     usermail : res.data.email,
