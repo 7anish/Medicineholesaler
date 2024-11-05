@@ -37,7 +37,10 @@ function Navbar() {
                 removeCookie('lgid')
                 removeCookie('lgrole')
                 localStorage.removeItem('information')
-              Swal.fire("Logout Sucessfully");
+              Swal.fire({
+                title : "Logout Sucessfully",
+                icon : 'success'
+            });
               window.location.href = "/"
             }
           });

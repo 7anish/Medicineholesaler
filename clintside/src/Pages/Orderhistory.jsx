@@ -2,7 +2,9 @@ import React , {useState , useEffect} from 'react'
 import axios from 'axios';
 import { Cookies } from 'react-cookie';
 import Url from '../../Url';
+import { useNavigate } from 'react-router-dom';
 const Orderhistory = () => {
+    const navigate = useNavigate()
     const cookie =new Cookies()
     const [data, setdata] = useState([]);
     const [error, seterror] = useState(false)
@@ -15,6 +17,7 @@ const Orderhistory = () => {
             try {
                 if(!cookie.get('lgid')){
                     seterror(true)
+                    navigate('/login')
                     return
                 }
                 const id = cookie.get('lgid')
