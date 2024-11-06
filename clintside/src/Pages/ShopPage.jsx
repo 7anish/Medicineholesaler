@@ -11,15 +11,22 @@ function ShopPage() {
   const [error, seterror] = useState(false)
   const [loading, setloading] = useState(true)
   const [btntext, setbtntext] = useState('Load More')
-  const [lastindex, setlastindex] = useState(8)
+  const [lastindex, setlastindex] = useState(50)
+  const [firstindex , setfirstindex] = useState(0)
 
-
-  const loadmore = () => {
+  const forward = () => {
     setbtntext('Loading...')
-    setlastindex(lastindex + 8)
+    setfirstindex(lastindex)
+    setlastindex(lastindex + 50)
     setbtntext('Load More')
   }
-  
+  const backward = ()=>{
+    setbtntext('Loading...')
+    setlastindex(firstindex)
+    setfirstindex(firstindex - 50)
+    setbtntext('Load More')
+  }
+
   useEffect(() => {
     const fetchdata = async () => {
       setloading(true)
@@ -110,23 +117,33 @@ function ShopPage() {
             </div>
             <section className="flex justify-start flex-wrap sm:flex-nowrap">
               <div className="w-full right-0">
-                <div className="w-full px-10 flex flex-wrap justify-center items-center gap-10 py-10">
+                <div className="w-full sm:px-10 flex flex-wrap justify-center items-center gap-5 sm:gap-10 py-10">
                   {
-                    data.slice(0, lastindex)?.map((item, index) => {
-                      return <ProductCard key={item.index} name={item.name} index={index} id={item.id} cat={item.category} subcat={item.subcategory} img={item.imageurl} actualprice={item.mrp} discountprice={item.ourPrice} companyname={item.companyName} size={item.size} heart={"yes"} />
+                    data.slice(firstindex, lastindex)?.map((item, index) => {
+                      return <ProductCard key={item.index} name={item.name} index={index} id={item.id} cat={item.category} subcat={item.subcategory} img={item.imageurl} actualprice={item.mrp} discountprice={item.ourPrice} companyname={item.companyName} size={item.size} heart={"yes"}  range={item.range} />
                     })
                   }
                 </div>
               </div>
             </section>
+            <div className="w-[90%] mx-auto h-20 ">
             {
-              lastindex < data.length ?
-                <div className='w-[300px] h-[30%] p-1 flex rounded-xl  bg-orange-600 hover:bg-gray-100 transition-all duration-500  w-fulltext-white hover:text-black cursor-pointer justify-center items-center py-2 mx-auto my-5' onClick={() => loadmore()}>
-                  <button className='w-full h-full text-lg'>Load More</button>
+              firstindex != 0 ?
+                <div className='sm:w-[150px] h-fit p-1 flex rounded-xl  bg-gray-200 font-bold transition-all duration-500    cursor-pointer justify-center items-center py-2 mx-auto my-5 float-left' onClick={() => backward()}>
+                  <button className='w-full h-full text-sm sm:text-lg'>Back page</button>
                 </div>
                 :
                 ""
             }
+            {
+              lastindex < data.length ?
+                <div className='sm:w-[150px] h-fit p-1 flex rounded-xl  bg-gray-200 font-bold transition-all duration-500    cursor-pointer justify-center items-center py-2 mx-auto my-5 float-right' onClick={() => forward()}>
+                  <button className='w-full h-full text-sm sm:text-lg'>Next page</button>
+                </div>
+                :
+                ""
+            }
+            </div>
           </section>
       }
     </div>

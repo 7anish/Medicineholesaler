@@ -3,6 +3,9 @@ import { toast } from "react-toastify";
 
 const data = ()=>{
     try{
+        if(JSON.parse(sessionStorage.getItem('cartitem')).length === 0){
+            return []
+        }
         return JSON.parse(sessionStorage.getItem('cartitem'))
     }catch{
         return []
@@ -52,7 +55,6 @@ const cartitem = createSlice({
                     quantity: tempquatity
                 }
 
-                console.log(newitem)
                 state.allcartitem.push(newitem)
             }
 
@@ -87,6 +89,10 @@ const cartitem = createSlice({
             console.log(action.payload)
             state.allcartitem = state.allcartitem.filter((item) => {
                 return item.id != action.payload;
+            })
+
+            state.itemsid =  state.itemsid.filter((item)=>{
+                return item != action.payload;
             })
 
             const suming = () => {

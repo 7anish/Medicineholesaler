@@ -77,7 +77,7 @@ const handlGetProductList = async (req, res) => {
         const param = req.query
         let result = []
         if (param.type === "feature"){
-            result = await product.find().limit(8)
+            result = await product.find().limit(12)
         }else{
             result = await product.find(param)
         }
@@ -96,6 +96,7 @@ const handlGetProductList = async (req, res) => {
                     category : item.category,
                     subcategory : item.subcategory,
                     size : item.size,
+                    range : item.range,
                     composition : item.composition
                 }
                 return data;

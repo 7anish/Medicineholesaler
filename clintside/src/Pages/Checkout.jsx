@@ -82,7 +82,8 @@ const Checkout = () => {
             foodlcnumber : e.target.foodlcnumber.value,
             druglcnumber : e.target.druglcnumber.value,
             remark : e.target.remark.value,
-            totalPrice : data.totaldiscountprice,
+            delivery :  data.totaldiscountprice > 999 ? "0" : "50",  
+            totalPrice : data.totaldiscountprice > 999 ? data.totaldiscountprice : ((+data.totaldiscountprice)+50),
             order : order,
             createdBy :   cookie.get('lgid') || undefined
         }
@@ -249,8 +250,12 @@ const Checkout = () => {
                                             <dd className="text-base font-medium ">-&nbsp;₹&nbsp;{(data.totalactualprice - data.totaldiscountprice).toFixed(2)}</dd>
                                         </dl>
                                         <dl className="flex items-center justify-between gap-4 py-3">
+                                            <dt className="text-base font-normal text-gray-500 ">Delivery charges:</dt>
+                                            <dd className="text-base font-medium ">₹&nbsp;{data.totaldiscountprice > 999 ? "0" : "50"}</dd>
+                                        </dl>
+                                        <dl className="flex items-center justify-between gap-4 py-3">
                                             <dt className="text-base font-bold text-gray-900">Total</dt>
-                                            <dd className="text-base font-bold text-gray-900">₹&nbsp;{data.totaldiscountprice}</dd>
+                                            <dd className="text-base font-bold text-gray-900">₹&nbsp;{data.totaldiscountprice > 999 ? data.totaldiscountprice : ((+data.totaldiscountprice)+50) }</dd>
                                         </dl>
                                     </div>
                                 </div>

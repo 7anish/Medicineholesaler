@@ -185,8 +185,14 @@ const Specficorder = () => {
             <th scope="col" className="px-6 py-3 border border-gray-500">
               Remark
             </th>
-            <td colSpan={2} scope="col" className="px-6 py-3 border border-gray-500">
+            <td scope="col" className="px-6 py-3 border border-gray-500">
               {order.remark}
+            </td>
+            <th scope="col" className="px-6 py-3 border border-gray-500">
+              Delivery charges
+            </th>
+            <td scope="col" className="px-6 py-3 border border-gray-500">
+              {order.delivery}
             </td>
           </tr>
           <tr>

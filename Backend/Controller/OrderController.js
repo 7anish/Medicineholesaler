@@ -15,6 +15,7 @@ const handleCreateOrder = async (req, res) => {
             address: data.address,
             orders: data.order,
             totalPrice: data.totalPrice,
+            delivery : data.delivery,
             city: data.city,
             createdBy: data.createdBy,
             druglcnumber: data.druglcnumber,

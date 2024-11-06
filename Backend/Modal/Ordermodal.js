@@ -55,6 +55,10 @@ const orderScheam = new mongooes.Schema({
         type: String,
         required: true
     },
+    delivery :{
+        type: String,
+        required: true
+    },
     orders: [productSchema],
     createdBy : {
         type : mongooes.Schema.Types.ObjectId,

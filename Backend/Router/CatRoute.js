@@ -4,19 +4,19 @@ const route = express.Router()
 const cat = [
     {
         "category": "cosmetic-products",
-        "img": "pencil-outline",
+        "img": "sparkles",
         "bg": "#ffe4e1",
         "text": "#ff6347",
         "subcat": [
             {
-                "name": "baby-and-female-and-elderly-care",
+                "name": "baby-,-female-&-elderly-care",
                 "route": "cosmetic-products/baby-and-female-and-elderly-care",
                 "bg": "#ffe8e8",
                 "icon": "accessibility-outline",
                 "iconColor": "#ff6347"
             },
             {
-                "name": "face-and-oral-care",
+                "name": "face-&-oral-care",
                 "route": "cosmetic-products/face-and-oral-care",
                 "bg": "#ffe8e8",
                 "icon": "happy-outline",
@@ -30,14 +30,14 @@ const cat = [
                 "iconColor": "#ff6347"
             },
             {
-                "name": "shampoo-and-body-care",
+                "name": "shampoo-&-body-care",
                 "route": "cosmetic-products/shampoo-and-body-care",
                 "bg": "#ffe8e8",
                 "icon": "cut-outline",
                 "iconColor": "#ff6347"
             },
             {
-                "name": "health-and-wellness",
+                "name": "health-&-wellness",
                 "route": "cosmetic-products/health-and-wellness",
                 "bg": "#ffe8e8",
                 "icon": "pulse-outline",
@@ -66,7 +66,7 @@ const cat = [
                 "iconColor": "#2dd1dd"
             },
             {
-                "name": "sugar-and-bp-care-machine",
+                "name": "sugar-&-bp-care-machine",
                 "route": "surgical-items/sugar-and-bp-care-machine",
                 "bg": "#ffe8e8",
                 "icon": "pulse-outline",
@@ -102,7 +102,7 @@ const cat = [
                 "iconColor": "#ff4500"
             },
             {
-                "name": "tablet-and-capsule",
+                "name": "tablet-&-capsule",
                 "route": "patent-medicine/tablet-and-capsule",
                 "bg": "#ffe8e8",
                 "icon": "cube-outline",
@@ -116,14 +116,14 @@ const cat = [
                 "iconColor": "#ff4500"
             },
             {
-                "name": "cream-and-ointment",
+                "name": "cream-&-ointment",
                 "route": "patent-medicine/cream-and-ointment",
                 "bg": "#ffe8e8",
                 "icon": "color-palette-outline",
                 "iconColor": "#ff4500"
             },
             {
-                "name": "pediatric-drop-and-syrup",
+                "name": "pediatric-drop-&-syrup",
                 "route": "patent-medicine/pediatric-drop-and-syrup",
                 "bg": "#ffe8e8",
                 "icon": "water-outline",
@@ -147,33 +147,33 @@ const cat = [
             {
                 "name": "injections",
                 "route": "generic-medicine/injections",
-                "bg": "#f0fff0",
+                "bg": "#ffe8e8",
                 "icon": "flash-outline",
                 "iconColor": "#32cd32"
             },
             {
-                "name": "tablet-and-capsule",
+                "name": "tablet-&-capsule",
                 "route": "generic-medicine/tablet-and-capsule",
-                "bg": "#f0fff0",
+                "bg": "#ffe8e8",
                 "icon": "cube-outline",
                 "iconColor": "#32cd32"
             },
             {
                 "name": "syrup",
                 "route": "generic-medicine/syrup",
-                "bg": "#f0fff0",
+                "bg": "#ffe8e8",
                 "icon": "water-outline",
                 "iconColor": "#32cd32"
             },
             {
-                "name": "cream-and-ointment",
+                "name": "cream-&-ointment",
                 "route": "generic-medicine/cream-and-ointment",
-                "bg": "#f0fff0",
+                "bg": "#ffe8e8",
                 "icon": "color-palette-outline",
                 "iconColor": "#32cd32"
             },
             {
-                "name": "pediatric-drop-and-syrup",
+                "name": "pediatric-drop-&-syrup",
                 "route": "generic-medicine/pediatric-drop-and-syrup",
                 "bg": "#ffe8e8",
                 "icon": "water-outline",
@@ -195,30 +195,30 @@ const cat = [
         "text": "#228b22",
         "subcat": [
             {
-                "name": "bati-tablets-and-capsule",
+                "name": "bati-tablets-&-capsule",
                 "route": "ayurvedic-product/bati-tablets-and-capsule",
-                "bg": "#f5fffa",
+                "bg": "#ffe8e8",
                 "icon": "tablet-landscape-outline",
                 "iconColor": "#228b22"
             },
             {
                 "name": "asave-and-syrup",
                 "route": "ayurvedic-product/asave-and-syrup",
-                "bg": "#f5fffa",
+                "bg": "#ffe8e8",
                 "icon": "water-outline",
                 "iconColor": "#228b22"
             },
             {
-                "name": "churan-and-powder",
+                "name": "churan-&-powder",
                 "route": "ayurvedic-product/churan-and-powder",
-                "bg": "#f5fffa",
+                "bg": "#ffe8e8",
                 "icon": "leaf-outline",
                 "iconColor": "#228b22"
             },
             {
                 "name": "others",
                 "route": "ayurvedic-product/others",
-                "bg": "#f5fffa",
+                "bg": "#ffe8e8",
                 "icon": "ellipsis-horizontal-outline",
                 "iconColor": "#228b22"
             },

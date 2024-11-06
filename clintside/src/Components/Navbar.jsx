@@ -53,7 +53,7 @@ function Navbar() {
             <div className='md:flex justify-between items-center font-poppins px-2  md:px-20'>
                 <div className='flex lg:justify-center items-center justify-between '>
                     <NavLink to={'/'}>
-                        <div className=' font-bold text-xl lg:text-4xl '>Medical<span className='text-orange-600 text-lg lg:text-3xl'>Wholesale</span> </div>
+                        <div className=' font-bold text-xl lg:text-4xl '>Medicine<span className='text-orange-600 text-lg lg:text-2xl'>Wholesale</span> </div>
                     </NavLink>
                     <div onClick={() => setOpen(!open)} className='text-3xl md:hidden flex items-center py-4'>
                         <ion-icon name={open ? 'close' : 'menu-outline'}></ion-icon>

@@ -118,19 +118,17 @@ function ProductPage() {
                     <section className='w-full xl:w-[60%]'>
                         <div className='bg-[#ffffffda] transition-all duration-500 rounded-xl p-4 flex flex-col min-h-[60vh] min-w-full md:min-w-[450px]  gap-3  justify-evenly'>
                             <h2 className='text-md font-bold cursor-pointer hover:text-blue-500'>{data.companyName}</h2>
-                            <h1 className='text-3xl lg:text-6xl font-bold'>{data.name}</h1>
+                            <h1 className='text-3xl lg:text-6xl font-bold'>{data.name} <span className='text-2xl lg:text-2xl'>{data.size ? `|| ${data.size}` : ""}</span> <span className='text-2xl lg:text-2xl'>{`|| ${data.itemtype}`}</span></h1>
                             <div className='flex flex-wrap gap-2 my-3'>
-                                <span className='px-2 py-1 border rounded-lg bg-[#ddeff1] font-medium text-base lg:text-lg capitalize'>{data.category.split('-').join(' ')}</span>
-                                <span className='px-2 py-1 border rounded-lg bg-[#ddeff1] text-base lg:text-lg capitalize'>{data.subcategory.split('-').join(' ')}</span>
-                                <span className='px-2 py-1 border rounded-lg bg-[#ecddf1] text-base lg:text-lg capitalize'>{data.itemtype}</span>
+                                
                                 <span className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5 cursor-pointer' onClick={addtowishlist}>
                                     {/* <FaRegHeart /> */}
                                 </span>
                             </div>
                             <div className='flex flex-col gap-4'>
-                                <h2 className='text-md font-bold cursor-pointer hover:text-blue-500'><span>{data.size ? `${data.size}` : ""}</span>   <span>{data.composition ? `|| ${data.composition}` : ""}</span></h2>
+                                <h2 className='w-full md:w-[60%] text-md'>   <span>{data.composition ? `${data.composition}` : ""}</span></h2>
                                 <div className='flex justify-between items-center flex-wrap gap-3'>
-                                    <h1 className='text-2xl font-bold'>₹&nbsp;{data.ourPrice} <span className='text-lg font-bold text-red-600'>&nbsp;&nbsp;&nbsp;{((((+data.mrp) - (+data.ourPrice)) / (+data.mrp)) * 100).toFixed(1)}% off</span></h1>
+                                    <h1 className='text-2xl font-bold'>ourPrice : ₹&nbsp;{data.ourPrice} <span className='text-lg font-bold text-red-600'>&nbsp;&nbsp;&nbsp;{((((+data.mrp) - (+data.ourPrice)) / (+data.mrp)) * 100).toFixed(1)}% off</span></h1>
                                     <div className='flex items-center'>
                                         <button
                                             onClick={() => setCount(count > 1 ? count - 10 : 1)}
@@ -171,7 +169,7 @@ function ProductPage() {
                                         </button>
                                     </div>
                                 </div>
-                                <h1 className='text-lg lg:text-xl font-bold line-through text-red-600'>₹&nbsp;{data.mrp}</h1>
+                                <h1 className='text-lg lg:text-xl font-bold'>Mrp : <span className='line-through text-red-600'> ₹&nbsp;{data.mrp}</span></h1>
                                 <div className='bg-[#ffffffda] rounded-lg'>
                                     <h1 className='text-lg md:text-xl font-semibold pb-1'>Price Ranges</h1>
                                     <div className='flex flex-col gap-2'>

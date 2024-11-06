@@ -10,7 +10,6 @@ function FeaturedProd() {
     const [error, seterror] = useState(false)
     const [loading, setloading] = useState(true)
     const [btntext, setbtntext] = useState('Load More')
-    const [lastindex, setlastindex] = useState(4)
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -28,18 +27,13 @@ function FeaturedProd() {
         fetchdata()
     }, [])
 
-    const loadmore = () => {
-        setbtntext('Loading...')
-        setlastindex(lastindex + 4)
-        setbtntext('Load More')
-    }
 
     if (error) {
         return (
             <section className='lg:py-10 xl:pt-20 xl:py-20 lg:px-16' >
                 <div className='flex flex-wrap gap-2 px-4 sm:gap-0 py-4 justify-between items-center'>
                     <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>Featured Products</h1>
-                    <ViewAllBut path={'/products'} />
+                    {/* <ViewAllBut path={'/products'} /> */}
                 </div>
                 <h1 className='text-3xl font-bold font-poppins text-center py-20 text-orange-500'>Error in fetching Products!!!</h1>
             </section>
@@ -52,7 +46,7 @@ function FeaturedProd() {
                 <section className='py-0 xl:pt-10 xl:py-0 px-4 lg:px-20'>
                     <div className='flex flex-wrap gap-2 sm:gap-0 py-2 mb-4 justify-between items-center'>
                         <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>Featured Products</h1>
-                        <ViewAllBut path={'/category/allcategory'} />
+                        {/* <ViewAllBut path={'/category/allcategory'} /> */}
                     </div>
                     <div className='my-20 flex items-center justify-center'>
                         <div class="w-16 h-16 rounded-full animate-spin 
@@ -69,22 +63,14 @@ function FeaturedProd() {
                     </div>
                     <div className='flex  flex-wrap  py-4 gap-5 justify-center'>
                         {
-                            data.slice(0, lastindex).map((item, index) => (
+                            data.map((item, index) => (
                                 <>
-                                    <ProductCard index={index} id={item.id} name={item.name} actualprice={item.mrp} img={item.imageurl} cat={item.category} subcat={item.subcategory} discountprice={item.ourPrice} companyname={item.companyName} size={item.size} heart={"yes"} />
+                                    <ProductCard index={index} id={item.id} name={item.name} actualprice={item.mrp} img={item.imageurl} cat={item.category} subcat={item.subcategory} discountprice={item.ourPrice} companyname={item.companyName} size={item.size} heart={"yes"}  range={item.range}/>
                                 </>
                             ))
                         }
                     </div>
                 </section>
-                {
-                    lastindex < data.length ?
-                        <div className='w-[300px] h-[30%] p-1 flex rounded-xl  bg-orange-600 hover:bg-gray-100 transition-all duration-500  w-fulltext-white hover:text-black cursor-pointer justify-center items-center py-2 mx-auto my-5' onClick={() => loadmore()}>
-                            <button className='w-full h-full text-lg'>Load More</button>
-                        </div>
-                        :
-                        ""
-                }
             </div>
     )
 }
