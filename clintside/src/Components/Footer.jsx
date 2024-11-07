@@ -46,7 +46,7 @@ function Footer() {
                         </form>
                     </div>
                 </div>
-                <div className='text-center text-xs md:text-sm mt-10'>© 2023 MedicalWholesale. All rights reserved.</div>
+                <div className='text-center text-xs md:text-sm mt-10'>© 2023 MedicineWholesale. All rights reserved.</div>
             </footer>
         </>
     )

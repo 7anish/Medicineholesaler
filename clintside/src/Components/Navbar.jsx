@@ -47,9 +47,9 @@ function Navbar() {
     }
 
     const [open, setOpen] = useState(false);
-    const linkClass = ({ isActive }) => isActive ? "text-[#2dd1dd] text-xl rounded-md px-3 py-2" : "text-gray-500 text-xl hover:text-[#2dd1dd]  rounded-md px-3 py-2";
+    const linkClass = ({ isActive }) => isActive ? "text-[#2dd1dd] text-lg rounded-md px-3 py-2" : "text-gray-500 text-xl hover:text-[#2dd1dd]  rounded-md px-3 py-2";
     return (
-        <nav className='w-full  m-0 pr-6 md:pr-0 sm:py-4 md::py-4 shadow-card-shadow  bg-white font-poppins z-50 sticky top-0'>
+        <nav className='w-full  m-0 pr-6 md:pr-0 sm:py-4 md::py-4   bg-white font-poppins z-50 sticky top-0'>
             <div className='md:flex justify-between items-center font-poppins px-2  md:px-20'>
                 <div className='flex lg:justify-center items-center justify-between '>
                     <NavLink to={'/'}>
@@ -62,39 +62,39 @@ function Navbar() {
                 <div className={`flex flex-col md:flex-row lg:w-1/2 w-full md:z-auto bg-white z-10 transition-all duration-300 ease-in sm:justify-end gap-10 sm:gap-4 items-center lg:py-0 py-4 absolute md:static ${open ? 'left-0' : 'left-[-100%]'}`}>
                     {
                         Links.map((link) => (
-                            <div key={link.name} className='lg:my-0'>
+                            <div key={link.name}>
                                 <NavLink to={link.link} className={linkClass} onClick={() => setOpen(!open)}>
                                     {link.name}
                                 </NavLink>
                             </div>
                         ))
                     }
-                    <NavLink to={'/cart'} className='text-orange-600 hover:text-[#2dd1dd] text-3xl px-5 flex items-center justify-center' onClick={() => setOpen(!open)}>
-                        <ion-icon name="cart-outline" size='large' className="font-extrabold "></ion-icon>
-                        <span className='text-lg'>{Quant.length}</span>
-                    </NavLink>
                     {
                         login ?
                             (
-                                <NavLink to={'/login'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5'>
+                                <NavLink to={'/login'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-lg px-5'>
                                     {/* <span className='text-lg'>(0)</span> */}
-                                    <button className='text-white px-6 py-2 rounded-xl bg-orange-500 font-semibold' onClick={() => setOpen(!open)}>LogIn</button>
+                                    <button className='text-orange-600 hover:text-[rgb(45,209,221)]  rounded-xl' onClick={() => setOpen(!open)}>Get Started</button>
                                 </NavLink>
                             )
                             : (
                                 <>
-                                    <NavLink to={'/wishlist'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5' onClick={() => setOpen(!open)}>
-                                        <ion-icon name="heart-outline" size='large' className="font-extrabold "></ion-icon>
+                                    <NavLink to={'/wishlist'} className='text-orange-600 flex items-center hover:text-[rgb(45,209,221)] gap-1 lg:text-lg px-5' onClick={() => setOpen(!open)}>
+                                        Wishlist<ion-icon name="heart-outline"  className="font-extrabold "></ion-icon>
                                     </NavLink>
-                                    <NavLink to={'/orderhistory'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5' onClick={() => setOpen(!open)}>
-                                        <ion-icon name="logo-dropbox" size='large' className="font-extrabold "></ion-icon>
+                                    <NavLink to={'/orderhistory'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-lg px-5 gap-1' onClick={() => setOpen(!open)}>
+                                        Order <ion-icon name="logo-dropbox"  className="font-extrabold "></ion-icon>
                                     </NavLink>
-                                    <div className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5 cursor-pointer' onClick={()=>handlelogout()}>
-                                        <ion-icon name="log-out-outline" size='large' className="font-extrabold "></ion-icon>
+                                    <div className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-lg px-5 cursor-pointer gap-1' onClick={()=>handlelogout()}>
+                                        Logout<ion-icon name="log-out-outline" className="font-extrabold "></ion-icon>
                                     </div>
                                 </>
                             )
                     }
+                    <NavLink to={'/cart'} className='text-orange-600 hover:text-[#2dd1dd] text-2xl px-5 flex items-center justify-center' onClick={() => setOpen(!open)}>
+                        <ion-icon name="cart-outline" size='large' className="font-extrabold "></ion-icon>
+                        <span className='text-lg'>{Quant.length}</span>
+                    </NavLink>
                 </div>
             </div>
         </nav>
