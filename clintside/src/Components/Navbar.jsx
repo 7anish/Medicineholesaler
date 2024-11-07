@@ -47,13 +47,13 @@ function Navbar() {
     }
 
     const [open, setOpen] = useState(false);
-    const linkClass = ({ isActive }) => isActive ? "text-[#2dd1dd] text-lg rounded-md px-3 py-2" : "text-gray-500 text-xl hover:text-[#2dd1dd]  rounded-md px-3 py-2";
+    const linkClass = ({ isActive }) => isActive ? "text-green-800 text-lg rounded-md px-3 py-2" : "text-gray-500 text-lg hover:text-green-800  rounded-md px-3 py-2";
     return (
         <nav className='w-full  m-0 pr-6 md:pr-0 sm:py-4 md::py-4   bg-white font-poppins z-50 sticky top-0'>
             <div className='md:flex justify-between items-center font-poppins px-2  md:px-20'>
                 <div className='flex lg:justify-center items-center justify-between '>
                     <NavLink to={'/'}>
-                        <div className=' font-bold text-xl lg:text-4xl '>Medicine<span className='text-orange-600 text-lg lg:text-2xl'>Wholesale</span> </div>
+                        <div className=' font-bold text-xl lg:text-4xl '>Medicine<span className='text-green-600 text-lg lg:text-2xl'>Wholesale</span> </div>
                     </NavLink>
                     <div onClick={() => setOpen(!open)} className='text-3xl md:hidden flex items-center py-4'>
                         <ion-icon name={open ? 'close' : 'menu-outline'}></ion-icon>
@@ -72,26 +72,26 @@ function Navbar() {
                     {
                         login ?
                             (
-                                <NavLink to={'/login'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-lg px-5'>
+                                <NavLink to={'/login'} className='text-green-600 flex items-center hover:text-green-800 lg:text-lg px-5'>
                                     {/* <span className='text-lg'>(0)</span> */}
-                                    <button className='text-orange-600 hover:text-[rgb(45,209,221)]  rounded-xl' onClick={() => setOpen(!open)}>Get Started</button>
+                                    <button className='text-green-600 hover:text-[rgb(45,209,221)]  rounded-xl' onClick={() => setOpen(!open)}>Get Started</button>
                                 </NavLink>
                             )
                             : (
                                 <>
-                                    <NavLink to={'/wishlist'} className='text-orange-600 flex items-center hover:text-[rgb(45,209,221)] gap-1 lg:text-lg px-5' onClick={() => setOpen(!open)}>
+                                    <NavLink to={'/wishlist'} className='text-green-600 flex items-center hover:text-green-800 gap-1 lg:text-lg px-5' onClick={() => setOpen(!open)}>
                                         Wishlist<ion-icon name="heart-outline"  className="font-extrabold "></ion-icon>
                                     </NavLink>
-                                    <NavLink to={'/orderhistory'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-lg px-5 gap-1' onClick={() => setOpen(!open)}>
+                                    <NavLink to={'/orderhistory'} className='text-green-600 flex items-center hover:text-green-800 lg:text-lg px-5 gap-1' onClick={() => setOpen(!open)}>
                                         Order <ion-icon name="logo-dropbox"  className="font-extrabold "></ion-icon>
                                     </NavLink>
-                                    <div className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-lg px-5 cursor-pointer gap-1' onClick={()=>handlelogout()}>
+                                    <div className='text-green-600 flex items-center hover:text-green-800 lg:text-lg px-5 cursor-pointer gap-1' onClick={()=>handlelogout()}>
                                         Logout<ion-icon name="log-out-outline" className="font-extrabold "></ion-icon>
                                     </div>
                                 </>
                             )
                     }
-                    <NavLink to={'/cart'} className='text-orange-600 hover:text-[#2dd1dd] text-2xl px-5 flex items-center justify-center' onClick={() => setOpen(!open)}>
+                    <NavLink to={'/cart'} className='text-green-600 hover:text-green-800 text-2xl px-5 flex items-center justify-center' onClick={() => setOpen(!open)}>
                         <ion-icon name="cart-outline" size='large' className="font-extrabold "></ion-icon>
                         <span className='text-lg'>{Quant.length}</span>
                     </NavLink>

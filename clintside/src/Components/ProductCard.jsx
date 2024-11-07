@@ -120,7 +120,7 @@ function ProductCard({ id, name, cat, subcat, actualprice, img, index, discountp
                         +1
                     </button>
                 </div>
-                <div className='flex  items-center  rounded-lg sm:rounded-xl bg-orange-600 hover:bg-gray-100 transition-all duration-500  px-3 sm:px-6 py-1 sm:py-2 text-white hover:text-black cursor-pointer' onClick={(e) => {
+                <div className='flex  items-center  rounded-lg sm:rounded-xl bg-green-600 hover:bg-gray-100 transition-all duration-500  px-3 sm:px-6 py-1 sm:py-2 text-white hover:text-black cursor-pointer' onClick={(e) => {
                     addtocartitem(e)
                 }}>
                     <button className='w-full h-full text-[14px] sm:text-lg'>Add to cart</button>

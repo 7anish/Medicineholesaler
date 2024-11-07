@@ -58,13 +58,13 @@ function ShopPage() {
         <DiscountShop />
         <section className="sm:pb-10 bg-[#eef4f4]">
           <div className="flex flex-wrap bg-white justify-between items-center px-2 sm:px-8 ">
-            <h1 className="text-3xl text-orange-500 leading-relaxed tracking-wider font-semibold px-2 py-2 text-center capitalize">
+            <h1 className="text-3xl text-green-500 leading-relaxed tracking-wider font-semibold px-2 py-2 text-center capitalize">
               {/* {`All Products / ${searchparams.get('category').split('-')[0]+ " " +((searchparams.get('category')).split('-')[1] ? (searchparams.get('category')).split('-')[1] : ""  )  || ""} / ${searchparams.get('subcategory').split('-')[0]+ " " +((searchparams.get('subcategory')).split('-')[1] ? (searchparams.get('subcategory')).split('-')[1] : ""  )  || ""}`} */}
               Products
             </h1>
           </div>
           <div className="w-full h-[80vh] flex items-center justify-center">
-            <h1 className="text-3xl text-orange-500 leading-relaxed tracking-wider font-bold px-2 py-2 text-center capitalize font-poppins"> Error While Fetching Product !!!</h1>
+            <h1 className="text-3xl text-green-500 leading-relaxed tracking-wider font-bold px-2 py-2 text-center capitalize font-poppins"> Error While Fetching Product !!!</h1>
           </div>
         </section>
       </>
@@ -78,14 +78,14 @@ function ShopPage() {
         loading ?
           <section className="sm:pb-10 bg-[#eef4f4]">
             <div className="flex flex-wrap bg-white justify-between items-center px-2 sm:px-8 ">
-              <h1 className="text-3xl text-orange-500 leading-relaxed tracking-wider font-semibold px-2 py-2 text-center capitalize">
+              <h1 className="text-3xl text-green-500 leading-relaxed tracking-wider font-semibold px-2 py-2 text-center capitalize">
                 {/* {`All Products / ${searchparams.get('category').split('-')[0]+ " " +((searchparams.get('category')).split('-')[1] ? (searchparams.get('category')).split('-')[1] : ""  )  || ""} / ${searchparams.get('subcategory').split('-')[0]+ " " +((searchparams.get('subcategory')).split('-')[1] ? (searchparams.get('subcategory')).split('-')[1] : ""  )  || ""}`} */}
                 Products
               </h1>
             </div>
             <div className="w-full h-[80vh] flex items-center justify-center">
               <div class="w-16 h-16 rounded-full animate-spin 
-                    border-x-4 border-solid border-orange-500 border-t-transparent"></div>
+                    border-x-4 border-solid border-green-500 border-t-transparent"></div>
             </div>
           </section>
           :
@@ -93,19 +93,19 @@ function ShopPage() {
           data.length === 0 ? 
           <section className="sm:pb-10 bg-[#eef4f4]">
             <div className="flex flex-wrap bg-white justify-between items-center px-2 sm:px-8 ">
-              <h1 className="text-3xl text-orange-500 leading-relaxed tracking-wider font-semibold px-2 py-2 text-center capitalize">
+              <h1 className="text-3xl text-green-500 leading-relaxed tracking-wider font-semibold px-2 py-2 text-center capitalize">
                 {/* {`All Products / ${searchparams.get('category').split('-')[0]+ " " +((searchparams.get('category')).split('-')[1] ? (searchparams.get('category')).split('-')[1] : ""  )  || ""} / ${searchparams.get('subcategory').split('-')[0]+ " " +((searchparams.get('subcategory')).split('-')[1] ? (searchparams.get('subcategory')).split('-')[1] : ""  )  || ""}`} */}
                 Products
               </h1>
             </div>
             <div className="w-full h-[80vh] flex items-center justify-center">
-            <h1 className="text-3xl text-orange-500 leading-relaxed tracking-wider font-bold px-2 py-2 text-center capitalize font-poppins"> Error While Fetching Product !!!</h1>
+            <h1 className="text-3xl text-green-500 leading-relaxed tracking-wider font-bold px-2 py-2 text-center capitalize font-poppins"> Error While Fetching Product !!!</h1>
             </div>
           </section>
           :
           <section className="sm:pb-10 bg-[#eef4f4]">
             <div className="flex flex-wrap bg-white justify-between items-center px-2 sm:px-8 ">
-              <h1 className="text-3xl text-orange-500 leading-relaxed tracking-wider font-semibold px-2 py-2 text-center capitalize">
+              <h1 className="text-3xl text-green-500 leading-relaxed tracking-wider font-semibold px-2 py-2 text-center capitalize">
                 {/* {`All Products / ${searchparams.get('category').split('-')[0]+ " " +((searchparams.get('category')).split('-')[1] ? (searchparams.get('category')).split('-')[1] : ""  )  || ""} / ${searchparams.get('subcategory').split('-')[0]+ " " +((searchparams.get('subcategory')).split('-')[1] ? (searchparams.get('subcategory')).split('-')[1] : ""  )  || ""}`} */}
                 Products
               </h1>
@@ -124,7 +124,7 @@ function ShopPage() {
             <div className="w-[90%] mx-auto h-20 ">
             {
               firstindex != 0 ?
-                <div className='sm:w-[150px] h-fit p-1 flex rounded-xl  bg-gray-200 font-bold transition-all duration-500    cursor-pointer justify-center items-center py-2 mx-auto my-5 float-left' onClick={() => backward()}>
+                <div className='sm:w-[150px] h-fit p-1 flex rounded-xl  bg-gray-300 font-bold transition-all duration-500    cursor-pointer justify-center items-center py-2 mx-auto my-5 float-left' onClick={() => backward()}>
                   <button className='w-full h-full text-sm sm:text-lg'>Back</button>
                 </div>
                 :
@@ -132,7 +132,7 @@ function ShopPage() {
             }
             {
               lastindex < data.length ?
-                <div className='sm:w-[150px] h-fit p-1 flex rounded-xl  bg-gray-200 font-bold transition-all duration-500    cursor-pointer justify-center items-center py-2 mx-auto my-5 float-right' onClick={() => forward()}>
+                <div className='sm:w-[150px] h-fit p-1 flex rounded-xl  bg-gray-300 font-bold transition-all duration-500    cursor-pointer justify-center items-center py-2 mx-auto my-5 float-right' onClick={() => forward()}>
                   <button className='w-full h-full text-sm sm:text-lg'>Next</button>
                 </div>
                 :

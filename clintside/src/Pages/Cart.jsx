@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { deletefmcart } from "../Store/Room";
 import { increasequat } from "../Store/Room";
 import { decresequat } from "../Store/Room";
-
+import img from '../assets/empty-cart.png'
 
 function Cart() {
   const navigate = useNavigate()
@@ -36,11 +36,14 @@ function Cart() {
   return (
     <div>
       <div className="container mx-auto py-16 sm:py-28 px-3 sm:px-0">
-        <h1 className="text-orange-500 text-3xl mb-4 font-bold xl:text-5xl">My Cart</h1>
+        <h1 className="text-balck text-3xl mb-4 font-bold xl:text-5xl">My Cart</h1>
         <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4 lg:gap-4 mb-4 px-2">
           <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
             {cartdata.length === 0 ? (
-              <div className="w-full h-[60vh] text-center flex items-center justify-center font-bold text-4xl">No products in the cart.</div>
+              <div className="w-full h-[60vh] text-center flex flex-col items-center justify-center font-bold">
+              <img src={img} className="scale-50 relative " alt="" />
+              <h1 className="absolute translate-y-20 text-3xl text-green-600">No Product Added in Cart</h1>
+              </div>
             )
               :
               (
@@ -131,7 +134,7 @@ function Cart() {
               }
               </span>
             </div>
-            <div className='flex items-center rounded-xl bg-orange-500 hover:bg-white transition-all duration-500 w-full px-6 py-2 text-white hover:text-black cursor-pointer' onClick={checkout}>
+            <div className='flex items-center rounded-xl bg-green-500 hover:bg-white transition-all duration-500 w-full px-6 py-2 text-white hover:text-black cursor-pointer' onClick={checkout}>
               <span>
                 <ion-icon name="checkmark-done-circle-outline" size="large"></ion-icon>
               </span>

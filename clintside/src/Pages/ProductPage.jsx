@@ -78,7 +78,7 @@ function ProductPage() {
         return (
             <>
                 <section className='w-full h-[80vh] py-10 xl:pt-10 xl:py-0 px-4 lg:px-20 items-center justify-center'>
-                    <h1 className='text-3xl font-bold font-poppins text-center py-20 text-orange-500'>Error in fetching Product !!!</h1>
+                    <h1 className='text-3xl font-bold font-poppins text-center py-20 text-green-500'>Error in fetching Product !!!</h1>
                 </section>
             </>
         )
@@ -89,7 +89,7 @@ function ProductPage() {
                 <section className='w-full h-[80vh]  py-0 xl:pt-10 xl:py-0 px-4 lg:px-20 flex items-center justify-center'>
                     <div className='my-20 flex items-center justify-center'>
                         <div class="w-16 h-16 rounded-full animate-spin 
-                    border-x-4 border-solid border-orange-500 border-t-transparent"></div>
+                    border-x-4 border-solid border-green-500 border-t-transparent"></div>
                     </div>
                 </section>
             </>
@@ -184,7 +184,7 @@ function ProductPage() {
                                             })
                                         }
                                         <div className='flex flex-wrap justify-between gap-4'>
-                                            <button className='flex items-center justify-center rounded-xl bg-orange-600 hover:bg-gray-100 transition-all duration-500 w-full px-6 py-3 text-white hover:text-black gap-3' onClick={() => {
+                                            <button className='flex items-center justify-center rounded-xl bg-green-600 hover:bg-gray-100 transition-all duration-500 w-full px-6 py-3 text-white hover:text-black gap-3' onClick={() => {
                                                 addtocartitem({
                                                     id: params.id,
                                                     img: data.productimage[0].imageurl,

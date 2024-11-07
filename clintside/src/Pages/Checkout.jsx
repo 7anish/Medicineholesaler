@@ -167,7 +167,7 @@ const Checkout = () => {
                         </span>
                     </li>
                     <li className="after:border-1 flex items-center text-primary-700 after:mx-6 after:hidden after:h-1 after:w-full after:border-b after:border-gray-200 sm:after:inline-block sm:after:content-[''] md:w-full xl:after:mx-10 ">
-                        <span className="flex items-center after:mx-2 text-orange-600 after:content-['/']  sm:after:hidden">
+                        <span className="flex items-center after:mx-2 text-yellow-500 after:content-['/']  sm:after:hidden">
                             <svg className="me-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
@@ -260,7 +260,7 @@ const Checkout = () => {
                                     </div>
                                 </div>
                                 <div className="space-y-3">
-                                    <button type="submit" className="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 bg-orange-600">
+                                    <button type="submit" className="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4  focus:ring-primary-300 bg-green-600">
                                         {
                                             isprocess ? 
                                             <div className='w-6 h-6 border-r-4 border-white animate-spin rounded-[50%]'></div>

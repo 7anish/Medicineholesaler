@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom'
 function Footer() {
     return (
         <>
-            <footer className='bg-gradient-to-r from-[#0093E9] to-[#80D0C7] text-white px-5 lg:px-20 py-10'>
+            <footer className='bg-gray-700 text-white px-5 lg:px-20 py-10'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center'>
                     <div className='flex flex-col items-start'>
-                        <div className='font-bold text-xl lg:text-2xl'>Medical<span className='text-orange-600'>Wholesale</span></div>
+                        <div className='font-bold text-xl lg:text-2xl'>Medical<span className='text-green-600'>Wholesale</span></div>
                         <p className='text-sm lg:text-lg mt-2'>Your Health, Our Priority</p>
                         <div className='flex gap-4 mt-4'>
                             <NavLink to="https://www.facebook.com">
@@ -42,7 +42,7 @@ function Footer() {
                         <p className='text-sm lg:text-lg mt-2'>Subscribe to receive updates on discounts and new products.</p>
                         <form className='flex mt-4'>
                             <input type="email" placeholder="Your Email" className='w-full p-2 rounded-l-lg' />
-                            <button type="submit" className='bg-orange-600 px-4 lg:px-6 rounded-r-lg text-white'>Subscribe</button>
+                            <button type="submit" className='bg-green-600 px-4 lg:px-6 rounded-r-lg text-white'>Subscribe</button>
                         </form>
                     </div>
                 </div>

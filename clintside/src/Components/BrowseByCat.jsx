@@ -37,7 +37,7 @@ function BrowseByCat() {
                         <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>BShop by Categories</h1>
                         <ViewAllBut path={'/category/allcategory'} />
                     </div>
-                    <h1 className='text-3xl font-bold font-poppins text-center py-20 text-orange-500'>Error in fetching Category !!!</h1>
+                    <h1 className='text-3xl font-bold font-poppins text-center py-20 text-green-500'>Error in fetching Category !!!</h1>
                 </section>
             </>
         )
@@ -52,7 +52,7 @@ function BrowseByCat() {
                     </div>
                     <div className='my-20 flex items-center justify-center'>
                         <div class="w-16 h-16 rounded-full animate-spin 
-                    border-x-4 border-solid border-orange-500 border-t-transparent"></div>
+                    border-x-4 border-solid border-green-500 border-t-transparent"></div>
                     </div>
                 </section>
             </>

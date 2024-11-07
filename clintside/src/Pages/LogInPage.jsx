@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import Login from '../assets/LogIn.jpg'
 import { useCookies } from 'react-cookie'
 import Swal from 'sweetalert2'
 import axios from 'axios'
@@ -98,20 +97,20 @@ function LogInPage() {
         }
     };
     return (
-        <div className="w-full py-10 flex justify-center items-center md:bg-login bg-center bg-no-repeat bg-cover md:min-h-screen pt-20">
+        <div className="w-full py-10 flex justify-center items-center md:bg-login bg-cover bg-no-repeat md:min-h-screen pt-20">
             <div className="bg-[#ffffffd8]  sm:p-16 rounded-3xl w-[90vw] md:w-[40vw] lg:w-[35vw] h-full md:h-fit transition-all duration-300">
                 <div>
-                    <h2 className="text-3xl font-bold mb-6 text-center text-orange-500">Login</h2>
+                    <h2 className="text-3xl font-bold mb-6 text-center text-green-500">Login</h2>
                     <form className="mb-4" onSubmit={handleLoginSubmit}>
                         <div className="mb-4">
                             <label className="block text-gray-700">Email ID:</label>
-                            <input type="email" name="email" required className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-shadow duration-300" />
+                            <input type="email" name="email" required className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-shadow duration-300" />
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700">Password:</label>
-                            <input name='password' type="password" required className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-shadow duration-300" />
+                            <input name='password' type="password" required className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-shadow duration-300" />
                         </div>
-                        <button type="submit" className="w-full bg-orange-500 text-white py-2 mb-4 rounded hover:bg-orange-600 shadow-md transition-all duration-300 items-center flex justify-center">
+                        <button type="submit" className="w-full bg-green-500 text-white py-2 mb-4 rounded hover:bg-green-600 shadow-md transition-all duration-300 items-center flex justify-center">
                             {
                                 isporocessing ? 
                                 <div className='w-6 h-6 border-r-4 border-white animate-spin rounded-[50%]'></div>

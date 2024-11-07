@@ -41,7 +41,7 @@ const Orderhistory = () => {
         return (
             <>
                 <section className='w-full h-[80vh] py-10 xl:pt-10 xl:py-0 px-4 lg:px-20 items-center justify-center'>
-                    <h1 className='text-3xl font-bold font-poppins text-center py-20 text-orange-500'>Error in fetching Product !!!</h1>
+                    <h1 className='text-3xl font-bold font-poppins text-center py-20 text-green-500'>Error in fetching Product !!!</h1>
                 </section>
             </>
         )
@@ -51,7 +51,7 @@ const Orderhistory = () => {
         return (
             <>
                 <section className='w-full h-[80vh] py-10 xl:pt-10 xl:py-0 px-4 lg:px-20 items-center justify-center'>
-                    <h1 className='text-3xl font-bold font-poppins text-center py-20 text-orange-500'>No order History</h1>
+                    <h1 className='text-3xl font-bold font-poppins text-center py-20 text-green-500'>No order History</h1>
                 </section>
             </>
         )
@@ -63,7 +63,7 @@ const Orderhistory = () => {
                 <section className='w-full h-[80vh]  py-0 xl:pt-10 xl:py-0 px-4 lg:px-20 flex items-center justify-center'>
                     <div className='my-20 flex items-center justify-center'>
                         <div class="w-16 h-16 rounded-full animate-spin 
-                    border-x-4 border-solid border-orange-500 border-t-transparent"></div>
+                    border-x-4 border-solid border-green-500 border-t-transparent"></div>
                     </div>
                 </section>
             </>
@@ -75,7 +75,7 @@ const Orderhistory = () => {
                     <div className="flex sm:flex-col lg:flex-row sm:items-center justify-between">
                         <ul className="flex max-sm:flex-col sm:items-center gap-x-14 gap-y-3">
                             <li
-                                className="font-medium text-lg leading-8 cursor-pointer text-orange-600 transition-all duration-500 hover:text-orange-500">
+                                className="font-bold text-2xl leading-8 cursor-pointer text-green-600 transition-all duration-500 hover:text-green-500">
                                 All Order
                             </li>
                         </ul>
