@@ -10,7 +10,7 @@ import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 
 function ProductPage() {
-    const [wishlist , setwishlist] = useState(JSON.parse(localStorage.getItem('wishlistitems'))) || useState([]);
+    const [wishlist , setwishlist] = JSON.parse(localStorage.getItem('wishlistitems')) ?  useState(JSON.parse(localStorage.getItem('wishlistitems'))) : useState([])
     const cookie = new Cookies()
     const userid = cookie.get('lgid')
     const params = useParams()

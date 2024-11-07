@@ -15,7 +15,7 @@ function ProductCard({ id, name, cat, subcat, actualprice, img, index, discountp
     const userid = cookie.get('lgid')
     const navigate = useNavigate();
     const [count, setCount] = useState(1)
-    const [wishlist , setwishlist] = useState(JSON.parse(localStorage.getItem('wishlistitems'))) || useState([])
+    const [wishlist , setwishlist] = JSON.parse(localStorage.getItem('wishlistitems')) ?  useState(JSON.parse(localStorage.getItem('wishlistitems'))) : useState([])
 
     
     const addtocartitem = (e) => {
