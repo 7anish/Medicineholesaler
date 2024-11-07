@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Url from '../../../Url'
-import { FaEye } from 'react-icons/fa'
-import { FaBookmark } from "react-icons/fa";
 import { Cookies } from 'react-cookie';
 
 const Allorders = () => {
@@ -67,23 +65,23 @@ const Allorders = () => {
                 <div className="w-full flex flex-wrap gap-4 items-center md:justify-center  justify-start">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 border border-gray-500 ">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-500">
-                            <tr>
-                                <th scope="col" className="px-6 py-3">
+                            <tr class="odd:bg-white  even:bg-gray-50  border-b">
+                                <th scope="row" className="px-6 py-3">
                                     Owner/Firm Name
                                 </th>
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="row" className="px-6 py-3">
                                     Phone Number
                                 </th>
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="row" className="px-6 py-3">
                                     Address
                                 </th>
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="row" className="px-6 py-3">
                                     Order Amount
                                 </th>
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="row" className="px-6 py-3">
                                     Status
                                 </th>
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="row" className="px-6 py-3">
                                     Action
                                 </th>
                             </tr>
@@ -119,7 +117,7 @@ const Allorders = () => {
 
                                         :
                                         data.map((order)=>(
-                                            <tr>
+                                            <tr className='odd:bg-white  even:bg-gray-50  border-b'>
                                             <th scope="col" className="px-6 py-3 capitalize">
                                                 {order.name}
                                             </th>

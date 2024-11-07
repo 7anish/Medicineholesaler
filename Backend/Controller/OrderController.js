@@ -15,7 +15,7 @@ const handleCreateOrder = async (req, res) => {
             address: data.address,
             orders: data.order,
             totalPrice: data.totalPrice,
-            delivery : data.delivery,
+            delivery: data.delivery,
             city: data.city,
             createdBy: data.createdBy,
             druglcnumber: data.druglcnumber,
@@ -44,11 +44,11 @@ const handleUpdateOrder = async (req, res) => {
 
         // inventory Management
         if (req.body.status === "Delivered") {
-            const inventoryresult = await product.bulkWrite( req.body.products.map((item) => {
+            const inventoryresult = await product.bulkWrite(req.body.products.map((item) => {
                 return {
                     updateOne: {
                         "filter": { "_id": item.id },
-                        "update": { $inc : { inventory : -(+item.quantity) } }
+                        "update": { $inc: { inventory: -(+item.quantity) } }
                     }
                 }
             }))
@@ -118,10 +118,34 @@ const handlegetordehistory = async (req, res) => {
     }
 }
 
+const handlegettodaysorder =  async (req,res) => {
+    try {
+        const startOfDay = new Date();
+        startOfDay.setUTCHours(0, 0, 0, 0); // Set to the start of today in UTC (00:00:00)
+
+        const endOfDay = new Date();
+        endOfDay.setUTCHours(23, 59, 59, 999); // Set to the end of today in UTC (23:59:59)
+
+        const result =await order.find({
+            createdAt: {
+                $gte: startOfDay,
+                $lte: endOfDay
+            }
+        }).populate('orders.productId')
+
+        if(!result) return res.status(404).json({"Error" : "No record Found"})
+        return res.status(200).json(result)
+    } catch (e) {
+        console.log(e)
+        return res.status(500).json({ "Error": "Somthing Went Wrong Try adter Some Time" })
+    }
+}
+
 module.exports = {
     handleCreateOrder,
     handleUpdateOrder,
     handleGetOrderList,
     handleGetSpecficorder,
-    handlegetordehistory
+    handlegetordehistory,
+    handlegettodaysorder
 }
