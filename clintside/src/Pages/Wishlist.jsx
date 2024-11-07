@@ -36,19 +36,6 @@ const Wishlist = () => {
         fetchdata()
     }, [])
 
-    if (data.length == 0) {
-        return (
-            <>
-                <section className='w-full h-[80vh] py-10 xl:pt-10 xl:py-0 px-4 lg:px-20 items-center justify-center'>
-                    <div className='flex flex-wrap gap-2 sm:gap-0 py-2 mb-4 justify-between items-center'>
-                        <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>WishList Product</h1>
-                    </div>
-                    <h1 className='text-3xl font-bold font-poppins text-center py-20 text-orange-500'>No WishList Product</h1>
-                </section>
-            </>
-        )
-    }
-
 
     if (error) {
         return (
@@ -70,6 +57,16 @@ const Wishlist = () => {
                         <div class="w-16 h-16 rounded-full animate-spin 
                     border-x-4 border-solid border-orange-500 border-t-transparent"></div>
                     </div>
+                </section>
+            </>
+            :
+            data.length == 0 ? 
+            <>
+                <section className='w-full h-[80vh] py-10 xl:pt-10 xl:py-0 px-4 lg:px-20 items-center justify-center'>
+                    <div className='flex flex-wrap gap-2 sm:gap-0 py-2 mb-4 justify-between items-center'>
+                        <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>WishList Product</h1>
+                    </div>
+                    <h1 className='text-3xl font-bold font-poppins text-center py-20 text-orange-500'>No WishList Product</h1>
                 </section>
             </>
             :
@@ -104,6 +101,12 @@ function Wishlistcard({ id, name, cat, subcat, actualprice, img, index, discount
             const res = await axios.patch(`${Url}/api/v1/admin/removefromwishlist/${userid}`, {
                 productid: id
             })
+
+            const arr = JSON.parse(localStorage.getItem('wishlistitems')).filter((i)=>{
+                return i != id
+            })
+
+            localStorage.setItem('wishlistitems', JSON.stringify(arr))
             if (res.status == 200) {
                 Swal.fire({
                     title: "Item added to wishlist",

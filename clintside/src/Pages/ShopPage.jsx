@@ -52,25 +52,6 @@ function ShopPage() {
   }, [])
 
 
-  if (data.length === 0) {
-    return (
-      <>
-        <DiscountShop />
-        <section className="sm:pb-10 bg-[#eef4f4]">
-          <div className="flex flex-wrap bg-white justify-between items-center px-2 sm:px-8 ">
-            <h1 className="text-3xl text-orange-500 leading-relaxed tracking-wider font-semibold px-2 py-2 text-center capitalize">
-              {/* {`All Products / ${searchparams.get('category').split('-')[0]+ " " +((searchparams.get('category')).split('-')[1] ? (searchparams.get('category')).split('-')[1] : ""  )  || ""} / ${searchparams.get('subcategory').split('-')[0]+ " " +((searchparams.get('subcategory')).split('-')[1] ? (searchparams.get('subcategory')).split('-')[1] : ""  )  || ""}`} */}
-              Products
-            </h1>
-          </div>
-          <div className="w-full h-[80vh] flex items-center justify-center">
-            <h1 className="text-3xl text-orange-500 leading-relaxed tracking-wider font-bold px-2 py-2 text-center capitalize font-poppins">No Product Found</h1>
-          </div>
-        </section>
-      </>
-    )
-  }
-
   if (error) {
     return (
       <>
@@ -108,6 +89,20 @@ function ShopPage() {
             </div>
           </section>
           :
+
+          data.length === 0 ? 
+          <section className="sm:pb-10 bg-[#eef4f4]">
+            <div className="flex flex-wrap bg-white justify-between items-center px-2 sm:px-8 ">
+              <h1 className="text-3xl text-orange-500 leading-relaxed tracking-wider font-semibold px-2 py-2 text-center capitalize">
+                {/* {`All Products / ${searchparams.get('category').split('-')[0]+ " " +((searchparams.get('category')).split('-')[1] ? (searchparams.get('category')).split('-')[1] : ""  )  || ""} / ${searchparams.get('subcategory').split('-')[0]+ " " +((searchparams.get('subcategory')).split('-')[1] ? (searchparams.get('subcategory')).split('-')[1] : ""  )  || ""}`} */}
+                Products
+              </h1>
+            </div>
+            <div className="w-full h-[80vh] flex items-center justify-center">
+            <h1 className="text-3xl text-orange-500 leading-relaxed tracking-wider font-bold px-2 py-2 text-center capitalize font-poppins"> Error While Fetching Product !!!</h1>
+            </div>
+          </section>
+          :
           <section className="sm:pb-10 bg-[#eef4f4]">
             <div className="flex flex-wrap bg-white justify-between items-center px-2 sm:px-8 ">
               <h1 className="text-3xl text-orange-500 leading-relaxed tracking-wider font-semibold px-2 py-2 text-center capitalize">
@@ -117,7 +112,7 @@ function ShopPage() {
             </div>
             <section className="flex justify-start flex-wrap sm:flex-nowrap">
               <div className="w-full right-0">
-                <div className="w-full sm:px-10 flex flex-wrap justify-center items-center gap-5 sm:gap-10 py-10">
+                <div className="w-full sm:px-10 flex flex-wrap justify-center items-center gap-2 sm:gap-10 py-5 sm:py-10">
                   {
                     data.slice(firstindex, lastindex)?.map((item, index) => {
                       return <ProductCard key={item.index} name={item.name} index={index} id={item.id} cat={item.category} subcat={item.subcategory} img={item.imageurl} actualprice={item.mrp} discountprice={item.ourPrice} companyname={item.companyName} size={item.size} heart={"yes"}  range={item.range} />
@@ -130,7 +125,7 @@ function ShopPage() {
             {
               firstindex != 0 ?
                 <div className='sm:w-[150px] h-fit p-1 flex rounded-xl  bg-gray-200 font-bold transition-all duration-500    cursor-pointer justify-center items-center py-2 mx-auto my-5 float-left' onClick={() => backward()}>
-                  <button className='w-full h-full text-sm sm:text-lg'>Back page</button>
+                  <button className='w-full h-full text-sm sm:text-lg'>Back</button>
                 </div>
                 :
                 ""
@@ -138,7 +133,7 @@ function ShopPage() {
             {
               lastindex < data.length ?
                 <div className='sm:w-[150px] h-fit p-1 flex rounded-xl  bg-gray-200 font-bold transition-all duration-500    cursor-pointer justify-center items-center py-2 mx-auto my-5 float-right' onClick={() => forward()}>
-                  <button className='w-full h-full text-sm sm:text-lg'>Next page</button>
+                  <button className='w-full h-full text-sm sm:text-lg'>Next</button>
                 </div>
                 :
                 ""

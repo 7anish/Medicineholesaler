@@ -1,12 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import HeroImg from '../assets/Hero.png'
 import { useNavigate } from 'react-router-dom'
 
 function Hero() {
     const navigation = useNavigate();
-    const exploreClick = ()=>{
-        navigation('/shop')
-    }
+    
+
     return (
         <div>
         <section className='w-full h-fit md:h-[60vh] lg:h-[90vh]     flex flex-col md:flex-row justify-center  gap-6 px-3 md:px-6 lg:px-10'>

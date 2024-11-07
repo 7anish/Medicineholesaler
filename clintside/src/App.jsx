@@ -30,7 +30,7 @@ export default function App() {
   return (
     <Router >
     <ToastContainer />
-      {/* <Scrolltotop /> */}
+      <Scrolltotop />
       <Navbar/>
       <Routes>
         <Route index path="/" element={<HomePage />} />

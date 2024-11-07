@@ -72,7 +72,6 @@ function Navbar() {
                     <NavLink to={'/cart'} className='text-orange-600 hover:text-[#2dd1dd] text-3xl px-5 flex items-center justify-center' onClick={() => setOpen(!open)}>
                         <ion-icon name="cart-outline" size='large' className="font-extrabold "></ion-icon>
                         <span className='text-lg'>{Quant.length}</span>
-                        {/* <button className='text-white px-7 py-4 font-semibold'>Cart</button> */}
                     </NavLink>
                     {
                         login ?
@@ -84,10 +83,10 @@ function Navbar() {
                             )
                             : (
                                 <>
-                                    <NavLink to={'/wishlist'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5'>
+                                    <NavLink to={'/wishlist'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5' onClick={() => setOpen(!open)}>
                                         <ion-icon name="heart-outline" size='large' className="font-extrabold "></ion-icon>
                                     </NavLink>
-                                    <NavLink to={'/orderhistory'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5'>
+                                    <NavLink to={'/orderhistory'} className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5' onClick={() => setOpen(!open)}>
                                         <ion-icon name="logo-dropbox" size='large' className="font-extrabold "></ion-icon>
                                     </NavLink>
                                     <div className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5 cursor-pointer' onClick={()=>handlelogout()}>

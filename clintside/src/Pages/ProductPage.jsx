@@ -10,6 +10,7 @@ import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 
 function ProductPage() {
+    const [wishlist , setwishlist] = useState(JSON.parse(localStorage.getItem('wishlistitems')))
     const cookie = new Cookies()
     const userid = cookie.get('lgid')
     const params = useParams()
@@ -48,6 +49,8 @@ function ProductPage() {
             const res = await axios.patch(`${Url}/api/v1/admin/addtowishlist/${userid}`, {
                 productid: params.id
             })
+            localStorage.setItem('wishlistitems' , JSON.stringify([...wishlist , params.id]))
+            setwishlist([...wishlist , params.id])
             if (res.status == 200) {
                 Swal.fire({
                     title: "Item added to wishlist",
@@ -98,9 +101,13 @@ function ProductPage() {
                         {
                             userid ?
                                 (
-                                    <div className='w-8 h-8 bg-gray-100 absolute  p-1 text-2xl rounded-full top-0 right-0  shadow-card-shadow cursor-pointer z-20' onClick={(e) => addtowishlist(e)}>
-
-                                        <ion-icon name="heart-outline"></ion-icon>
+                                    <div className='w-8 h-8 bg-gray-100 absolute  p-1 text-2xl rounded-full text-red-500 top-0 right-0  shadow-card-shadow cursor-pointer z-20' onClick={(e) => addtowishlist(e)}>
+                                        {
+                                            wishlist.includes(data._id) ?
+                                                <ion-icon name="heart"></ion-icon>
+                                                :
+                                                <ion-icon name="heart-outline"></ion-icon>
+                                        }
                                     </div>
                                 ) :
                                 ""
@@ -119,16 +126,11 @@ function ProductPage() {
                         <div className='bg-[#ffffffda] transition-all duration-500 rounded-xl p-4 flex flex-col min-h-[60vh] min-w-full md:min-w-[450px]  gap-3  justify-evenly'>
                             <h2 className='text-md font-bold cursor-pointer hover:text-blue-500'>{data.companyName}</h2>
                             <h1 className='text-3xl lg:text-6xl font-bold'>{data.name} <span className='text-2xl lg:text-2xl'>{data.size ? `|| ${data.size}` : ""}</span> <span className='text-2xl lg:text-2xl'>{`|| ${data.itemtype}`}</span></h1>
-                            <div className='flex flex-wrap gap-2 my-3'>
-                                
-                                <span className='text-orange-600 flex items-center hover:text-[#2dd1dd] lg:text-2xl px-5 cursor-pointer' onClick={addtowishlist}>
-                                    {/* <FaRegHeart /> */}
-                                </span>
-                            </div>
                             <div className='flex flex-col gap-4'>
-                                <h2 className='w-full md:w-[60%] text-md'>   <span>{data.composition ? `${data.composition}` : ""}</span></h2>
+                                <h2 className='w-full md:w-[60%] text-md capitalize font-semibold'>   <span>{data.composition ? `${data.composition}` : ""}</span></h2>
                                 <div className='flex justify-between items-center flex-wrap gap-3'>
                                     <h1 className='text-2xl font-bold'>ourPrice : ₹&nbsp;{data.ourPrice} <span className='text-lg font-bold text-red-600'>&nbsp;&nbsp;&nbsp;{((((+data.mrp) - (+data.ourPrice)) / (+data.mrp)) * 100).toFixed(1)}% off</span></h1>
+                                    <h1 className='text-lg lg:text-xl font-bold  sm:hidden flex'>Mrp : <span className='line-through text-red-600'> ₹&nbsp;{data.mrp}</span></h1>
                                     <div className='flex items-center'>
                                         <button
                                             onClick={() => setCount(count > 1 ? count - 10 : 1)}
@@ -169,7 +171,7 @@ function ProductPage() {
                                         </button>
                                     </div>
                                 </div>
-                                <h1 className='text-lg lg:text-xl font-bold'>Mrp : <span className='line-through text-red-600'> ₹&nbsp;{data.mrp}</span></h1>
+                                <h1 className='text-lg lg:text-xl font-bold  hidden sm:flex'>Mrp : <span className='line-through text-red-600'> ₹&nbsp;{data.mrp}</span></h1>
                                 <div className='bg-[#ffffffda] rounded-lg'>
                                     <h1 className='text-lg md:text-xl font-semibold pb-1'>Price Ranges</h1>
                                     <div className='flex flex-col gap-2'>
@@ -177,7 +179,7 @@ function ProductPage() {
                                             data.range?.map((range) => {
                                                 return (<div className='flex justify-between items-center'>
                                                     <h1 className='text-base md:text-lg py-1'>Quantity : {range.min}-{range.max}</h1>
-                                                    <h1 className='text-base md:text-lg'>₹&nbsp;{range.value}</h1>
+                                                    <h1 className='text-base md:text-lg'>₹&nbsp;{range.value} <span className='font-semibold text-red-600'>{((((+data.mrp) - (+range.value)) / (+data.mrp)) * 100).toFixed(1)}% off</span></h1>
                                                 </div>)
                                             })
                                         }

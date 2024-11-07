@@ -72,6 +72,7 @@ function LogInPage() {
                 }
 
                 localStorage.setItem("information" , JSON.stringify(details))
+                localStorage.setItem('wishlistitems' , JSON.stringify(res.data.wishlist))
                 Swal.fire({
                     title : "LoggedIn Sucessfully",
                     icon : 'success'

@@ -30,7 +30,7 @@ function FeaturedProd() {
 
     if (error) {
         return (
-            <section className='lg:py-10 xl:pt-20 xl:py-20 lg:px-16' >
+            <section className='lg:py-10 xl:pt-20 xl:py-20 lg:px-16'  >
                 <div className='flex flex-wrap gap-2 px-4 sm:gap-0 py-4 justify-between items-center'>
                     <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>Featured Products</h1>
                     {/* <ViewAllBut path={'/products'} /> */}
@@ -56,16 +56,16 @@ function FeaturedProd() {
             </>
             :
             <div>
-                <section className='lg:py-5 xl:pt-20 xl:py-5 lg:px-16' >
+                <section className='lg:py-5 xl:pt-20 xl:py-5 lg:px-16'>
                     <div className='flex flex-wrap gap-2 px-4 sm:gap-0 py-4 justify-between items-center'>
                         <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>Featured Products</h1>
-                        <ViewAllBut path={'/products'} />
+                        {/* <ViewAllBut path={'/products'} /> */}
                     </div>
-                    <div className='flex  flex-wrap  py-4 gap-5 justify-center'>
+                    <div className='flex  flex-wrap  py-4 gap-2 sm:gap-5 justify-center'>
                         {
                             data.map((item, index) => (
                                 <>
-                                    <ProductCard index={index} id={item.id} name={item.name} actualprice={item.mrp} img={item.imageurl} cat={item.category} subcat={item.subcategory} discountprice={item.ourPrice} companyname={item.companyName} size={item.size} heart={"yes"}  range={item.range}/>
+                                    <ProductCard index={index} id={item.id} name={item.name} actualprice={item.mrp} img={item.imageurl} cat={item.category} subcat={item.subcategory} discountprice={item.ourPrice} companyname={item.companyName} size={item.size} heart={"yes"}  range={item.range} composition={item.composition} />
                                 </>
                             ))
                         }
