@@ -98,15 +98,79 @@ const Orderhistory = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <svg className="sm:my-9 my-3 w-full" xmlns="http://www.w3.org/2000/svg" width="1216" height="2" viewBox="0 0 1216 2"
+                                {
+                                    <div className={`${open === index ? "" : "hidden"} overflow-hidden`}>
+                                        <table className={`w-full text-sm text-left rtl:text-right text-gray-500 border capitalize`}>
+
+                                            {
+                                                orders.orders.map((order, index) => (
+                                                    <tbody>
+                                                        <tr className='odd:bg-white  even:bg-gray-50  border-b text-black text-xl'>
+                                                            <th colSpan={2} scope="col" className="px-6 py-3">
+                                                                {`${index + 1}. ${order.productId.name}`}
+                                                            </th>
+                                                        </tr>
+                                                        <tr className='odd:bg-white  even:bg-gray-50  border-b'>
+                                                            <th scope="col" className="px-6 py-3 capitalize">
+                                                                Qunatity
+                                                            </th>
+                                                            <th scope="col" className="px-6 py-3">
+                                                                {order.quantity}
+                                                            </th>
+                                                        </tr>
+                                                        <tr className='odd:bg-white  even:bg-gray-50  border-b'>
+                                                            <th scope="col" className="px-6 py-3 capitalize">
+                                                                size
+                                                            </th>
+                                                            <th scope="col" className="px-6 py-3">
+                                                                {order.productId.size}
+                                                            </th>
+                                                        </tr>
+                                                        <tr className='odd:bg-white  even:bg-gray-50  border-b'>
+                                                            <th scope="col" className="px-6 py-3 capitalize">
+                                                                mrp
+                                                            </th>
+                                                            <th scope="col" className="px-6 py-3">
+                                                                ₹  {order.productId.mrp}
+                                                            </th>
+                                                        </tr>
+                                                        <tr className='odd:bg-white  even:bg-gray-50  border-b'>
+                                                            <th scope="col" className="px-6 py-3 capitalize">
+                                                                unit price
+                                                            </th>
+                                                            <th scope="col" className="px-6 py-3">
+                                                                ₹  {order.productId.ourPrice}
+                                                            </th>
+                                                        </tr>
+                                                    </tbody>
+                                                ))
+                                            }
+
+                                        </table>
+                                    </div>
+                                }
+                                <svg className="mb-3 w-full" xmlns="http://www.w3.org/2000/svg" width="1216" height="2" viewBox="0 0 1216 2"
                                     fill="none">
                                     <path d="M0 1H1216" stroke="#D1D5DB" />
                                 </svg>
+                                <div className="p-3 md:px-11 flex items-center justify-end max-sm:flex-col-reverse">
 
-                                {
-                                    orders.orders.map((product, i) => {
-                                        return (
-                                            <div className={`${open === index ? "" : "hidden"}`}>
+                                    <p className="font-medium text-xl leading-8 text-black max-sm:py-4"> <span className="text-gray-500">Total
+                                        Payable
+                                        Price: </span> ₹&nbsp;{orders.totalPrice}</p>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </section>
+    )
+}
+
+export default Orderhistory
+
+
+{/* <div className={`${open === index ? "" : "hidden"}`}>
                                                 <div key={i} className="flex  max-lg:flex-col items-center gap-8 lg:gap-24 px-3 md:px-11">
                                                     <div className="grid grid-cols-4 w-full">
                                                         <div className="col-span-4 sm:col-span-1">
@@ -132,24 +196,4 @@ const Orderhistory = () => {
                                                     fill="none">
                                                     <path d="M0 1H1216" stroke="#D1D5DB" />
                                                 </svg>
-                                            </div>
-                                        )
-                                    })
-                                }
-                                <div className="p-3 md:px-11 flex items-center justify-end max-sm:flex-col-reverse">
-                                    {/* <div className="flex max-sm:flex-col-reverse items-center">
-                                    <p className="font-normal text-xl leading-8 text-gray-500 sm:pl-8">Payment Is Succesfull</p>
-                                </div> */}
-                                    <p className="font-medium text-xl leading-8 text-black max-sm:py-4"> <span className="text-gray-500">Total
-                                        Payable
-                                        Price: </span> ₹&nbsp;{orders.totalPrice}</p>
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
-            </section>
-    )
-}
-
-export default Orderhistory
+                                            </div> */}

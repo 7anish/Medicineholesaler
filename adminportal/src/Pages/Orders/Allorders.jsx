@@ -11,6 +11,11 @@ const Allorders = () => {
     const [error, seterror] = useState(false)
     const [loading, setloading] = useState(false)
     const [type, setype] = useState("")
+    const [Search, setsearch] = useState("")
+
+    const filterdata = data.filter((item) => {
+        return item.name.toLowerCase().includes(Search.toLowerCase());
+    })
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -51,6 +56,10 @@ const Allorders = () => {
     return (
         <div className='p-4 absolute top-[8vh] w-full md:w-[79vw] right-0 h-fit'>
             <h1 className="text-xl lg:text-3xl font-bold mb-4">{type != "" ? type : "All"} Orders</h1>
+            <div className=" w-full form-group">
+                <label className="block text-gray-700 font-semibold">Search By Owner/Firm Name</label>
+                <input type="text" name="companyName" className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder='Owner/Firm Name' value={Search} onChange={(e) => setsearch(e.target.value)} />
+            </div>
             <div className="my-5">
                 <label className=" block text-gray-700 font-semibold">Order Type</label>
                 <select name="type" id="cat" className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm uppercase focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={(e) => setype(e.target.value)}>
@@ -94,14 +103,14 @@ const Allorders = () => {
                                             <td colSpan={6}>
                                                 <section className='w-full h-[80vh]  py-0 xl:pt-10 xl:py-0 px-4 lg:px-20 flex items-center justify-center '>
                                                     <div className='my-20 flex items-center justify-center'>
-                                                    <div className="w-16 h-16 rounded-full animate-spin  border-x-4 border-solid border-gray-500 border-t-transparent"></div>
+                                                        <div className="w-16 h-16 rounded-full animate-spin  border-x-4 border-solid border-gray-500 border-t-transparent"></div>
                                                     </div>
                                                 </section>
                                             </td>
                                         </tr>
                                     </>
                                     :
-                                    data.length == 0
+                                    filterdata.length == 0
                                         ?
                                         <>
                                             <tr>
@@ -116,28 +125,28 @@ const Allorders = () => {
                                         </>
 
                                         :
-                                        data.map((order)=>(
+                                        filterdata.map((order) => (
                                             <tr className='odd:bg-white  even:bg-gray-50  border-b'>
-                                            <th scope="col" className="px-6 py-3 capitalize">
-                                                {order.name}
-                                            </th>
-                                            <th scope="col" className="px-6 py-3">
-                                                {order.phoneNumber}
-                                            </th>
-                                            <th scope="col" className="px-6 py-3 text-wrap">
-                                                {order.address}
-                                            </th>
-                                            <th scope="col" className="px-6 py-3">
-                                                {order.total}
-                                            </th>
-                                            <th scope="col" className={`px-6 py-3 ${order.OrderStatus === "Pending"? 'text-yellow-500' : order.OrderStatus === "Delivered" ? 'text-green-600' : 'text-red-700'  }`}>
-                                                {order.OrderStatus}
-                                            </th>
-                                            <th scope="col" className="px-6 py-3 hover:underline text-blue-500 cursor-pointer" onClick={()=> navigate(`/orders/${order.id}`)}>
-                                                view
-                                            </th>
-                                        </tr>
-                                        ))      
+                                                <th scope="col" className="px-6 py-3 capitalize">
+                                                    {order.name}
+                                                </th>
+                                                <th scope="col" className="px-6 py-3">
+                                                    {order.phoneNumber}
+                                                </th>
+                                                <th scope="col" className="px-6 py-3 text-wrap">
+                                                    {order.address}
+                                                </th>
+                                                <th scope="col" className="px-6 py-3">
+                                                    {order.total}
+                                                </th>
+                                                <th scope="col" className={`px-6 py-3 ${order.OrderStatus === "Pending" ? 'text-yellow-500' : order.OrderStatus === "Delivered" ? 'text-green-600' : 'text-red-700'}`}>
+                                                    {order.OrderStatus}
+                                                </th>
+                                                <th scope="col" className="px-6 py-3 hover:underline text-blue-500 cursor-pointer" onClick={() => navigate(`/orders/${order.id}`)}>
+                                                    view
+                                                </th>
+                                            </tr>
+                                        ))
                             }
                         </tbody>
                     </table>

@@ -133,8 +133,31 @@ const handlegettodaysorder =  async (req,res) => {
             }
         }).populate('orders.productId')
 
-        if(!result) return res.status(404).json({"Error" : "No record Found"})
-        return res.status(200).json(result)
+        let dataarr = []
+
+        result.map((order)=>{
+            order.orders.map((product)=>{
+                if(dataarr.find((item) => item.id === product.productId._id)){
+                    dataarr.map((fd)=>{
+                        if(fd.id ===  product.productId._id){
+                            fd.quantity += product.quantity;
+                        }
+                    })
+                }else{
+                    const obj = {
+                        id : product.productId._id,
+                        name : product.productId.name,
+                        inventory : product.productId.inventory,
+                        ourPrice : product.productId.ourPrice,
+                        mrp : product.productId.mrp,
+                        quantity : product.quantity,
+                    }
+                    dataarr.push(obj)
+                }
+            })
+        })
+        if(!result) return res.status(404).json({"Error" : "No record Found"})    
+        return res.status(200).json(dataarr)
     } catch (e) {
         console.log(e)
         return res.status(500).json({ "Error": "Somthing Went Wrong Try adter Some Time" })

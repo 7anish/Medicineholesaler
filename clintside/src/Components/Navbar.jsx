@@ -47,7 +47,7 @@ function Navbar() {
     }
 
     const [open, setOpen] = useState(false);
-    const linkClass = ({ isActive }) => isActive ? "text-green-800 text-lg rounded-md px-3 py-2" : "text-gray-500 text-lg hover:text-green-800  rounded-md px-3 py-2";
+    const linkClass = ({ isActive }) => isActive ? "text-green-600 text-lg rounded-md px-3 py-2" : "text-gray-500 text-lg hover:text-green-800  rounded-md px-3 py-2";
     return (
         <nav className='w-full  m-0 pr-6 md:pr-0 sm:py-4 md::py-4   bg-white font-poppins z-50 sticky top-0'>
             <div className='md:flex justify-between items-center font-poppins px-2  md:px-20'>
@@ -74,7 +74,7 @@ function Navbar() {
                             (
                                 <NavLink to={'/login'} className='text-green-600 flex items-center hover:text-green-800 lg:text-lg px-5'>
                                     {/* <span className='text-lg'>(0)</span> */}
-                                    <button className='text-green-600 hover:text-[rgb(45,209,221)]  rounded-xl' onClick={() => setOpen(!open)}>Get Started</button>
+                                    <button className='text-green-600 hover:text-green-800 rounded-xl' onClick={() => setOpen(!open)}>Login</button>
                                 </NavLink>
                             )
                             : (

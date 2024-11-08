@@ -62,6 +62,10 @@ const productScheam = new mongoose.Schema({
     inventory : {
         type : Number,
         required : true
+    },
+    featured : {
+        type : Boolean,
+        default : false
     }
 })
 

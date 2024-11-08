@@ -13,6 +13,7 @@ const DashBoard = () => {
     const [loading, setloading] = useState(false)
     const [type, setype] = useState("")
 
+
     useEffect(() => {
         const fetchdata = async () => {
             setloading(true)
@@ -49,30 +50,26 @@ const DashBoard = () => {
         <div className='p-4 absolute top-[8vh] w-full md:w-[79vw] right-0 h-fit'>
             <h1 className="text-xl lg:text-3xl font-bold mb-4">Todays Order</h1>
             <hr className='h-1 bg-gray-300 my-2' />
-            
+
             <div className='flex gap-5 flex-wrap md:justify-evenly w-full h-fit p-4 items-start justify-start '>
                 <div className="w-full flex flex-wrap gap-4 items-center md:justify-center  justify-start">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 border border-gray-500 ">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-500">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
-                                    Order ID
-                                </th>
-                                <th scope="col" className="px-6 py-3">
                                     Product Name
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Qunatity
+                                    Quantity
                                 </th>
-
                                 <th scope="col" className="px-6 py-3">
-                                    Total Price
+                                    Our Price
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Mrp
                                 </th>
                                 <th scope="col" className="px-6 py-3">
                                     Inventory
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Status
                                 </th>
                             </tr>
                         </thead>
@@ -107,28 +104,23 @@ const DashBoard = () => {
 
                                         :
                                         data.map((order) => (
-                                            order.orders.map((product) => (
-                                                <tr className='odd:bg-white  even:bg-gray-50  border-b'>
-                                                    <th scope="col" className="px-6 py-3 capitalize">
-                                                        {order._id}
-                                                    </th>
-                                                    <th scope="col" className="px-6 py-3 capitalize">
-                                                        {product.productId.name}
-                                                    </th>
-                                                    <th scope="col" className="px-6 py-3">
-                                                        {product.quantity}
-                                                    </th>
-                                                    <th scope="col" className="px-6 py-3">
-                                                        {order.totalPrice}
-                                                    </th>
-                                                    <th scope="col" className="px-6 py-3">
-                                                        {product.productId.inventory}
-                                                    </th>
-                                                    <th scope="col" className={`px-6 py-3 ${order.OrderStatus === "Pending" ? 'text-yellow-500' : order.OrderStatus === "Delivered" ? 'text-green-600' : 'text-red-700'}`}>
-                                                        {order.OrderStatus}
-                                                    </th>
-                                                </tr>
-                                            ))
+                                            <tr className='odd:bg-white  even:bg-gray-50  border-b'>
+                                                <th scope="col" className="px-6 py-3 capitalize">
+                                                    {order.name}
+                                                </th>
+                                                <th scope="col" className="px-6 py-3 capitalize">
+                                                    {order.quantity}
+                                                </th>
+                                                <th scope="col" className="px-6 py-3">
+                                                    {order.ourPrice}
+                                                </th>
+                                                <th scope="col" className="px-6 py-3">
+                                                    {order.mrp}
+                                                </th>
+                                                <th scope="col" className="px-6 py-3">
+                                                    {order.inventory}
+                                                </th>
+                                            </tr>
                                         ))
                             }
                         </tbody>

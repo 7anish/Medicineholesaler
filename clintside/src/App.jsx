@@ -21,6 +21,7 @@ import { useDispatch } from 'react-redux';
 import { initialreducer } from './Store/Room';
 import Wishlist from './Pages/Wishlist';
 import Orderhistory from './Pages/Orderhistory';
+import About from './Pages/About';
 
 export default function App() {
   const dispatch =  useDispatch()
@@ -44,6 +45,7 @@ export default function App() {
         <Route path='/wishlist' element={<Wishlist />} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/orderhistory' element={<Orderhistory />} />
+        <Route path='/about-us' element={<About />} />
       </Routes>
       <Footer />
     </Router>

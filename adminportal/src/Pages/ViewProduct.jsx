@@ -101,7 +101,7 @@ function ViewProduct() {
     };
   }
 
-
+  
   const filterdata = data.filter((item)=>{
     return item.name.toLowerCase().includes(Search.toLowerCase());
   })

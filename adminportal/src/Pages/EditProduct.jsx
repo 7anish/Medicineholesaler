@@ -18,7 +18,7 @@ function EditProduct() {
     const cookie = new Cookies()
     const navigate = useNavigate()
     const params = useParams()
-    const [loading , setloading] = useState(false)
+    const [loading, setloading] = useState(false)
     const [type, setype] = useState([])
     const [data, setData] = useState({
         category: '',
@@ -48,6 +48,7 @@ function EditProduct() {
                 value: ''
             }
         ],
+        featured : false
     });
 
     const handleChange = (e) => {
@@ -186,6 +187,10 @@ function EditProduct() {
                     <div className="form-group">
                         <label className="block text-gray-700 font-semibold">Inventory:</label>
                         <input type="number" name="inventory" value={data.inventory} onChange={handleChange} className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder='Inventory' />
+                    </div>
+                    <div className="form-group  flex items-center justify-center">
+                        <input type="checkbox" className='mr-2 w-4 h-4' checked={data.featured} onChange={() => setData({ ...data, featured: !data.featured })} />
+                        <label>Featured Product</label>
                     </div>
                 </div>
                 <h3 className='text-2xl font-bold'>Ranges</h3>
