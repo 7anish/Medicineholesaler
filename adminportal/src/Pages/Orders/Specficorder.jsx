@@ -192,7 +192,7 @@ const Specficorder = () => {
               Delivery charges
             </th>
             <td scope="col" className="px-6 py-3 border border-gray-500">
-              {order.delivery}
+              ₹ {order.delivery}
             </td>
           </tr>
           <tr>

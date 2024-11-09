@@ -8,6 +8,7 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Cookies } from 'react-cookie';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 function ProductPage() {
     const [wishlist , setwishlist] = JSON.parse(localStorage.getItem('wishlistitems')) ?  useState(JSON.parse(localStorage.getItem('wishlistitems'))) : useState([])
@@ -19,7 +20,7 @@ function ProductPage() {
     const [error, seterror] = useState(false)
     const [loading, setloading] = useState(true)
     const [active, setactive] = useState(0)
-
+    const navigate = useNavigate()
     const dispach = useDispatch()
 
     const addtocartitem = (payload) => {
@@ -72,6 +73,32 @@ function ProductPage() {
             })
             return
         }
+    }
+
+    const handlebuynow = ()=>{
+        let price = 0
+
+        data.range.map((r) => {
+            if (r.min <= count && r.max >= count) {
+                price = r.value
+            }
+        })
+        if (data.range[2].max < count) {
+            price = data.range[2].value
+        }
+        const obj = {
+            quantity : count,
+            productpricee : ((+count)*(+price)).toFixed(2),
+            productId : params.id
+        }
+        sessionStorage.setItem('instantbuy' , JSON.stringify(obj))
+
+        Swal.fire({
+            title : "Proceed to check out",
+            icon : 'success'
+        }).then(()=>{
+            navigate('/instantcheckout')
+        })
     }
 
     if (error) {
@@ -201,6 +228,12 @@ function ProductPage() {
                                             }}>
                                                 <ion-icon name="cart-outline" size="large"></ion-icon>
                                                 <span className='text-lg lg:text-xl'>Add to Cart</span>
+                                            </button>
+                                        </div>
+                                        <div className='flex flex-wrap justify-between gap-4'>
+                                            <button className='flex items-center justify-center rounded-xl bg-green-600 hover:bg-gray-100 transition-all duration-500 w-full px-6 py-3 text-white hover:text-black gap-3' onClick={handlebuynow}>
+                                                <ion-icon name="bag-outline" size="large"></ion-icon>
+                                                <span className='text-lg lg:text-xl'>Buy Now</span>
                                             </button>
                                         </div>
                                     </div>
