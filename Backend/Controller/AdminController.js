@@ -27,7 +27,6 @@ const handleLoginAsAdmin = async (req, res) => {
         if (!req.body) return res.status(400).json({ error: "Body Not found" });
         const result = await admin.matchpassword(data.email, data.password);
 
-        console.log(result)
         if (!result) return res.status(404).json(("Error User not Found"))
         // if(result.role === 'NONE') return res.status(403).json({ error: "Unauthorised" });
         const token = generateToken(result.email, result._id, result.role); // Generatin the Jwt tokern
@@ -47,7 +46,6 @@ const handleaddtowishlist = async (req, res) => {
         if (Object.keys(data).length == 0) return res.status(400).json({ error: "All fields are required" });
 
         const result = await admin.findByIdAndUpdate(id ,{ $addToSet : {wishlist : req.body.productid}})
-        console.log(result)
         if (!result) return res.status(404).json(("Unable to add to wish list"))
         return res.status(200).json({message : "Product added to wishlist"})
     } catch(e) {
@@ -61,7 +59,6 @@ const handleremovefromwishlist = async (req, res) => {
     try {
         const data = req.body
         const id = req.params.id;
-        console.log(req.body)
         if (Object.keys(data).length == 0) return res.status(400).json({ error: "All fields are required" });
         const result = await admin.findByIdAndUpdate(id, {$pull : {wishlist : req.body.productid}})
         if (!result) return res.status(404).json(("Unable to remove from wishlist"))

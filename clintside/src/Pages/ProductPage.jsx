@@ -124,8 +124,8 @@ function ProductPage() {
                     </section>
                     <section className='w-full xl:w-[60%]'>
                         <div className='bg-[#ffffffda] transition-all duration-500 rounded-xl p-4 flex flex-col min-h-[60vh] min-w-full md:min-w-[450px]  gap-3  justify-evenly'>
-                            <h2 className='text-md font-bold cursor-pointer hover:text-blue-500'>{data.companyName}</h2>
-                            <h1 className='text-3xl lg:text-6xl font-bold'>{data.name} <span className='text-2xl lg:text-2xl'>{data.size ? `|| ${data.size}` : ""}</span> <span className='text-2xl lg:text-2xl'>{`|| ${data.itemtype}`}</span></h1>
+                            <h2 className='text-md font-bold cursor-pointer hover:text-blue-500 capitalize'>{data.companyName}</h2>
+                            <h1 className='text-3xl lg:text-6xl font-bold capitalize'>{data.name} <span className='text-2xl lg:text-2xl'>{data.size ? `|| ${data.size}` : ""}</span> <span className='text-2xl lg:text-2xl'>{`|| ${data.itemtype}`}</span></h1>
                             <div className='flex flex-col gap-4'>
                                 <h2 className='w-full md:w-[60%] text-md capitalize font-semibold'>   <span>{data.composition ? `${data.composition}` : ""}</span></h2>
                                 <div className='flex justify-between items-center flex-wrap gap-3'>

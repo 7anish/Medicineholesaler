@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 
 function Navbar() {
-    const [cookies, setCookie , removeCookie] = useCookies(['name']);
+    const [cookies, setCookie, removeCookie] = useCookies(['name']);
     const [login, setlogin] = useState(true)
     const Links = [
         {
@@ -24,26 +24,26 @@ function Navbar() {
         }
     }, [])
 
-    const handlelogout = ()=>{
+    const handlelogout = () => {
         console.log("hello")
         Swal.fire({
             title: "Do you want Logout",
             showCancelButton: true,
             confirmButtonText: "Logout",
-          }).then((result) => {
+        }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 removeCookie('lgthusr')
                 removeCookie('lgid')
                 removeCookie('lgrole')
                 localStorage.removeItem('information')
-              Swal.fire({
-                title : "Logout Sucessfully",
-                icon : 'success'
-            });
-              window.location.href = "/"
+                Swal.fire({
+                    title: "Logout Sucessfully",
+                    icon: 'success'
+                });
+                window.location.href = "/"
             }
-          });
+        });
     }
 
     const [open, setOpen] = useState(false);
@@ -72,29 +72,35 @@ function Navbar() {
                     {
                         login ?
                             (
-                                <NavLink to={'/login'} className='text-green-600 flex items-center hover:text-green-800 lg:text-lg px-5'>
-                                    {/* <span className='text-lg'>(0)</span> */}
-                                    <button className='text-green-600 hover:text-green-800 rounded-xl' onClick={() => setOpen(!open)}>Login</button>
-                                </NavLink>
+                                <>
+                                    <NavLink to={'/login'} className='text-green-600 flex items-center hover:text-green-800 lg:text-lg px-5'>
+                                        {/* <span className='text-lg'>(0)</span> */}
+                                        <button className='text-green-600 hover:text-green-800 rounded-xl' onClick={() => setOpen(!open)}>Login</button>
+                                    </NavLink>
+                                    <NavLink to={'/cart'} className='text-green-600 hover:text-green-800 text-2xl px-5 flex items-center justify-center' onClick={() => setOpen(!open)}>
+                                        <ion-icon name="cart-outline" size='large' className="font-extrabold "></ion-icon>
+                                        <span className='text-lg'>{Quant.length}</span>
+                                    </NavLink>
+                                </>
                             )
                             : (
                                 <>
                                     <NavLink to={'/wishlist'} className='text-green-600 flex items-center hover:text-green-800 gap-1 lg:text-lg px-5' onClick={() => setOpen(!open)}>
-                                        Wishlist<ion-icon name="heart-outline"  className="font-extrabold "></ion-icon>
+                                        Wishlist<ion-icon name="heart-outline" className="font-extrabold "></ion-icon>
                                     </NavLink>
                                     <NavLink to={'/orderhistory'} className='text-green-600 flex items-center hover:text-green-800 lg:text-lg px-5 gap-1' onClick={() => setOpen(!open)}>
-                                        Order <ion-icon name="logo-dropbox"  className="font-extrabold "></ion-icon>
+                                        Order <ion-icon name="logo-dropbox" className="font-extrabold "></ion-icon>
                                     </NavLink>
-                                    <div className='text-green-600 flex items-center hover:text-green-800 lg:text-lg px-5 cursor-pointer gap-1' onClick={()=>handlelogout()}>
+                                    <NavLink to={'/cart'} className='text-green-600 hover:text-green-800 text-2xl px-5 flex items-center justify-center' onClick={() => setOpen(!open)}>
+                                        <ion-icon name="cart-outline" size='large' className="font-extrabold "></ion-icon>
+                                        <span className='text-lg'>{Quant.length}</span>
+                                    </NavLink>
+                                    <div className='text-green-600 flex items-center hover:text-green-800 lg:text-lg px-5 cursor-pointer gap-1' onClick={() => handlelogout()}>
                                         Logout<ion-icon name="log-out-outline" className="font-extrabold "></ion-icon>
                                     </div>
                                 </>
                             )
                     }
-                    <NavLink to={'/cart'} className='text-green-600 hover:text-green-800 text-2xl px-5 flex items-center justify-center' onClick={() => setOpen(!open)}>
-                        <ion-icon name="cart-outline" size='large' className="font-extrabold "></ion-icon>
-                        <span className='text-lg'>{Quant.length}</span>
-                    </NavLink>
                 </div>
             </div>
         </nav>

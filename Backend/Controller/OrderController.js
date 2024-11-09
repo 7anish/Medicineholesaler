@@ -22,8 +22,6 @@ const handleCreateOrder = async (req, res) => {
             foodlcnumber: data.foodlcnumber,
             remark: data.remark
         })
-
-        console.log(result)
         // if any error 
         if (!result) return res.status(500).json({ "Error": "Somthing went wrong Try After sometime" })
 

@@ -58,7 +58,7 @@ function BrowseByCat() {
             </>
             :
             <div>
-                <section className='py-10 xl:pt-10 xl:py-0 px-4 lg:px-20'>
+                <section className='py-5  xl:py-0 px-4 lg:px-20'>
                     <div className='flex flex-wrap gap-2 sm:gap-0 py-2 mb-4 justify-between items-center'>
                         <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>Shop by Categories</h1>
                         <ViewAllBut path={'/category/allcategory'} />

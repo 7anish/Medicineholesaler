@@ -91,11 +91,11 @@ function Singup() {
                 <h2 className="text-2xl font-bold mb-6 text-center text-green-500">Signup</h2>
                 <form onSubmit={handleSignupSubmit}>
                     <div className="mb-4">
-                        <label className="block text-gray-700">Name:</label>
+                        <label className="block text-gray-700">Owner/Firm Name:</label>
                         <input name='name' type="text" required className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-shadow duration-300" />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700">Number:</label>
+                        <label className="block text-gray-700">Mobile Number:</label>
                         <input type="tel" name="number" required className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-shadow duration-300" />
                     </div>
                     <div className="mb-4">

@@ -134,7 +134,7 @@ function Wishlistcard({ id, name, cat, subcat, actualprice, img, index, discount
 
     const imageUrl = img[0] === undefined ? "" : img[0].imageurl
     return (
-        <div key={index} className='w-[300px] min-h-[450px] bg-[#ffffffda] shadow-card-shadow hover:shadow-card-hover transition-all duration-500 rounded-xl p-4 flex flex-col justify-around gap-3  py-2 relative' onClick={() => navigate(`/product/${id}`)}>
+        <div key={index} className='w-[300px] min-h-[450px] bg-[#ffffffda] shadow-card-shadow hover:shadow-card-hover transition-all duration-500 rounded-xl p-4 flex flex-col justify-around gap-3  py-2 relative cursor-pointer' onClick={() => navigate(`/product/${id}`)}>
             <img src={imageUrl} alt="" className='w-full h-60 object-cover rounded-md cursor-pointer border border-black' onClick={() => navigate(`/product/${id}`)} />
             <div className='flex gap-2'>
                 <span className='text-sm flex px-2 border rounded-lg bg-[#ddeff1] font-medium w-fit capitalize'>{cat.split('-').join(' ')}</span>
@@ -152,6 +152,7 @@ function Wishlistcard({ id, name, cat, subcat, actualprice, img, index, discount
                 </div>
             </div>
         </div>
+        
 
     )
 }

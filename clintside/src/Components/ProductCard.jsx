@@ -95,7 +95,7 @@ function ProductCard({ id, name, cat, subcat, actualprice, img, index, discountp
                     <h2 className='text-[10px] sm:text-md cursor-pointer hover:text-blue-500'><span>{composition ? `${composition}` : ""}</span></h2>
                     <div className='flex justify-start flex-col items-start sm:gap-2'>
                         <h1 className='text-md sm:text-xl font-bold whitespace-noraml'>Unit Price : ₹&nbsp;{discountprice} <span className='text-[10px] sm:text-lg font-bold text-red-600'>{((((+actualprice) - (+discountprice)) / (+actualprice)) * 100).toFixed(1)}% off</span></h1>
-                        <h1 className='text-[10px] font-bold'>Mrp : <span className='text-red-600 line-through'>₹&nbsp;{`${actualprice}`}</span></h1>
+                        <h1 className='text-[12px] font-bold'>Mrp : <span className='text-red-600 line-through'>₹&nbsp;{`${actualprice}`}</span></h1>
                     </div>
                 </div>
             </div>

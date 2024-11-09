@@ -5,8 +5,6 @@ const handleaddproduct = async (req, res) => {
         const data = req.body
         if (Object.keys(data).length == 0) return res.status(400).json({ error: "All fields are required" });
 
-        console.log(req.file)
-
         const range = JSON.parse(data.range)
         let img = []
         if (req.files && req.files.length > 0) {
@@ -77,7 +75,7 @@ const handlGetProductList = async (req, res) => {
         const param = req.query
         let result = []
         if (param.type === "feature"){
-            result = await product.find().limit(12)
+            result = await product.find({featured : true}).limit(12)
         }else{
             result = await product.find(param)
         }

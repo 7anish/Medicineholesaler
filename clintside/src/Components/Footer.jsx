@@ -7,7 +7,7 @@ function Footer() {
             <footer className='bg-gray-700 text-white px-5 lg:px-20 py-10'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center'>
                     <div className='flex flex-col items-start'>
-                        <div className='font-bold text-xl lg:text-2xl'>Medical<span className='text-green-600'>Wholesale</span></div>
+                        <div className='font-bold text-xl lg:text-2xl'>Medicine<span className='text-green-600'>Wholesale</span></div>
                         <p className='text-sm lg:text-lg mt-2'>Your Health, Our Priority</p>
                         <div className='flex gap-4 mt-4'>
                             <NavLink to="https://www.facebook.com">
@@ -27,7 +27,7 @@ function Footer() {
                     <div className='flex flex-col'>
                         <h2 className='text-lg lg:text-2xl font-bold'>Company</h2>
                         <NavLink to="/about-us" className='text-sm lg:text-lg mt-2'>About Us</NavLink>
-                        <NavLink to="/contact-us" className='text-sm lg:text-lg mt-2'>Contact Us</NavLink>
+                        <NavLink to="/about-us" className='text-sm lg:text-lg mt-2'>Contact Us</NavLink>
                         <NavLink to="/privacy-policy" className='text-sm lg:text-lg mt-2'>Privacy Policy</NavLink>
                     </div>
                     <div className='hidden sm:flex flex-col'>
