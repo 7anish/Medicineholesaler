@@ -108,11 +108,6 @@ function Adminlogin() {
                                 "Login"
                             }
                         </button>
-                        <div  className="text-center">
-                            <NavLink to={'/singup'} className="text-blue-500 hover:text-blue-700 transition-colors duration-300">
-                                New User? Sign-in
-                            </NavLink>
-                        </div>
                     </form>
                 </div>
             </div>
