@@ -206,7 +206,7 @@ function ProductPage() {
                                             data.range?.map((range) => {
                                                 return (<div className='flex justify-between items-center'>
                                                     <h1 className='text-base md:text-lg py-1'>Quantity : {range.min}-{range.max}</h1>
-                                                    <h1 className='text-base md:text-lg'>₹&nbsp;{range.value} <span className='font-semibold text-red-600'>{((((+data.mrp) - (+range.value)) / (+data.mrp)) * 100).toFixed(1)}% off</span></h1>
+                                                    <h1 className='text-base md:text-lg'>₹&nbsp;{range.value} <span className='font-semibold text-green-600'>{((((+data.mrp) - (+range.value)) / (+data.mrp)) * 100).toFixed(1)}% off</span></h1>
                                                 </div>)
                                             })
                                         }
@@ -231,7 +231,7 @@ function ProductPage() {
                                             </button>
                                         </div>
                                         <div className='flex flex-wrap justify-between gap-4'>
-                                            <button className='flex items-center justify-center rounded-xl bg-green-600 hover:bg-gray-100 transition-all duration-500 w-full px-6 py-3 text-white hover:text-black gap-3' onClick={handlebuynow}>
+                                            <button className='flex items-center justify-center rounded-xl bg-[#dba40ee1]    hover:bg-gray-100 transition-all duration-500 w-full px-6 py-3 text-white hover:text-black gap-3' onClick={handlebuynow}>
                                                 <ion-icon name="bag-outline" size="large"></ion-icon>
                                                 <span className='text-lg lg:text-xl'>Buy Now</span>
                                             </button>

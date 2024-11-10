@@ -13,3 +13,8 @@
 .scrollbar::-webkit-scrollbar{
     display: none;
 }
+
+
+.clip{
+    clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 75%, 51% 100%, 0 77%, 0 0);
+}

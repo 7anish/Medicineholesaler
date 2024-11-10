@@ -20,6 +20,9 @@ export default {
       backgroundImage: {
         'login': "url('/src/assets/LogIn.jpg')",
       },
+      clipPath: {
+        'custom': 'polygon(30% 0%, 70% 0%, 100% 0, 100% 75%, 51% 100%, 0 77%, 0 0)',
+      }
     },
   },
   plugins: [],

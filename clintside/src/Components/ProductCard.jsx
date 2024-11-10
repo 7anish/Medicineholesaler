@@ -71,7 +71,9 @@ function ProductCard({ id, name, cat, subcat, actualprice, img, index, discountp
     const imageUrl = img[0] === undefined ? "" : img[0].imageurl
     return (
         <div key={index} className='w-[165px]   sm:w-[300px]  shadow-smcard sm:shadow-card-shadow sm:hover:shadow-card-hover  min-h-fit sm:min-h-[450px] bg-[#ffffffda]  transition-all duration-500 rounded-xl p-4 flex flex-col justify-around gap-3  py-4 sm:py-2 relative' onClick={() => navigate(`/product/${id}`)}>
-
+            <div className='bg-green-500 absolute top-0 clip'>
+                <h1 className='text-[8px] font-bold  text-white p-1 sm:hidden' >{((((+actualprice) - (+discountprice)) / (+actualprice)) * 100).toFixed(1)}<br />% off</h1>
+            </div>
             {
                 userid ?
                     (
@@ -88,13 +90,13 @@ function ProductCard({ id, name, cat, subcat, actualprice, img, index, discountp
             }
 
             <div className='flex flex-col gap-4'>
-                <img src={imageUrl} alt="" className='sm:w-full  h-20 w-full   sm:h-60 object-cover rounded-md cursor-pointer border border-black' onClick={() => navigate(`/product/${id}`)} />
+                <img src={imageUrl} alt="" className='sm:w-full  h-32 w-full   sm:h-60 object-cover rounded-md cursor-pointer border border-black' onClick={() => navigate(`/product/${id}`)} />
                 <div className='flex flex-col sm:gap-1'>
                     {/* <h2 className='text-[10px] sm:text-sm font-bold cursor-pointer hover:text-blue-500'>{companyname}</h2> */}
                     <h1 className='text-sm sm:text-xl font-bold cursor-pointer hover:text-blue-500 leading-normal whitespace-normal'>{name} <span className='text-[10px] sm:text-sm'>{size ? `|| ${size}` : ""}</span></h1>
                     <h2 className='text-[10px] sm:text-md cursor-pointer hover:text-blue-500'><span className='sm:inline hidden'>{composition ? `${composition}` : ""}</span></h2>
                     <div className='flex justify-start flex-col items-start sm:gap-2'>
-                        <h1 className='text-md sm:text-xl font-bold whitespace-noraml'><span className='sm:inline hidden'>Unit Price :</span> ₹&nbsp;{discountprice} <span className=' sm:hidden inline'><span className='text-red-600 text-[12px] line-through'>₹&nbsp;{`${actualprice}`}</span></span> <span className='text-[10px] sm:text-lg font-bold text-red-600'>{((((+actualprice) - (+discountprice)) / (+actualprice)) * 100).toFixed(1)}% off</span></h1>
+                        <h1 className='text-md sm:text-xl font-bold whitespace-noraml'><span className='sm:inline hidden'>Unit Price :</span> ₹&nbsp;{discountprice} <span className=' sm:hidden inline'><span className='text-red-600 text-[12px] line-through'>₹&nbsp;{`${actualprice}`}</span></span> <span className='text-[10px] sm:text-lg font-bold sm:flex hidden text-red-600'>{((((+actualprice) - (+discountprice)) / (+actualprice)) * 100).toFixed(1)}% off</span></h1>
                         <h1 className='text-[12px] font-bold  sm:inline hidden'><span>Mrp :</span><span className='text-red-600 line-through'>₹&nbsp;{`${actualprice}`}</span></h1>
                     </div>
                 </div>
