@@ -9,6 +9,6 @@ route.get('/getorder' , checkisadmin, handleGetOrderList);
 route.get('/getorder/:id' ,checkisadmin ,handleGetSpecficorder);
 route.post("/createorder" , handleCreateOrder)
 route.patch("/upadateorder/:id" , checkisadmin,handleUpdateOrder)
-route.get('/todaysordrs' , handlegettodaysorder)
+route.get('/todaysordrs' , checkisadmin,handlegettodaysorder)
 
 module.exports = route

@@ -1,10 +1,12 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { FaGithub } from "react-icons/fa";
+
 
 function Footer() {
     return (
         <>
-            <footer className='bg-gray-700 text-white px-5 lg:px-20 py-10'>
+            <footer className='bg-gray-700 text-white px-5 lg:px-20 py-10 pb-5'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center'>
                     <div className='flex flex-col items-start'>
                         <div className='font-bold text-xl lg:text-2xl'>Medicine<span className='text-green-600'>Wholesale</span></div>
@@ -47,6 +49,8 @@ function Footer() {
                     </div>
                 </div>
                 <div className='text-center text-xs md:text-sm mt-10'>© 2023 MedicineWholesale. All rights reserved.</div>
+                <hr className='my-3' />
+                <h1 className='flex  justify-center items-center gap-2' >Developed By <a href='https://github.com/7anish' target='_blank' className='flex gap-1 justify-center items-center hover:text-blue-500 hover:underline'><FaGithub />Anish</a></h1>
             </footer>
         </>
     )

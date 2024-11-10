@@ -92,38 +92,38 @@ function ProductCard({ id, name, cat, subcat, actualprice, img, index, discountp
                 <div className='flex flex-col sm:gap-1'>
                     {/* <h2 className='text-[10px] sm:text-sm font-bold cursor-pointer hover:text-blue-500'>{companyname}</h2> */}
                     <h1 className='text-sm sm:text-xl font-bold cursor-pointer hover:text-blue-500 leading-normal whitespace-normal'>{name} <span className='text-[10px] sm:text-sm'>{size ? `|| ${size}` : ""}</span></h1>
-                    <h2 className='text-[10px] sm:text-md cursor-pointer hover:text-blue-500'><span>{composition ? `${composition}` : ""}</span></h2>
+                    <h2 className='text-[10px] sm:text-md cursor-pointer hover:text-blue-500'><span className='sm:inline hidden'>{composition ? `${composition}` : ""}</span></h2>
                     <div className='flex justify-start flex-col items-start sm:gap-2'>
-                        <h1 className='text-md sm:text-xl font-bold whitespace-noraml'>Unit Price : ₹&nbsp;{discountprice} <span className='text-[10px] sm:text-lg font-bold text-red-600'>{((((+actualprice) - (+discountprice)) / (+actualprice)) * 100).toFixed(1)}% off</span></h1>
-                        <h1 className='text-[12px] font-bold'>Mrp : <span className='text-red-600 line-through'>₹&nbsp;{`${actualprice}`}</span></h1>
+                        <h1 className='text-md sm:text-xl font-bold whitespace-noraml'><span className='sm:inline hidden'>Unit Price :</span> ₹&nbsp;{discountprice} <span className=' sm:hidden inline'><span className='text-red-600 text-[12px] line-through'>₹&nbsp;{`${actualprice}`}</span></span> <span className='text-[10px] sm:text-lg font-bold text-red-600'>{((((+actualprice) - (+discountprice)) / (+actualprice)) * 100).toFixed(1)}% off</span></h1>
+                        <h1 className='text-[12px] font-bold  sm:inline hidden'><span>Mrp :</span><span className='text-red-600 line-through'>₹&nbsp;{`${actualprice}`}</span></h1>
                     </div>
                 </div>
             </div>
             <div className='flex gap-2 flex-wrap'>
                 {
-                    range?.map((range) => <p className='text-[10px] sm:text-[12px]  bg-gray-100 p-1 rounded-sm'>{range.min}-{range.max}pc ₹&nbsp;{range.value} <span className='text-[8px] font-semibold'>{((((+actualprice) - (+range.value)) / (+actualprice)) * 100).toFixed(1)}% off</span></p> )
+                    range?.map((range) => <p className='text-[10px] sm:text-[12px]  bg-gray-100 p-1 rounded-sm'>{range.min}-{range.max}pc ₹&nbsp;{range.value} <span className='text-[8px] font-semibold text-green-600'>{((((+actualprice) - (+range.value)) / (+actualprice)) * 100).toFixed(1)}% off</span></p> )
                 }
             </div>
-            <div className='flex flex-col gap-2  justify-center tems-start '>
+            <div className='flex  sm:flex-col justify-between sm:gap-2 tems-start '>
                 <div className='' >
                     <button
                         onClick={(e) => { e.stopPropagation(); setCount(count > 1 ? count - 1 : 1) }}
-                        className='sm:px-2 sm:py-1 px-1 bg-gray-200 border-gray-300 border-[1px]'
+                        className='sm:px-2 sm:py-1 px-[1px] bg-gray-200 border-gray-300 border-[1px]'
                     >
                         -1
                     </button>
                     <span className='sm:px-3 sm:py-1 px-2 border-black border-[1px]'>{count}</span>
                     <button
                         onClick={(e) => { e.stopPropagation(); setCount(count + 1) }}
-                        className='sm:px-2 sm:py-1 px-1 bg-gray-200 border-gray-300 border-[1px]'
+                        className='sm:px-2 sm:py-1 px-[1px] bg-gray-200 border-gray-300 border-[1px]'
                     >
                         +1
                     </button>
                 </div>
-                <div className='flex  items-center  rounded-lg sm:rounded-xl bg-green-600 hover:bg-gray-100 transition-all duration-500  px-3 sm:px-6 py-1 sm:py-2 text-white hover:text-black cursor-pointer' onClick={(e) => {
+                <div className='flex items-center rounded-sm sm:rounded-xl bg-green-600 hover:bg-gray-100 transition-all duration-500 px-2 sm:px-6 sm:py-2 text-white hover:text-black cursor-pointer' onClick={(e) => {
                     addtocartitem(e)
                 }}>
-                    <button className='w-full h-full text-[14px] sm:text-lg'>Add to cart</button>
+                    <button className='w-full h-full text-[8px] sm:text-lg'>Add to cart</button>
                 </div>
             </div>
         </div>
