@@ -12,9 +12,10 @@ const Allorders = () => {
     const [loading, setloading] = useState(false)
     const [type, setype] = useState("")
     const [Search, setsearch] = useState("")
+    const [number, setnumber] = useState("")
 
     const filterdata = data.filter((item) => {
-        return item.name.toLowerCase().includes(Search.toLowerCase());
+        return item.name.toLowerCase().includes(Search.toLowerCase()) && item.phoneNumber.toLowerCase().includes(number.toLowerCase())
     })
 
     useEffect(() => {
@@ -56,9 +57,15 @@ const Allorders = () => {
     return (
         <div className='p-4 absolute top-[8vh] w-full md:w-[79vw] right-0 h-fit'>
             <h1 className="text-xl lg:text-3xl font-bold mb-4">{type != "" ? type : "All"} Orders</h1>
-            <div className=" w-full form-group">
+            <div className='w-full flex flex-wrap justify-between '>
+            <div className="w-full sm:w-[45%] form-group">
                 <label className="block text-gray-700 font-semibold">Search By Owner/Firm Name</label>
                 <input type="text" name="companyName" className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder='Owner/Firm Name' value={Search} onChange={(e) => setsearch(e.target.value)} />
+            </div>
+            <div className="w-full sm:w-[45%] form-group">
+                <label className="block text-gray-700 font-semibold">Search By Phone Number</label>
+                <input type="text" name="companyName" className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder='Phone NUmber' value={number} onChange={(e) => setnumber(e.target.value)} />
+            </div>
             </div>
             <div className="my-5">
                 <label className=" block text-gray-700 font-semibold">Order Type</label>
