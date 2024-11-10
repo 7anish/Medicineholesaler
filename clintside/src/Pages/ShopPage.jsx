@@ -99,7 +99,7 @@ function ShopPage() {
               </h1>
             </div>
             <div className="w-full h-[80vh] flex items-center justify-center">
-            <h1 className="text-3xl text-green-500 leading-relaxed tracking-wider font-bold px-2 py-2 text-center capitalize font-poppins"> Error While Fetching Product !!!</h1>
+            <h1 className="text-3xl text-green-500 leading-relaxed tracking-wider font-bold px-2 py-2 text-center capitalize font-poppins">No such Product Found</h1>
             </div>
           </section>
           :
