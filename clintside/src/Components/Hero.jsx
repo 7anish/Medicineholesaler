@@ -7,7 +7,7 @@ function Hero() {
     
 
     return (
-        <div className='w-full h-fit  md:h-[90vh] p-5 flex items-center justify-center'>
+        <div className='w-full h-fit  md:h-[90vh] pb-0 sm:pb-5 p-5 flex items-center justify-center'>
         <section className='w-full h-full flex flex-col md:flex-row justify-center md:bg-blue-100 py-1 sm:py-10 rounded-2xl px-2 sm:px-10 gap-5'>
             <div className='w-full md:w-[60%] h-[50%] md:h-full flex flex-col gap-3 md:gap-7  items-start justify-center'>
                 <h1 className='xl:text-7xl lg:text-6xl text-4xl font-bold'>Get The Medical Product At <span className='text-green-600'>Best Price</span></h1>

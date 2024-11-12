@@ -10,7 +10,7 @@ function Footer() {
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center'>
                     <div className='flex flex-col items-start'>
                         <div className='font-bold text-xl lg:text-2xl'>Medicine<span className='text-green-600'>Wholesale</span></div>
-                        <p className='text-sm lg:text-lg mt-2'>Your Health, Our Priority</p>
+                        <p className='text-sm lg:text-lg mt-2'>Best Price is Our Priority</p>
                         <div className='flex gap-4 mt-4'>
                             <NavLink to="https://www.facebook.com">
                                 <ion-icon name="logo-facebook" className="text-xl md:text-2xl"></ion-icon>

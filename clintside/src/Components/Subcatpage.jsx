@@ -67,8 +67,8 @@ const Subcatpage = () => {
                     catdata?.map((item) => {
                         return (
                             <>
-                                <h1 className="w-full text-center md:text-left sm:px-16 font-palyfair text-2xl md:text-3xl lg:text-3xl py-3 font-bold text-black capitalize" data-aos="fade-up" id={item.category}>{(item.category).split('-').join(' ')}</h1>
-                                <div className='w-full h-fit  py-10 flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:p-10 sm:pl-20' id='services'>
+                                <h1 className="w-full text-center md:text-left sm:px-16 font-palyfair text-2xl md:text-3xl lg:text-3xl  font-bold text-black capitalize" data-aos="fade-up" id={item.category}>{(item.category).split('-').join(' ')}</h1>
+                                <div className='w-full h-fit   flex flex-wrap items-center justify-center sm:justify-start gap-4 p-4 sm:p-2 mb-5  sm:pl-20' id='services'>
                                     {
                                         item.subcat.map((subitem, index) => {
                                             return (

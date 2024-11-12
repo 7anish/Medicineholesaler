@@ -106,39 +106,39 @@ const Orderhistory = () => {
                                                 orders.orders.map((order, index) => (
                                                     <tbody>
                                                         <tr className='odd:bg-white  even:bg-gray-50  border-b text-black text-xl'>
-                                                            <th colSpan={2} scope="col" className="px-6 py-3">
+                                                            <th colSpan={2} scope="col" className="px-6 py-1">
                                                                 {`${index + 1}. ${order.productId.name}`}
                                                             </th>
                                                         </tr>
                                                         <tr className='odd:bg-white  even:bg-gray-50  border-b'>
-                                                            <th scope="col" className="px-6 py-3 capitalize">
+                                                            <th scope="col" className="px-6 py-1 capitalize">
                                                                 Qunatity
                                                             </th>
-                                                            <th scope="col" className="px-6 py-3">
+                                                            <th scope="col" className="px-6 py-1">
                                                                 {order.quantity}
                                                             </th>
                                                         </tr>
                                                         <tr className='odd:bg-white  even:bg-gray-50  border-b'>
-                                                            <th scope="col" className="px-6 py-3 capitalize">
+                                                            <th scope="col" className="px-6 py-1 capitalize">
                                                                 size
                                                             </th>
-                                                            <th scope="col" className="px-6 py-3">
+                                                            <th scope="col" className="px-6 py-1">
                                                                 {order.productId.size}
                                                             </th>
                                                         </tr>
                                                         <tr className='odd:bg-white  even:bg-gray-50  border-b'>
-                                                            <th scope="col" className="px-6 py-3 capitalize">
-                                                                mrp
+                                                            <th scope="col" className="px-6 py-1 capitalize">
+                                                                MRP
                                                             </th>
-                                                            <th scope="col" className="px-6 py-3">
+                                                            <th scope="col" className="px-6 py-1">
                                                                 ₹  {order.productId.mrp}
                                                             </th>
                                                         </tr>
                                                         <tr className='odd:bg-white  even:bg-gray-50  border-b'>
-                                                            <th scope="col" className="px-6 py-3 capitalize">
+                                                            <th scope="col" className="px-6 py-1 capitalize">
                                                                 unit price
                                                             </th>
-                                                            <th scope="col" className="px-6 py-3">
+                                                            <th scope="col" className="px-6 py-1">
                                                                 ₹  {order.productId.ourPrice}
                                                             </th>
                                                         </tr>

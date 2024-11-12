@@ -9,7 +9,7 @@ const cat = [
         "text": "#ff6347",
         "subcat": [
             {
-                "name": "baby-,-female-&-elderly-care",
+                "name": "baby,female-&-elderly-care",
                 "route": "cosmetic-products/baby-and-female-and-elderly-care",
                 "bg": "#ffe8e8",
                 "icon": "accessibility-outline",
@@ -67,7 +67,7 @@ const cat = [
             },
             {
                 "name": "sugar-&-bp-care-machine",
-                "route": "surgical-items/sugar-and-bp-care-machine",
+                "route": "surgical-items/sugar-and-BP-care-machine",
                 "bg": "#ffe8e8",
                 "icon": "pulse-outline",
                 "iconColor": "#2dd1dd"
@@ -173,8 +173,8 @@ const cat = [
                 "iconColor": "#32cd32"
             },
             {
-                "name": "pediatric-drop-&-syrup",
-                "route": "generic-medicine/pediatric-drop-and-syrup",
+                "name": "paediatric-drop-&-syrup",
+                "route": "generic-medicine/paediatric-drop-and-syrup",
                 "bg": "#ffe8e8",
                 "icon": "water-outline",
                 "iconColor": "#ff6347"
@@ -189,20 +189,20 @@ const cat = [
         ]
     },    
     {
-        "category": "ayurvedic-product",
+        "category": "ayurvedic-products",
         "img": "leaf-outline",
         "bg": "#f5fffa",
         "text": "#228b22",
         "subcat": [
             {
-                "name": "bati-tablets-&-capsule",
+                "name": "bati,-tablets-&-capsule",
                 "route": "ayurvedic-product/bati-tablets-and-capsule",
                 "bg": "#ffe8e8",
                 "icon": "tablet-landscape-outline",
                 "iconColor": "#228b22"
             },
             {
-                "name": "asave-and-syrup",
+                "name": "asave-&-syrup",
                 "route": "ayurvedic-product/asave-and-syrup",
                 "bg": "#ffe8e8",
                 "icon": "water-outline",

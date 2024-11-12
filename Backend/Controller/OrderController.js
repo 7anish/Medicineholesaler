@@ -125,10 +125,7 @@ const handlegettodaysorder =  async (req,res) => {
         endOfDay.setUTCHours(23, 59, 59, 999); // Set to the end of today in UTC (23:59:59)
 
         const result =await order.find({
-            createdAt: {
-                $gte: startOfDay,
-                $lte: endOfDay
-            }
+            OrderStatus : "Pending"
         }).populate('orders.productId')
 
         let dataarr = []

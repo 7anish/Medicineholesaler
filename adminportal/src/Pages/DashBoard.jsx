@@ -48,7 +48,7 @@ const DashBoard = () => {
     }
     return (
         <div className='p-4 absolute top-[8vh] w-full md:w-[79vw] right-0 h-fit'>
-            <h1 className="text-xl lg:text-3xl font-bold mb-4">Todays Order</h1>
+            <h1 className="text-xl lg:text-3xl font-bold mb-4">Pending Order Qunatity</h1>
             <hr className='h-1 bg-gray-300 my-2' />
 
             <div className='flex gap-5 flex-wrap md:justify-evenly w-full h-fit p-4 items-start justify-start '>

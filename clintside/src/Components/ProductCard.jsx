@@ -68,16 +68,55 @@ function ProductCard({ id, name, cat, subcat, actualprice, img, index, discountp
         }
     }
 
+    const removefromWishlist = async (e) => {
+        e.stopPropagation()
+        try {
+            const res = await axios.patch(`${Url}/api/v1/admin/removefromwishlist/${userid}`, {
+                productid: id
+            })
+
+            const arr = JSON.parse(localStorage.getItem('wishlistitems')).filter((i)=>{
+                return i != id
+            })
+
+            setwishlist(arr)
+
+            localStorage.setItem('wishlistitems', JSON.stringify(arr))
+            if (res.status == 200) {
+                Swal.fire({
+                    title: "Item Removed to wishlist",
+                    icon: "success"
+                }).then(() => {
+                    // window.location.href = '/wishlist'
+                })
+                return
+            } else {
+                Swal.fire({
+                    title: "Somthing Went wrong",
+                    icon: "error"
+                })
+                return
+            }
+        } catch (e) {
+            console.log(e)
+            Swal.fire({
+                title: "Somthing Went wrong",
+                icon: "error"
+            })
+            return
+        }
+    }
+
     const imageUrl = img[0] === undefined ? "" : img[0].imageurl
     return (
-        <div key={index} className='w-[165px]   sm:w-[300px]  shadow-smcard sm:shadow-card-shadow sm:hover:shadow-card-hover  min-h-fit sm:min-h-[450px] bg-[#ffffffda]  transition-all duration-500 rounded-xl p-4 flex flex-col justify-around gap-3  py-4 sm:py-2 relative' onClick={() => navigate(`/product/${id}`)}>
+        <div key={index} className='w-[165px]  sm:w-[300px]  shadow-smcard sm:shadow-card-shadow sm:hover:shadow-card-hover  min-h-fit sm:min-h-[450px] bg-[#ffffffda]  transition-all duration-500 rounded-xl  flex flex-col justify-around gap-3  p-2 relative' onClick={() => navigate(`/product/${id}`)}>
             <div className='bg-green-500 absolute top-0 clip'>
                 <h1 className='text-[8px] font-bold  text-white p-1 sm:hidden' >{((((+actualprice) - (+discountprice)) / (+actualprice)) * 100).toFixed(1)}<br />% off</h1>
             </div>
             {
                 userid ?
                     (
-                        <div className='sm:w-8 sm:h-8 w-6 h-6 bg-gray-100 absolute  p-1 text-lg sm:text-2xl rounded-full top-3 right-5  shadow-card-shadow cursor-pointer text-red-600 flex items-center justify-center' onClick={(e) => addtowishlist(e)}>
+                        <div className='sm:w-8 sm:h-8 w-6 h-6 bg-gray-100 absolute  text-lg sm:text-2xl rounded-full top-3 right-5  shadow-card-shadow cursor-pointer text-red-600 flex items-center justify-center' onClick={wishlist.includes(id) ? (e) => removefromWishlist(e) : (e)=>addtowishlist(e)}>
                             {
                                 wishlist.includes(id) ?
                                 <ion-icon name="heart"></ion-icon>
@@ -96,14 +135,14 @@ function ProductCard({ id, name, cat, subcat, actualprice, img, index, discountp
                     <h1 className='text-sm sm:text-xl font-bold cursor-pointer hover:text-blue-500 leading-normal whitespace-normal'>{name} <span className='text-[10px] sm:text-sm'>{size ? `|| ${size}` : ""}</span></h1>
                     <h2 className='text-[10px] sm:text-md cursor-pointer hover:text-blue-500'><span className='sm:inline hidden'>{composition ? `${composition}` : ""}</span></h2>
                     <div className='flex justify-start flex-col items-start sm:gap-2'>
-                        <h1 className='text-md sm:text-xl font-bold whitespace-noraml'><span className='sm:inline hidden'>Unit Price :</span> ₹&nbsp;{discountprice} <span className=' sm:hidden inline'><span className='text-red-600 text-[12px] line-through'>₹&nbsp;{`${actualprice}`}</span></span> <span className='text-[10px] sm:text-lg font-bold sm:flex hidden text-red-600'>{((((+actualprice) - (+discountprice)) / (+actualprice)) * 100).toFixed(1)}% off</span></h1>
-                        <h1 className='text-[12px] font-bold  sm:inline hidden'><span>Mrp :</span><span className='text-red-600 line-through'>₹&nbsp;{`${actualprice}`}</span></h1>
+                        <h1 className='text-md sm:text-xl font-bold whitespace-noraml'><span className='sm:inline hidden'>Unit Price :</span> ₹&nbsp;{discountprice} <span className=' sm:hidden inline'><span className='text-red-600 text-[14px] line-through'>₹&nbsp;{`${actualprice}`}</span></span> <span className='text-[10px] sm:text-lg font-bold sm:flex hidden text-red-600'>{((((+actualprice) - (+discountprice)) / (+actualprice)) * 100).toFixed(1)}% off</span></h1>
+                        <h1 className='text-md font-bold  sm:inline hidden'><span>MRP :</span><span className=' text-red-600 line-through'>₹&nbsp;{`${actualprice}`}</span></h1>
                     </div>
                 </div>
             </div>
             <div className='flex gap-2 flex-wrap'>
                 {
-                    range?.map((range) => <p className='text-[10px] sm:text-[12px]  bg-gray-100 p-1 rounded-sm'>{range.min}-{range.max}pc ₹&nbsp;{range.value} <span className='text-[8px] font-semibold text-green-600'>{((((+actualprice) - (+range.value)) / (+actualprice)) * 100).toFixed(1)}% off</span></p> )
+                    range?.map((range) => <p className='text-[10px] sm:text-[12px]'><span className='bg-gray-100 p-1  rounded-sm'>{range.min}-{range.max}pc</span> ₹&nbsp;{range.value} <span className='text-[8px] font-semibold text-green-600'>{((((+actualprice) - (+range.value)) / (+actualprice)) * 100).toFixed(1)}% off</span></p> )
                 }
             </div>
             <div className='flex  sm:flex-col justify-between sm:gap-2 tems-start '>

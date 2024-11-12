@@ -44,7 +44,6 @@ const orderScheam = new mongooes.Schema({
     },
     landmark: {
         type: String,
-        required: true
     },
     OrderStatus: {
         type: String,

@@ -79,7 +79,7 @@ const Wishlist = () => {
                         {
                             data.map((item, index) => (
                                 <>
-                                    <Wishlistcard index={index} id={item._id} name={item.name} actualprice={item.mrp} img={item.productimage} cat={item.category} subcat={item.subcategory} discountprice={item.ourPrice} companyname={item.companyName} size={item.size} heart={"no"} />
+                                    <ProductCard index={index} id={item._id} name={item.name} actualprice={item.mrp} img={item.productimage} cat={item.category} subcat={item.subcategory} discountprice={item.ourPrice} companyname={item.companyName} size={item.size} heart={"no"} range={item.range} />
                                 </>
                             ))
                         }

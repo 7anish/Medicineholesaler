@@ -51,7 +51,7 @@ function Cart() {
                   <div key={medicine.id} className='bg-[#ffffffda] shadow-card-shadow hover:shadow-card-hover transition-all duration-500 rounded-xl p-4 flex flex-col gap-3 cursor-pointer h-fit'>
                     <div className='flex flex-row'>
                       <div className='sm:w-[40%] sm:h-48  w-28 h-24  rounded-md border-black border-[1px] overflow-hidden object-cover'>
-                      <img src={medicine.img} alt="" className="w-full h-full object-cover rounded-md"  />
+                      <img src={medicine.img} alt="" className="w-full h-full object-cover rounded-md"   onClick={()=> navigate(`/product/${medicine.id}`)}/>
                       </div>
                       <div className="w-full flex flex-col  justify-between p-2 sm:p-5">
                         <div className='flex flex-col w-full'>

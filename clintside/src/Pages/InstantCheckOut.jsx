@@ -111,11 +111,6 @@ const InstantCheckOut = () => {
             Swal.fire("Plese enter a city")
             return
         }
-        if(!checkothers(e.target.landmark.value)){
-            setisprocess(false)
-            Swal.fire("Plese enter a landmark")
-            return
-        }
         try{
             const res = await axios.post(`${Url}/api/v1/med/createorder` , deatails)
 
@@ -212,8 +207,8 @@ const InstantCheckOut = () => {
                                 </div>
 
                                 <div>
-                                    <label for="your_email" className="mb-2 block text-sm font-medium text-gray-900 "> Landmark* </label>
-                                    <input type="text" name='landmark' className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="Near some famous place" required />
+                                    <label for="your_email" className="mb-2 block text-sm font-medium text-gray-900 "> Landmark</label>
+                                    <input type="text" name='landmark' className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="Near some famous place"  />
                                 </div>
                                 <div>
                                     <label for="your_email" className="mb-2 block text-sm font-medium text-gray-900 "> Addition Remark </label>

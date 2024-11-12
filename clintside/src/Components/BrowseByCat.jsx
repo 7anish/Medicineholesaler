@@ -32,7 +32,7 @@ function BrowseByCat() {
     if (error) {
         return (
             <>
-                <section className='py-10 xl:pt-10 xl:py-0 px-4 lg:px-20'>
+                <section className='py-0 xl:pt-10 xl:py-0 px-4 lg:px-20'>
                     <div className='flex flex-wrap gap-2 sm:gap-0 py-2 mb-4 justify-between items-center'>
                         <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>Shop by Categories</h1>
                         <ViewAllBut path={'/category/allcategory'} />
@@ -45,8 +45,8 @@ function BrowseByCat() {
     return (
         loading ?
             <>
-                <section className='py-0 xl:pt-10 xl:py-0 px-4 lg:px-20'>
-                    <div className='flex flex-wrap gap-2 sm:gap-0 py-2 mb-4 justify-between items-center'>
+                <section className='py-0 xl:pt-10 xl:py-0 px-4 lg:px-20 pt-0'>
+                    <div className='flex flex-wrap gap-2 sm:gap-0 py-0 sm:py-2 mb-4 justify-between items-center'>
                         <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>Shop by Categories</h1>
                         <ViewAllBut path={'/category/allcategory'} />
                     </div>
@@ -58,8 +58,8 @@ function BrowseByCat() {
             </>
             :
             <div>
-                <section className='py-5  xl:py-0 px-4 lg:px-20'>
-                    <div className='flex flex-wrap gap-2 sm:gap-0 py-2 mb-4 justify-between items-center'>
+                <section className='py-0 sm:py-5  xl:py-0 px-4 lg:px-20'>
+                    <div className='flex flex-wrap gap-2 sm:gap-0 py-0 sm:py-2 mb-4 justify-between items-center'>
                         <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>Shop by Categories</h1>
                         <ViewAllBut path={'/category/allcategory'} />
                     </div>

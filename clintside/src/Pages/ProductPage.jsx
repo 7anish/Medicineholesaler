@@ -75,6 +75,45 @@ function ProductPage() {
         }
     }
 
+    const removefromWishlist = async (e) => {
+        e.stopPropagation()
+        try {
+            const res = await axios.patch(`${Url}/api/v1/admin/removefromwishlist/${userid}`, {
+                productid: params.id
+            })
+
+            const arr = JSON.parse(localStorage.getItem('wishlistitems')).filter((i)=>{
+                return i != params.id
+            })  
+
+            setwishlist(arr)
+
+            localStorage.setItem('wishlistitems', JSON.stringify(arr))
+            if (res.status == 200) {
+                Swal.fire({
+                    title: "Item Removed to wishlist",
+                    icon: "success"
+                }).then(() => {
+                    // window.location.href = '/wishlist'
+                })
+                return
+            } else {
+                Swal.fire({
+                    title: "Somthing Went wrong",
+                    icon: "error"
+                })
+                return
+            }
+        } catch (e) {
+            console.log(e)
+            Swal.fire({
+                title: "Somthing Went wrong",
+                icon: "error"
+            })
+            return
+        }
+    }
+
     const handlebuynow = ()=>{
         let price = 0
 
@@ -100,6 +139,8 @@ function ProductPage() {
             navigate('/instantcheckout')
         })
     }
+
+    
 
     if (error) {
         return (
@@ -128,7 +169,7 @@ function ProductPage() {
                         {
                             userid ?
                                 (
-                                    <div className='w-8 h-8 bg-gray-100 absolute  p-1 text-2xl rounded-full text-red-500 top-0 right-0  shadow-card-shadow cursor-pointer z-20' onClick={(e) => addtowishlist(e)}>
+                                    <div className='sm:w-8 sm:h-8 w-6 h-6 bg-gray-100 z-20 absolute  text-lg sm:text-2xl rounded-full top-3 right-5  shadow-card-shadow cursor-pointer text-red-600 flex items-center justify-center' onClick={wishlist.includes(data._id) ? (e) => removefromWishlist(e) : (e)=>addtowishlist(e)}>
                                         {
                                             wishlist.includes(data._id) ?
                                                 <ion-icon name="heart"></ion-icon>
@@ -156,8 +197,8 @@ function ProductPage() {
                             <div className='flex flex-col gap-4'>
                                 <h2 className='w-full md:w-[60%] text-md capitalize font-semibold'>   <span>{data.composition ? `${data.composition}` : ""}</span></h2>
                                 <div className='flex justify-between items-center flex-wrap gap-3'>
-                                    <h1 className='text-2xl font-bold'>ourPrice : ₹&nbsp;{data.ourPrice} <span className='text-lg font-bold text-red-600'>&nbsp;&nbsp;&nbsp;{((((+data.mrp) - (+data.ourPrice)) / (+data.mrp)) * 100).toFixed(1)}% off</span></h1>
-                                    <h1 className='text-lg lg:text-xl font-bold  sm:hidden flex'>Mrp : <span className='line-through text-red-600'> ₹&nbsp;{data.mrp}</span></h1>
+                                    <h1 className='text-2xl font-bold'>Our Price : ₹&nbsp;{data.ourPrice} <span className='text-lg font-bold text-red-600'>&nbsp;&nbsp;&nbsp;{((((+data.mrp) - (+data.ourPrice)) / (+data.mrp)) * 100).toFixed(1)}% off</span></h1>
+                                    <h1 className='text-lg lg:text-xl font-bold  sm:hidden flex'>MRP : <span className='line-through text-red-600'> ₹&nbsp;{data.mrp}</span></h1>
                                     <div className='flex items-center'>
                                         <button
                                             onClick={() => setCount(count > 1 ? count - 10 : 1)}
