@@ -12,6 +12,7 @@
   "dependencies": {
     "@coreui/coreui": "^5.1.2",
     "@coreui/react": "^5.4.0",
+    "@emailjs/browser": "^4.4.1",
     "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.7",
     "lottie-react": "^2.4.0",

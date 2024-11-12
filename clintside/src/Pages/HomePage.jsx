@@ -10,7 +10,7 @@ import BrowseByCat from '../Components/BrowseByCat'
 import FeaturedProd from '../Components/FeaturedProd'
 import DiscountHome from '../Components/DiscountHome'
 import Care from '../Components/Care'
-
+import Contact from '../Components/Contact'
 function HomePage() {
   
 return (
@@ -21,6 +21,7 @@ return (
       <BrowseByCat />
       {/* Products */}
       <FeaturedProd />
+      <Contact />
       {/* Discount Banner */}
       {/* <DiscountHome /> */}
       {/* Care */}
