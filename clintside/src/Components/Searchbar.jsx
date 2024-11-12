@@ -4,34 +4,20 @@ import { FaSearch } from "react-icons/fa";
 import Url from '../../Url';
 import { useNavigate } from 'react-router-dom';
 
-const Searchbar = () => {
+const Searchbar = ({data}) => {
     const navigate = useNavigate()
-    const [data, setdata] = useState([])
     const [Search, setsearch] = useState("")
     const [open, setOpen] = useState(false)
-
-    useEffect(() => {
-        const fetchdata = async () => {
-            try {
-                const { data } = await axios.get(`${Url}/api/v1/med/searchlist`)
-                setdata(data)
-                console.log(data)
-            } catch (e) {
-                console.log(e)
-            }
-        }
-        fetchdata()
-    }, [])
 
     const filterData = data?.filter((item) => {
         return item.name.toLowerCase().includes(Search.toLowerCase())
     })
     return (
         <div className='relative'>
-            <div className='flex items-center justify-between border rounded-2xl border-black p-1 px-2 relative shadow-xl'>
+            <div className='flex items-center justify-between border rounded-2xl border-black p-1 px-2 relative'>
                 <input
                     type="text"
-                    className='w-[200px]  outline-none pl-2 focus:w-[280px] inputwidt'
+                    className='w-[250px]  outline-none pl-2 focus:w-[300px] inputwidt'
                     placeholder='Search Products'
                     value={Search}
                     onChange={(e) => setsearch(e.target.value)}
@@ -50,6 +36,7 @@ const Searchbar = () => {
                         :
                         filterData.slice(0,10).map((item, index) => (
                         <p
+                            key={index}
                             className={`text-black cursor-pointer p-1 ${index % 2 ? 'bg-gray-200' : 'bg-gray-50'}`}
                             onMouseDown={() => navigate(`/product/${item.id}`)}
                         >

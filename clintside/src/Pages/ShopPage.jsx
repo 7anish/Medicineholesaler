@@ -4,6 +4,7 @@ import DiscountShop from "../Components/DiscountShop";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import Url from "../../Url";
+import Searchbar from "../Components/Searchbar";
 
 function ShopPage() {
   const [searchparams] = useSearchParams();
@@ -77,9 +78,8 @@ function ShopPage() {
       {
         loading ?
           <section className="sm:pb-10 bg-[#eef4f4]">
-            <div className="flex flex-wrap bg-white justify-between items-center px-2 sm:px-8 ">
+            <div className="flex flex-wrap justify-between items-center px-2 sm:px-8  bg-white">
               <h1 className="text-3xl text-green-500 leading-relaxed tracking-wider font-semibold px-2 py-2 text-center capitalize">
-                {/* {`All Products / ${searchparams.get('category').split('-')[0]+ " " +((searchparams.get('category')).split('-')[1] ? (searchparams.get('category')).split('-')[1] : ""  )  || ""} / ${searchparams.get('subcategory').split('-')[0]+ " " +((searchparams.get('subcategory')).split('-')[1] ? (searchparams.get('subcategory')).split('-')[1] : ""  )  || ""}`} */}
                 Products
               </h1>
             </div>
@@ -104,11 +104,12 @@ function ShopPage() {
           </section>
           :
           <section className="sm:pb-10 bg-[#eef4f4]">
-            <div className="flex flex-wrap bg-white justify-between items-center px-2 sm:px-8 ">
+            <div className="flex flex-wrap bg-white justify-center pb-4 sm:justify-between items-center px-2 sm:px-8 ">
               <h1 className="text-3xl text-green-500 leading-relaxed tracking-wider font-semibold px-2 py-2 text-center capitalize">
                 {/* {`All Products / ${searchparams.get('category').split('-')[0]+ " " +((searchparams.get('category')).split('-')[1] ? (searchparams.get('category')).split('-')[1] : ""  )  || ""} / ${searchparams.get('subcategory').split('-')[0]+ " " +((searchparams.get('subcategory')).split('-')[1] ? (searchparams.get('subcategory')).split('-')[1] : ""  )  || ""}`} */}
                 Products
               </h1>
+              <Searchbar data={data} />
             </div>
             <section className="flex justify-start flex-wrap sm:flex-nowrap">
               <div className="w-full right-0">

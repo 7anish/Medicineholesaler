@@ -5,6 +5,7 @@ import Url from '../../Url';
 import Swal from 'sweetalert2';
 import ProductCard from '../Components/ProductCard';
 import { useNavigate } from 'react-router-dom';
+import Searchbar from '../Components/Searchbar';
 const Wishlist = () => {
     const navigate = useNavigate()
     const cookie = new Cookies()
@@ -72,8 +73,14 @@ const Wishlist = () => {
             :
             <div>
                 <section className='lg:py-10 xl:pt-20 xl:py-20 lg:px-16' >
-                    <div className='flex flex-wrap gap-2 px-4 sm:gap-0 py-4 justify-between items-center'>
+                    <div className='flex flex-wrap gap-2 px-4 sm:gap-0 py-4 justify-center sm:justify-between items-center'>
                         <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>Wishlist Products</h1>
+                        <Searchbar data={data.map((item)=>{
+                            return {
+                                name : item.name,
+                                id : item._id
+                            }
+                        })} />
                     </div>
                     <div className='flex  flex-wrap  py-4 gap-5 justify-center'>
                         {

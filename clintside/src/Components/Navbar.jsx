@@ -4,8 +4,11 @@ import { useCookies } from 'react-cookie';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import Searchbar from './Searchbar';
+import axios from 'axios';
+import Url from '../../Url';
 
 function Navbar() {
+    const [data , setdata] = useState([])
     const [cookies, setCookie, removeCookie] = useCookies(['name']);
     const [login, setlogin] = useState(true)
     const Links = [
@@ -23,6 +26,18 @@ function Navbar() {
         if (cookies.lgthusr) {
             setlogin(false)
         }
+    }, [])
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+                const { data } = await axios.get(`${Url}/api/v1/med/searchlist`)
+                setdata(data)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        fetchdata()
     }, [])
 
     const handlelogout = () => {
@@ -60,7 +75,7 @@ function Navbar() {
                         <ion-icon name={open ? 'close' : 'menu-outline'}></ion-icon>
                     </div>
                 </div>
-                <div className={`flex  md:flex-row lg:w-1/2 w-full md:z-auto bg-white z-10 transition-all duration-300 ease-in sm:justify-end gap-10 sm:gap-4 items-center lg:py-0 py-4 absolute md:static ${open ? 'left-0' : 'left-[-100%]'} flex-col-reverse`}>
+                <div className={`flex  md:flex-row lg:w-1/2 w-full md:z-auto bg-white z-10 transition-all duration-300 ease-in sm:justify-end gap-10 sm:gap-4 items-center lg:py-0 py-4 absolute md:static ${open ? 'left-0' : 'left-[-100%]'} flex-col`}>
                     
                     {
                         login ?
@@ -74,7 +89,7 @@ function Navbar() {
                                         <ion-icon name="cart-outline" size='large' className="font-extrabold "></ion-icon>
                                         <span className='text-lg'>{Quant.length}</span>
                                     </NavLink>
-                                    <Searchbar />
+                                    <Searchbar data={data} />
                                 </>
                             )
                             : (
@@ -92,7 +107,7 @@ function Navbar() {
                                     <div className='text-green-600 flex items-center hover:text-green-800 lg:text-lg px-5 cursor-pointer gap-1' onClick={() => handlelogout()}>
                                         Logout<ion-icon name="log-out-outline" className="font-extrabold "></ion-icon>
                                     </div>
-                                    <Searchbar />
+                                    <Searchbar data={data} />
                                 </>
                             )
                     }
