@@ -123,6 +123,25 @@ const handleGetSpecficProduct = async (req, res) => {
 }
 
 
+const handlesearchlist = async (req,res)=>{
+    try {
+        const  result = await product.find({})
+        if (!result) return res.status(404).json({ "error": "No Product Found" });
+        return res.status(200).json(
+            result.map((item) => {
+                return {
+                    name : item.name,
+                    id : item._id
+                }
+            })
+        );
+    } catch (e) {
+        console.log(e)
+        return res.status(500).json({ "Error": "Somthing Went Wrong Try adter Some Time" })
+    }
+}
+
+
 
 module.exports = {
     handleaddproduct,
@@ -130,4 +149,5 @@ module.exports = {
     handleupdateproduct,
     handlGetProductList,
     handleGetSpecficProduct,
+    handlesearchlist
 }

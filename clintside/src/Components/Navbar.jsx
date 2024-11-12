@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { useCookies } from 'react-cookie';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
+import Searchbar from './Searchbar';
 
 function Navbar() {
     const [cookies, setCookie, removeCookie] = useCookies(['name']);
@@ -59,16 +60,8 @@ function Navbar() {
                         <ion-icon name={open ? 'close' : 'menu-outline'}></ion-icon>
                     </div>
                 </div>
-                <div className={`flex flex-col md:flex-row lg:w-1/2 w-full md:z-auto bg-white z-10 transition-all duration-300 ease-in sm:justify-end gap-10 sm:gap-4 items-center lg:py-0 py-4 absolute md:static ${open ? 'left-0' : 'left-[-100%]'}`}>
-                    {
-                        Links.map((link) => (
-                            <div key={link.name}>
-                                <NavLink to={link.link} className={linkClass} onClick={() => setOpen(!open)}>
-                                    {link.name}
-                                </NavLink>
-                            </div>
-                        ))
-                    }
+                <div className={`flex  md:flex-row lg:w-1/2 w-full md:z-auto bg-white z-10 transition-all duration-300 ease-in sm:justify-end gap-10 sm:gap-4 items-center lg:py-0 py-4 absolute md:static ${open ? 'left-0' : 'left-[-100%]'} flex-col-reverse`}>
+                    
                     {
                         login ?
                             (
@@ -81,6 +74,7 @@ function Navbar() {
                                         <ion-icon name="cart-outline" size='large' className="font-extrabold "></ion-icon>
                                         <span className='text-lg'>{Quant.length}</span>
                                     </NavLink>
+                                    <Searchbar />
                                 </>
                             )
                             : (
@@ -98,6 +92,7 @@ function Navbar() {
                                     <div className='text-green-600 flex items-center hover:text-green-800 lg:text-lg px-5 cursor-pointer gap-1' onClick={() => handlelogout()}>
                                         Logout<ion-icon name="log-out-outline" className="font-extrabold "></ion-icon>
                                     </div>
+                                    <Searchbar />
                                 </>
                             )
                     }
