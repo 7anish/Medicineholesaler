@@ -3,9 +3,7 @@ import HeroImg from '../assets/Hero.png'
 import { useNavigate } from 'react-router-dom'
 
 function Hero() {
-    const navigation = useNavigate();
-    
-
+    console.assert("ansai")
     return (
         <div className='w-full h-fit  md:h-[90vh] pb-0 sm:pb-5 p-5 flex items-center justify-center'>
         <section className='w-full h-full flex flex-col md:flex-row justify-center md:bg-blue-100 py-1 sm:py-10 rounded-2xl px-2 sm:px-10 gap-5'>

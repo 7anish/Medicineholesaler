@@ -16,10 +16,8 @@ function FeaturedProd() {
             try {
                 const { data } = await axios.get(`${Url}/api/v1/med/getproduct?type=feature`)
                 setdata(data);
-                console.log(data)
                 setloading(false)
             } catch (e) {
-                console.log(e)
                 seterror(true)
                 setloading(false)
             }
@@ -43,7 +41,7 @@ function FeaturedProd() {
     return (
         loading ?
             <>
-                <section className='py-0 xl:py-0 px-4 lg:px-20'>
+                <section className='py-0  px-4 lg:px-20'>
                     <div className='flex flex-wrap gap-2 sm:gap-0 py-2 mb-4 justify-between items-center'>
                         <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>Featured Products</h1>
                         {/* <ViewAllBut path={'/category/allcategory'} /> */}
@@ -56,16 +54,16 @@ function FeaturedProd() {
             </>
             :
             <div>
-                <section className='lg:px-16'>
+                <section className='lg:px-16 py-4 sm:py-5'>
                     <div className='flex flex-wrap gap-2 px-4 sm:gap-0  justify-between items-center'>
-                        <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center'>Featured Products</h1>
+                        <h1 className='text-3xl lg:text-4xl xl:text-5xl font-bold sm:text-center mb-0 sm:mb-3'>Featured Products</h1>
                         {/* <ViewAllBut path={'/products'} /> */}
                     </div>
                     <div className='flex  flex-wrap  py-4 gap-2 sm:gap-5 justify-center'>
                         {
                             data.map((item, index) => (
                                 <>
-                                    <ProductCard index={index} id={item.id} name={item.name} actualprice={item.mrp} img={item.imageurl} cat={item.category} subcat={item.subcategory} discountprice={item.ourPrice} companyname={item.companyName} size={item.size} heart={"yes"}  range={item.range} composition={item.composition} />
+                                    <ProductCard key={index} index={index} id={item.id} name={item.name} actualprice={item.mrp} img={item.imageurl} cat={item.category} subcat={item.subcategory} discountprice={item.ourPrice} companyname={item.companyName} size={item.size} heart={"yes"}  range={item.range} composition={item.composition} />
                                 </>
                             ))
                         }

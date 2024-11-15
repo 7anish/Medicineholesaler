@@ -33,13 +33,11 @@ const Allorders = () => {
                         }
                     }
                 )
-                console.log(data)
                 setdata(data)
                 setloading(false)
             } catch (e) {
                 setloading(false)
                 seterror(true)
-                console.log(e)
             }
         }
         fetchdata()
@@ -58,27 +56,27 @@ const Allorders = () => {
         <div className='p-4 absolute top-[8vh] w-full md:w-[79vw] right-0 h-fit'>
             <h1 className="text-xl lg:text-3xl font-bold mb-4">{type != "" ? type : "All"} Orders</h1>
             <div className='w-full flex flex-wrap justify-between '>
-            <div className="w-full sm:w-[45%] form-group">
-                <label className="block text-gray-700 font-semibold">Search By Owner/Firm Name</label>
-                <input type="text" name="companyName" className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder='Owner/Firm Name' value={Search} onChange={(e) => setsearch(e.target.value)} />
-            </div>
-            <div className="w-full sm:w-[45%] form-group">
-                <label className="block text-gray-700 font-semibold">Search By Phone Number</label>
-                <input type="text" name="companyName" className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder='Phone NUmber' value={number} onChange={(e) => setnumber(e.target.value)} />
-            </div>
+                <div className="w-full sm:w-[45%] form-group">
+                    <label className="block text-gray-700 font-semibold">Search By Owner/Firm Name</label>
+                    <input type="text" name="companyName" className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder='Owner/Firm Name' value={Search} onChange={(e) => setsearch(e.target.value)} />
+                </div>
+                <div className="w-full sm:w-[45%] form-group">
+                    <label className="block text-gray-700 font-semibold">Search By Phone Number</label>
+                    <input type="text" name="companyName" className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder='Phone Number' value={number} onChange={(e) => setnumber(e.target.value)} />
+                </div>
             </div>
             <div className="my-5">
                 <label className=" block text-gray-700 font-semibold">Order Type</label>
                 <select name="type" id="cat" className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm uppercase focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={(e) => setype(e.target.value)}>
                     <option value="">All Order</option>
                     <option value="Pending">Pending</option>
-                    <option value="Delivered">Deliverde</option>
-                    <option value="Cancled">Cancled</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Cancled">cancelled</option>
                 </select>
             </div>
             <hr className='h-1 bg-gray-300 my-2' />
             <div className='flex gap-5 flex-wrap md:justify-evenly w-full h-fit p-4 items-start justify-start '>
-                <div className="w-full flex flex-wrap gap-4 items-center md:justify-center  justify-start">
+                <div className="w-full flex flex-wrap gap-4 items-center   justify-start overflow-scroll scrollbar">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 border border-gray-500 ">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-500">
                             <tr class="odd:bg-white  even:bg-gray-50  border-b">

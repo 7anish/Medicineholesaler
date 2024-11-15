@@ -59,7 +59,6 @@ function ProductCard({ id, name, cat, subcat, actualprice, img, index, discountp
                 return
             }
         } catch (e) {
-            console.log(e)
             Swal.fire({
                 title: "Somthing Went wrong",
                 icon: "error"
@@ -98,7 +97,6 @@ function ProductCard({ id, name, cat, subcat, actualprice, img, index, discountp
                 return
             }
         } catch (e) {
-            console.log(e)
             Swal.fire({
                 title: "Somthing Went wrong",
                 icon: "error"

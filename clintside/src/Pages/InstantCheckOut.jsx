@@ -79,8 +79,6 @@ const InstantCheckOut = () => {
             order : order,
             createdBy :   cookie.get('lgid') || undefined
         }
-
-        console.log(deatails)
         if(!checkothers(e.target.name.value)){
             setisprocess(false)
             Swal.fire("plese enter a valid name")

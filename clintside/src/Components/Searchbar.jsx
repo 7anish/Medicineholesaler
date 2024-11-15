@@ -4,47 +4,58 @@ import { FaSearch } from "react-icons/fa";
 import Url from '../../Url';
 import { useNavigate } from 'react-router-dom';
 
-const Searchbar = ({data}) => {
+const Searchbar = ({ data, fun }) => {
     const navigate = useNavigate()
     const [Search, setsearch] = useState("")
-    const [open, setOpen] = useState(false)
+    const [Open, setOpen] = useState(false)
 
     const filterData = data?.filter((item) => {
         return item.name.toLowerCase().includes(Search.toLowerCase())
     })
+
+    const handlesearch = (searchquerry) => {
+        if(!(searchquerry.length == 0)){
+            navigate(`/search?search=${searchquerry}`)   
+        }
+    }
     return (
-        <div className='relative'>
-            <div className='flex items-center justify-between border rounded-2xl border-black p-1 px-2 relative'>
-                <input
-                    type="text"
-                    className='w-[250px]  outline-none pl-2 focus:w-[300px] inputwidt'
-                    placeholder='Search Products'
-                    value={Search}
-                    onChange={(e) => setsearch(e.target.value)}
-                    onFocus={() => setOpen(true)}
-                    onBlur={() => setOpen(false)}
-                />
-                <FaSearch className='cursor-pointer text-green-500' size={20} />
-            </div>
-            {open && (
-                <div className='w-[300px] h-fit absolute bg-white top-[100%] rounded-xl left-3 z-40 flex flex-col'>
-                    {
-                        filterData.length === 0 ? 
-                        <p className={`text-black cursor-pointer p-1 bg-gray-100`}>
-                            No Result Found
-                        </p>
-                        :
-                        filterData.slice(0,10).map((item, index) => (
-                        <p
-                            key={index}
-                            className={`text-black cursor-pointer p-1 ${index % 2 ? 'bg-gray-200' : 'bg-gray-50'}`}
-                            onMouseDown={() => navigate(`/product/${item.id}`)}
-                        >
-                            {item.name}
-                        </p>
-                    ))}
+        <div className='w-full xl:w-fit flex sm:justify-end justify-center' >
+            <div className='w-[95%] sm:w-fit relative'>
+                <div className='flex items-center justify-between border rounded-2xl border-black   relative'>
+                    <input
+                        type="text"
+                        className='w-[250px] outline-none pl-2 focus:w-[300px] inputwidt rounded-l-2xl'
+                        placeholder='Search Products'
+                        value={Search}
+                        onChange={(e) => setsearch(e.target.value)}
+                        onFocus={() => setOpen(true)}
+                        onBlur={() => setOpen(false)}
+                    />
+                    <div className=' bg-gray-200 py-2 px-5 rounded-r-2xl flex justify-end cursor-pointer'  onClick={()=> handlesearch(Search)}>
+                    <FaSearch className=' text-green-500 ' size={20}  />
+                    </div>
                 </div>
-            )}
+                {Open && (
+                    Search.length == 0 ? 
+                    ""
+                    :
+                    <div className='w-[300px] h-fit absolute bg-gray-50 top-[100%] rounded-xl py-2 overflow-hidden left-3 z-40 flex flex-col'>
+                        {
+                            filterData.length === 0 ?
+                                ""
+                                :
+                                filterData.slice(0, 10).map((item, index) => (
+                                    <p
+                                        key={index}
+                                        className={`text-black cursor-pointer p-1 bg-gray-50`}
+                                        onMouseDown={() => handlesearch(item.name)}
+                                    >
+                                        {item.name}
+                                    </p>
+                                ))}
+                    </div>
+                )}
+            </div>
         </div>
 
     )

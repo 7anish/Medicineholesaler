@@ -7,11 +7,6 @@ const Contact = () => {
 
     const handlesubmit = (e)=>{
         e.preventDefault()
-        console.log(e.target.name.value)
-        console.log(e.target.email.value)
-        console.log(e.target.phno.value)
-        console.log(e.target.textarea.value)
-
         const detail = {
             name : e.target.name.value,
             phno : e.target.phno.value,

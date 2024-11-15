@@ -24,20 +24,17 @@ function ProductPage() {
     const dispach = useDispatch()
 
     const addtocartitem = (payload) => {
-        console.log(payload)
         dispach(addtocart(payload))
     }
     useEffect(() => {
         const fetchdata = async () => {
             try {
                 const { data } = await axios.get(`${Url}/api/v1/med/getproduct/${params.id}`)
-                console.log(data)
                 setdata(data);
                 setloading(false)
             } catch (e) {
                 seterror(true)
                 setloading(false)
-                console.log(e)
             }
         }
         fetchdata()
@@ -66,7 +63,6 @@ function ProductPage() {
                 return
             }
         } catch (e) {
-            console.log(e)
             Swal.fire({
                 title: "Somthing Went wrong",
                 icon: "error"
@@ -105,7 +101,6 @@ function ProductPage() {
                 return
             }
         } catch (e) {
-            console.log(e)
             Swal.fire({
                 title: "Somthing Went wrong",
                 icon: "error"

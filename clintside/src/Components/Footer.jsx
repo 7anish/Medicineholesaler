@@ -1,15 +1,16 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { FaGithub } from "react-icons/fa";
 
 
 function Footer() {
+    const navigate = useNavigate()
     return (
         <>
             <footer className='bg-gray-700 text-white px-5 lg:px-20 py-10 pb-5'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center'>
                     <div className='flex flex-col items-start'>
-                        <div className='font-bold text-xl lg:text-2xl'>Medicine<span className='text-green-600'>Wholesale</span></div>
+                        <div className='font-bold text-xl lg:text-2xl cursor-pointer' onClick={()=> navigate('/')}>Medicine<span className='text-green-600'>Wholesale</span></div>
                         <p className='text-sm lg:text-lg mt-2'>Best Price is Our Priority</p>
                         <div className='flex gap-4 mt-4'>
                             <NavLink to="https://www.facebook.com">
@@ -36,7 +37,7 @@ function Footer() {
                         <h2 className='text-lg lg:text-2xl font-bold'>Useful Links</h2>
                         <NavLink to="/" className='text-sm lg:text-lg mt-2'>Home</NavLink>
                         <NavLink to="/shop" className='text-sm lg:text-lg mt-2'>Shop</NavLink>
-                        <NavLink to="/contacts" className='text-sm lg:text-lg mt-2'>Contacts</NavLink>
+                        <NavLink to="/about-us" className='text-sm lg:text-lg mt-2'>Contacts</NavLink>
                         <NavLink to="/cart" className='text-sm lg:text-lg mt-2'>Cart</NavLink>
                     </div>
                     <div className='sm:flex flex-col hidden'>

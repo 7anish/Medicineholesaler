@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { FaEye } from 'react-icons/fa'
-import { FaBookmark } from "react-icons/fa";
 import Url from '../../../Url';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -26,12 +24,10 @@ const Specficorder = () => {
           }
         )
         setloading(false)
-        console.log(data)
         setorder(data)
       } catch (e) {
         setloading(false)
         seterror(true)
-        console.log(e)
       }
     }
     fetchdata()
@@ -105,7 +101,7 @@ const Specficorder = () => {
     <div className="absolute right-0 top-[8vh] w-full  md:w-[80vw] h-fit  add-product-container p-4 sm:p-6 lg:p-8">
       <h1 className="text-xl lg:text-3xl font-bold mb-4"></h1>
       <div className="w-full h-fit p-4">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-700 border border-gray-500">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-700 border border-gray-500 overflow-scroll scrollbar">
           <tr className='border border-gray-500'>
             <th scope="col" colSpan={4} className="px-6 py-3 border border-gray-500 text-center text-xl text-black text-wrap">
               Order Details
@@ -196,7 +192,7 @@ const Specficorder = () => {
             </td>
           </tr>
         </table>
-        <table className="w-full text-sm text-left rtl:text-right text-gray-700 border-0 border-t-0 border-gray-500 ">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-700 border-0 border-t-0 border-gray-500 overflow-scroll scrollbar">
           <tr>
             <th colSpan={3} scope="col" className="px-6 py-3 border border-gray-500 text-xl font-bol text-right border-t-0">
               Total Billing Amount
@@ -206,7 +202,7 @@ const Specficorder = () => {
             </th>
           </tr>
         </table>
-        <table className="w-full text-sm text-gray-700  border  border-gray-500 border-t-0">
+        <table className="w-full text-sm text-gray-700  border  border-gray-500 border-t-0 overflow-scroll scrollbar">
           <tr>
             <th scope="col" className="px-6 py-3  border-gray-500  font-bol  border-t-0">
               Product Name
@@ -226,27 +222,27 @@ const Specficorder = () => {
           </tr>
           {
             order.length == 0 ? "" :
-            order?.orders?.map((product, index) => {
-              return (
-                <tr key={index}> 
-                  <th scope="col" className="px-6 py-3 border border-gray-500  font-bol">
-                  {product.productId.name}
-                  </th>
-                  <th scope="col" className="px-6 py-3 border border-gray-500  font-bold">
-                  {product.productId.size}
-                  </th>
-                  <th scope="col" className="px-6 py-3 border border-gray-500  font-bol">
-                  {product.productId.mrp}
-                  </th>
-                  <th scope="col" className="px-6 py-3 border border-gray-500  font-bold">
-                  {product.productId.ourPrice}
-                  </th>
-                  <th scope="col" className="px-6 py-3 border border-gray-500  font-bold">
-                  {product.quantity}
-                  </th>
-                </tr>
-              )
-            })
+              order?.orders?.map((product, index) => {
+                return (
+                  <tr key={index}>
+                    <th scope="col" className="px-6 py-3 border border-gray-500  font-bol">
+                      {product.productId.name}
+                    </th>
+                    <th scope="col" className="px-6 py-3 border border-gray-500  font-bold">
+                      {product.productId.size}
+                    </th>
+                    <th scope="col" className="px-6 py-3 border border-gray-500  font-bol">
+                      {product.productId.mrp}
+                    </th>
+                    <th scope="col" className="px-6 py-3 border border-gray-500  font-bold">
+                      {product.productId.ourPrice}
+                    </th>
+                    <th scope="col" className="px-6 py-3 border border-gray-500  font-bold">
+                      {product.quantity}
+                    </th>
+                  </tr>
+                )
+              })
           }
         </table>
         {

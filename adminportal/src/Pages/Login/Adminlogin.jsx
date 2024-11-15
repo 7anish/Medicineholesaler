@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import Swal from 'sweetalert2'
 import axios from 'axios'
@@ -79,7 +79,6 @@ function Adminlogin() {
             }
         }catch(e){
             setisprocessing(false)
-            console.log(e)
             Swal.fire({
                 title : "User id or password did't matched",
                 icon : 'error'

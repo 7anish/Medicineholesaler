@@ -4,7 +4,6 @@ import DiscountShop from "../Components/DiscountShop";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import Url from "../../Url";
-import Searchbar from "../Components/Searchbar";
 
 function ShopPage() {
   const [searchparams] = useSearchParams();
@@ -40,11 +39,9 @@ function ShopPage() {
           url = `category=${searchparams.get('category')}`
         }
         const { data } = await axios.get(`${Url}/api/v1/med/getproduct?${url}`)
-        console.log(data)
         setdata(data);
         setloading(false)
       } catch (e) {
-        console.log(e)
         seterror(true)
         setloading(false)
       }
@@ -109,7 +106,6 @@ function ShopPage() {
                 {/* {`All Products / ${searchparams.get('category').split('-')[0]+ " " +((searchparams.get('category')).split('-')[1] ? (searchparams.get('category')).split('-')[1] : ""  )  || ""} / ${searchparams.get('subcategory').split('-')[0]+ " " +((searchparams.get('subcategory')).split('-')[1] ? (searchparams.get('subcategory')).split('-')[1] : ""  )  || ""}`} */}
                 Products
               </h1>
-              <Searchbar data={data} />
             </div>
             <section className="flex justify-start flex-wrap sm:flex-nowrap">
               <div className="w-full right-0">

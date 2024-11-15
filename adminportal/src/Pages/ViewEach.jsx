@@ -1,6 +1,5 @@
-import React, { act } from 'react'
+import React from 'react'
 import { useState } from 'react';
-import Syrup from '../assets/syrup.jpg';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -8,6 +7,7 @@ import Url from '../../Url';
 import { Cookies } from 'react-cookie';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 function ViewEach() {
     const cookie = new Cookies()
     const params = useParams()
@@ -29,10 +29,8 @@ function ViewEach() {
                     }
                 )
                 setdata(data)
-                console.log(data)
                 setloading(false)
             }catch(e){
-                console.log(e)
                 seterror(true)
                 setloading(false)
             }

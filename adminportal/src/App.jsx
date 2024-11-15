@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
 import Sidebar from './Components/Sidebar';
 import Navbar from './Components/Navbar';

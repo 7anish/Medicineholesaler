@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useLocation, useParams } from 'react-router-dom';
+import { NavLink, useLocation} from 'react-router-dom';
 import { RxCross2 } from "react-icons/rx";
 import { FaClipboardList } from "react-icons/fa";
-import { TbTruckDelivery } from "react-icons/tb";
 import { FaBoxArchive } from "react-icons/fa6";
-import { IoIosTimer } from "react-icons/io";
-import { MdDoNotDisturb } from "react-icons/md";
 
 
 
@@ -28,7 +25,7 @@ function Sidebar() {
         <div className={`${location.pathname == '/login' ? 'hidden' : '' } w-[80vw] md:w-[20vw] h-screen  fixed  bg-gray-800 text-white transition-all duration-300 ${open ?  'translate-x-[0%]' : 'translate-x-[-100%] md:translate-x-[0%]' } sm:left-0 z-40`}>
             <div className="h-[8vh] flex items-center px-4 border-b">
                 <NavLink to="/" className="text-2xl font-bold hidden sm:block">
-                <div className=' font-bold text-xl lg:text-3xl md:flex hidden'>Medical<span className='text-orange-600 text-lg lg:text-3xl'>Wholesale</span> </div>
+                <div className=' font-bold text-xl lg:text-3xl md:flex hidden'>Medicine<span className='text-orange-600 text-lg lg:text-3xl'>Wholesale</span> </div>
                 </NavLink>
             </div>
             <div>

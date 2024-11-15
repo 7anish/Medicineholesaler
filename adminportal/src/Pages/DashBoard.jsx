@@ -7,13 +7,9 @@ import { Cookies } from 'react-cookie';
 
 const DashBoard = () => {
     const cookie = new Cookies()
-    const navigate = useNavigate()
     const [data, setdata] = useState([])
     const [error, seterror] = useState(false)
     const [loading, setloading] = useState(false)
-    const [type, setype] = useState("")
-
-
     useEffect(() => {
         const fetchdata = async () => {
             setloading(true)
@@ -25,13 +21,11 @@ const DashBoard = () => {
                         }
                     }
                 )
-                console.log(data)
                 setdata(data)
                 setloading(false)
             } catch (e) {
                 setloading(false)
                 seterror(true)
-                console.log(e)
             }
         }
         fetchdata()
@@ -48,11 +42,11 @@ const DashBoard = () => {
     }
     return (
         <div className='p-4 absolute top-[8vh] w-full md:w-[79vw] right-0 h-fit'>
-            <h1 className="text-xl lg:text-3xl font-bold mb-4">Pending Order Qunatity</h1>
+            <h1 className="text-xl lg:text-3xl font-bold mb-4">Pending Order Quantity</h1>
             <hr className='h-1 bg-gray-300 my-2' />
 
             <div className='flex gap-5 flex-wrap md:justify-evenly w-full h-fit p-4 items-start justify-start '>
-                <div className="w-full flex flex-wrap gap-4 items-center md:justify-center  justify-start">
+                <div className="w-full flex flex-wrap gap-4 items-center justify-start overflow-scroll scrollbar">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 border border-gray-500 ">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-500">
                             <tr>

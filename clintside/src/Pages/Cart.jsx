@@ -35,7 +35,7 @@ function Cart() {
   }
   return (
     <div>
-      <div className="container mx-auto py-16 sm:py-28 px-3 sm:px-0">
+      <div className="container mx-auto py-16 sm:py-28 px-3 sm:px-5">
         <h1 className="text-balck text-3xl mb-4 font-bold xl:text-5xl">My Cart</h1>
         <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4 lg:gap-4 mb-4 px-2">
           <div className="grid grid-cols-1 md:grid-cols-1 gap-4">

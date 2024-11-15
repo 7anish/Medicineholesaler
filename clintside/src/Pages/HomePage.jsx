@@ -15,17 +15,10 @@ function HomePage() {
   
 return (
     <div className='font-poppins'>
-      {/* Hero Section */}
       <Hero/>
-      {/* Categories */}
       <BrowseByCat />
-      {/* Products */}
       <FeaturedProd />
       <Contact />
-      {/* Discount Banner */}
-      {/* <DiscountHome /> */}
-      {/* Care */}
-      {/* <Care /> */}
     </div>
   )
 }

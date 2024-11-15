@@ -4,7 +4,6 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { Cookies } from 'react-cookie';
 import Url from '../../Url';
-import { json } from 'react-router-dom';
 
 
 const c = ["baby-and-female-and-elderly-care", "face-and-oral-care", "sexual-wellness", "shampoo-and-body-care", "health-and-wellness", "others"];
@@ -84,7 +83,6 @@ function AddProduct() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setloading(true)
-        console.log(data.images)
         const formdata = new FormData();
         for (let key in data) {
             if (key === "images") {
@@ -155,7 +153,6 @@ function AddProduct() {
             }
         } catch (e) {
             setloading(false);
-            console.log(e)
             Swal.fire({
                 title: "Error In Adding Product",
                 icon: "error"

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { FaEdit, } from 'react-icons/fa';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Url from '../../Url';
@@ -41,7 +40,6 @@ function ViewProduct() {
     } else if (querry.category == "ayurvedic-product") {
       setype(a);
     }
-    console.log(type)
   }, [querry.category])
 
   useEffect(() => {
@@ -50,10 +48,8 @@ function ViewProduct() {
       try {
         const { data } = await axios.get(`${Url}/api/v1/med/getproduct?${querrystring}`)
         setloading(false)
-        console.log(data)
         setdata(data);
       } catch (e) {
-        console.log(e)
         seterror(true)
         setloading(false)
       }
@@ -93,7 +89,6 @@ function ViewProduct() {
         return
       }
     } catch (e) {
-      console.log(e)
       Swal.fire({
         title: "Error In deleting Product",
         icon: "error"
@@ -149,7 +144,7 @@ function ViewProduct() {
       </div>
 
       <hr className='h-1 bg-gray-300 mb-3' />
-      <div className="flex flex-wrap gap-4 items-center lg:justify-center  justify-start">
+      <div className="flex flex-wrap gap-4 items-center  justify-start overflow-scroll scrollbar">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 border border-gray-500 ">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-500 text-wrap">
             <tr>
@@ -181,7 +176,7 @@ function ViewProduct() {
               loading ?
                 <>
                   <tr>
-                    <td colSpan={5}>
+                    <td colSpan={7}>
                       <section className='w-full h-[80vh]  py-0 xl:pt-10 xl:py-0 px-4 lg:px-20 flex items-center justify-center '>
                         <div className='my-20 flex items-center justify-center'>
                           <div class="w-16 h-16 rounded-full animate-spin 
@@ -197,7 +192,7 @@ function ViewProduct() {
                   ?
                   <>
                     <tr>
-                      <td colSpan={6}>
+                      <td colSpan={7}>
                         <section className='w-full h-[80vh]  py-0 xl:pt-10 xl:py-0 px-4 lg:px-20 flex items-center justify-center '>
                           <div className='my-20 flex items-center justify-center'>
                             <h1 className='text-xl font-semibold'>No Product Found</h1>
@@ -261,46 +256,3 @@ function ViewProduct() {
 }
 
 export default ViewProduct
-
-
-// {data?.map((medicine) => (
-//   <div key={medicine.id} className='bg-[#ffffffda] w-[300px] md:w-[350px] h-fit shadow-card-shadow hover:shadow-card-hover transition-all duration-500 rounded-xl p-4 flex flex-col justify-around gap-3'>
-//     <img src={medicine.imageurl} alt="" className='w-full h-60 object-cover rounded-md cursor-pointer' onClick={() => navigate(`/view/  ₹&nbsp;{medicine.id}`)} />
-//     <div className='flex gap-2'>
-//       <span className='text-sm flex px-2 border rounded-lg bg-[#ddeff1] font-medium w-fit'>{medicine.category}</span>
-//       <span className='text-sm flex px-2 border rounded-lg bg-[#ddeff1] w-fit'>{medicine.subcategory}</span>
-//     </div>
-//     <div className='flex flex-col gap-4'>
-//       <h1 className='text-2xl font-bold cursor-pointer hover:text-blue-500' onClick={() => navigate(`/view/  ₹&nbsp;{medicine.id}`)}>{medicine.name}</h1>
-//       {/* <p className='text-lg flex-grow'>{medicine.desc}</p> */}
-//       <div className='flex justify-between flex-grow items-center'>
-//         <h1 className='text-2xl font-bold'> ₹&nbsp;&nbsp;{medicine.discountprice}</h1>
-//       </div>
-//     </div>
-//     <div className='flex justify-between flex-row items-center'>
-//       <NavLink to={`/edit/  ₹&nbsp;{medicine.id}`} className='flex text-xl items-center gap-2 text-green-500 hover:text-green-700'>
-//         <FaEdit />
-//         <span>Edit</span>
-//       </NavLink>
-// <button className='flex text-xl items-center gap-2 text-red-500 hover:text-red-700' onClick={() => {
-//   Swal.fire({
-//     title: "Are you sure?",
-//     text: "You won't be Delete The Product",
-//     icon: "warning",
-//     showCancelButton: true,
-//     confirmButtonColor: "#65A30D",
-//     cancelButtonColor: "#d33",
-//     confirmButtonText: "Yes, delete it!"
-//   }).then((result) => {
-//     if (result.isConfirmed) {
-//       handledelete(medicine.id)
-//     }
-//   });
-
-// }}>
-//         <MdDelete />
-//         <span>Delete</span>
-//       </button>
-//     </div>
-//   </div>
-// ))}

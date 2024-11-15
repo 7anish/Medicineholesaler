@@ -5,7 +5,6 @@ const checkisadmin = (req,res,next)=>{
         if(!req.get('Authorization')) return res.status(401).json({error : "token Expired"})
         const token = req.get('Authorization').split("Bearer ")[1]
         const admin = verifyToken(token)
-
         if(admin.role =='ADMIN'){
             next()
         }

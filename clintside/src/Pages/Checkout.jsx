@@ -33,7 +33,6 @@ const Checkout = () => {
             if (cartitem.length === 0) {
                 navigate('/')
             } else {
-                console.log("sahjb")
                 const info = JSON.parse(localStorage.getItem('information')) || {
                     username: "",
                     usermail: "",
@@ -52,7 +51,6 @@ const Checkout = () => {
             }
 
         } catch (e) {
-            // console.log(e)
             navigate('/')
         }
     }, [])
@@ -114,7 +112,6 @@ const Checkout = () => {
             createdBy: cookie.get('lgid') || undefined
         }
 
-        console.log(deatails)
         if (!checkothers(e.target.name.value)) {
             setisprocess(false)
             Swal.fire("plese enter a valid name")

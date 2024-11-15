@@ -22,19 +22,21 @@ const Orderhistory = () => {
                     return
                 }
                 const id = cookie.get('lgid')
-                console.log(id)
                 const { data } = await axios.get(`${Url}/api/v1/med/getorderhistory?id=${id}`)
-                console.log(data)
                 setdata(data);
                 setloading(false)
             } catch (e) {
-                console.log(e)
                 seterror(true)
                 setloading(false)
             }
         }
         fetchdata()
     }, [])
+
+    const getdate = (isodate)=>{
+        const date = new Date(isodate)
+        return date.toISOString().substring(0, 10);
+    } 
 
 
     if (error) {
@@ -83,9 +85,10 @@ const Orderhistory = () => {
                     {
                         data.map((orders, index) => (
                             <div key={index} className="mt-7 border border-gray-300 pt-9">
-                                <div className="flex max-md:flex-col items-start sm:items-center justify-between px-3 md:px-11">
+                                <div className="flex max-md:flex-col items-start sm:items-center justify-between px-3 md:px-11 py-3">
                                     <div className="data">
-                                        <p className="font-medium text-sm sm:text-lg leading-8 text-black whitespace-nowrap">Order ID : {orders._id}</p>
+                                        <p className="font-medium text-sm sm:text-lg leading-8 text-black whitespace-nowrap">Order ID : <span className=' uppercase'>{(orders._id.slice(16))}</span></p>
+                                        <p className="font-medium text-sm sm:text-lg leading-8 text-black whitespace-nowrap">Date : <span className=' uppercase'>{getdate(orders.createdAt).split('-').reverse().join('/')}</span></p>
                                     </div>
                                     <div className=" flex flex-row   justify-center gap-10  items-center">
                                         <p className="font-normal text-lg text-gray-500 leading-8  text-left whitespace-nowrap">
@@ -157,7 +160,7 @@ const Orderhistory = () => {
 
                                     <p className="font-medium text-xl leading-8 text-black max-sm:py-4"> <span className="text-gray-500">Total
                                         Payable
-                                        Price: </span> ₹&nbsp;{orders.totalPrice}</p>
+                                        Amount: </span> ₹&nbsp;{orders.totalPrice}</p>
                                 </div>
                             </div>
                         ))

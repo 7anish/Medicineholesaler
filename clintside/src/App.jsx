@@ -5,7 +5,6 @@ import {
 import { ToastContainer } from 'react-toastify';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
-import MainLayout from './Layout/MainLayout';
 import HomePage from './Pages/HomePage';
 import DoctorPage from './Pages/DoctorPage';
 import ShopPage from './Pages/ShopPage';
@@ -23,17 +22,18 @@ import Wishlist from './Pages/Wishlist';
 import Orderhistory from './Pages/Orderhistory';
 import About from './Pages/About';
 import InstantCheckOut from './Pages/InstantCheckOut';
+import Searcheditems from './Pages/Searcheditems';
 
 export default function App() {
-  const dispatch =  useDispatch()
-  useEffect(()=>{
+  const dispatch = useDispatch()
+  useEffect(() => {
     dispatch(initialreducer())
   })
   return (
     <Router >
-    <ToastContainer />
+      <ToastContainer />
       <Scrolltotop />
-      <Navbar/>
+      <Navbar />
       <Routes>
         <Route index path="/" element={<HomePage />} />
         <Route index path="/category/:id" element={<Subcatpage />} />
@@ -48,6 +48,12 @@ export default function App() {
         <Route path='/instantcheckout' element={<InstantCheckOut />} />
         <Route path='/orderhistory' element={<Orderhistory />} />
         <Route path='/about-us' element={<About />} />
+        <Route path='/search' element={<Searcheditems />} />
+        <Route path='*' element={
+          <section className=' w-full h-[50vh] flex items-center justify-center' >
+          <h1 className='text-xl text-green-500 font-poppins font-bold'>Page Not Found</h1>
+          </section>
+        } />
       </Routes>
       <Footer />
     </Router>

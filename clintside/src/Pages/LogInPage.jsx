@@ -89,7 +89,6 @@ function LogInPage() {
             }
         }catch(e){
             setisprocessing(false)
-            console.log(e)
             Swal.fire({
                 title : "User id or password did't matched",
                 icon : 'error'

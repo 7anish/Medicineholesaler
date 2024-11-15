@@ -9,7 +9,7 @@ const cat = [
         "text": "#ff6347",
         "subcat": [
             {
-                "name": "baby,female-&-elderly-care",
+                "name": "baby, female-&-elderly-care",
                 "route": "cosmetic-products/baby-and-female-and-elderly-care",
                 "bg": "#ffe8e8",
                 "icon": "accessibility-outline",
@@ -66,7 +66,7 @@ const cat = [
                 "iconColor": "#2dd1dd"
             },
             {
-                "name": "sugar-&-bp-care-machine",
+                "name": "sugar-&-bP-care-machine",
                 "route": "surgical-items/sugar-and-BP-care-machine",
                 "bg": "#ffe8e8",
                 "icon": "pulse-outline",
@@ -124,7 +124,7 @@ const cat = [
             },
             {
                 "name": "pediatric-drop-&-syrup",
-                "route": "patent-medicine/pediatric-drop-and-syrup",
+                "route": "patent-medicine/paediatric-drop-and-syrup",
                 "bg": "#ffe8e8",
                 "icon": "water-outline",
                 "iconColor": "#ff6347"

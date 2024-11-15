@@ -15,10 +15,8 @@ const Subcatpage = () => {
             try {
                 const { data } = await axios.get(`${Url}/api/v1/med/getcategory?category=${params.id}`)
                 setcatdata(data)
-                console.log(catdata)
                 setloading(false)
             } catch (e) {
-                console.log(e)
                 seterror(true)
                 setloading(false)
             }
