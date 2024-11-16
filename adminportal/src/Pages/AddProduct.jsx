@@ -223,8 +223,8 @@ function AddProduct() {
                                     <input type="text" name="composition" value={data.composition} onChange={handleChange} className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder='Composition' />
                                 </div>
                                 <div className="form-group">
-                                    <label className="block text-gray-700 font-semibold">Inventory:</label>
-                                    <input type="number" name="inventory" value={data.inventory} onChange={handleChange} className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder='Inventory' />
+                                    <label className="block text-gray-700 font-semibold">Inventory:*</label>
+                                    <input type="number" name="inventory" value={data.inventory} onChange={handleChange} className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder='Inventory' required />
                                 </div>
                             </div>
                             <h3 className='text-2xl font-bold'>Ranges</h3>

@@ -1,10 +1,17 @@
-import React from 'react'
+import React , {useState , useEffect} from 'react'
 import img from '../assets/Hero2.png'
 import Swal from 'sweetalert2'
 import emailjs from '@emailjs/browser'
+import { RxCross2 } from "react-icons/rx";
+import { MdContactMail } from "react-icons/md";
+
 
 const Contact = () => {
 
+    const [isopen, setisopen] = useState(false)
+    const handleopen = (name) => {
+        setisopen(!isopen)
+    }
     const handlesubmit = (e)=>{
         e.preventDefault()
         const detail = {
@@ -13,8 +20,6 @@ const Contact = () => {
             email : e.target.email.value,
             message : e.target.textarea.value,
         }
-
-
         emailjs.send('service_dw2un2c', 'template_3ehp3ac', detail ,"TuVP-Gmb8J1eRd7X3").then(
             (response) => {
                 Swal.fire({
@@ -30,22 +35,32 @@ const Contact = () => {
             },
         );
     }
+
+    useEffect(() => {
+        document.body.style.overflowY = isopen ? "hidden" : "scroll"
+    }, [isopen])
     return (
-        <section class="" id="contact">
-            <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+
+        <>
+            <div className='w-12 h-12 sm:w-16 sm:h-16 rounded-full animate-bounce bg-green-600 fixed bottom-10 right-3 sm:right-10 flex items-center justify-center cursor-pointer' onClick={(e) => handleopen()}>
+                <MdContactMail className='text-2xl ' />
+            </div>
+            <section class={`w-full h-[100vh] bg-[#00000030] flex items-center justify-center p-4 fixed top-0 ${isopen ? "flex" : "hidden"}`} id="contact">
+            <div class="w-[320px] sm:w-[500px]  p-5 bg-white shadow-2xl relative rounded-lg">
+            <RxCross2 fontSize={24} className='absolute top-2 right-2 cursor-pointer' onClick={() => handleopen()}/>
                 <div class="mb-4">
                     <div class="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">
                         <p class="text-base font-semibold uppercase tracking-wide text-green-600 ">
                             Contact
                         </p>
                         <h2
-                            class="font-heading mb-4 font-bold tracking-tight text-gray-900 text-3xl sm:text-4xl">
+                            class="font-heading mb-4 font-bold tracking-tight text-gray-900 text-2xl">
                             Tell us what you need
                         </h2>
                     </div>
                 </div>
                 <div class="flex items-stretch justify-between">
-                        <div class="md:w-[45%] w-full" id="form">
+                        <div class="w-full" id="form">
                             <form id="contactForm" onSubmit={(e)=> handlesubmit(e)}>
                                 <div class="mb-6">
                                     <div class="mx-0 mb-1 sm:mb-4">
@@ -68,12 +83,10 @@ const Contact = () => {
                                 </div>
                             </form>
                         </div>
-                        <div className='w-[45%] md:flex hidden items-center justify-center'>
-                            <img src={img} alt="" className='scale-90' />
-                        </div>
                 </div>
             </div>
         </section>
+        </>
     )
 }
 

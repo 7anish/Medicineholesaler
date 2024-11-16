@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import {
   BrowserRouter as Router, Routes, Route
 } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import HomePage from './Pages/HomePage';
@@ -23,7 +23,6 @@ import Orderhistory from './Pages/Orderhistory';
 import About from './Pages/About';
 import InstantCheckOut from './Pages/InstantCheckOut';
 import Searcheditems from './Pages/Searcheditems';
-
 export default function App() {
   const dispatch = useDispatch()
   useEffect(() => {
@@ -31,7 +30,10 @@ export default function App() {
   })
   return (
     <Router >
-      <ToastContainer />
+      <Toaster
+        position="bottom-center"
+        reverseOrder={false}
+      />
       <Scrolltotop />
       <Navbar />
       <Routes>
@@ -49,11 +51,6 @@ export default function App() {
         <Route path='/orderhistory' element={<Orderhistory />} />
         <Route path='/about-us' element={<About />} />
         <Route path='/search' element={<Searcheditems />} />
-        <Route path='*' element={
-          <section className=' w-full h-[50vh] flex items-center justify-center' >
-          <h1 className='text-xl text-green-500 font-poppins font-bold'>Page Not Found</h1>
-          </section>
-        } />
       </Routes>
       <Footer />
     </Router>

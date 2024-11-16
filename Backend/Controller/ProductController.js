@@ -9,7 +9,7 @@ const handleaddproduct = async (req, res) => {
         let img = []
         if (req.files && req.files.length > 0) {
             img = req.files.map((file) => ({
-                imageurl: file.path,
+                imageurl: `http://localhost:8001/public/${file.filename}`,
             }));
         }
         const result = await product.create({

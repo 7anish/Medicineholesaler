@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express();
+const path = require('path')
 const Adminrouter = require('./Router/AdminRouter') // admin router
 const Producrouter = require('./Router/Productrouter') // Product router
 const OrderRouter = require('./Router/orderRouter')
@@ -20,6 +21,7 @@ const PORT = process.env.PORT || 8001;
 const URL = process.env.DB_URL;
 
 connectDataBase(URL);
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.text())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false}));

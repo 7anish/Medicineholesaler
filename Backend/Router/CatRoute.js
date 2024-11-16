@@ -123,7 +123,7 @@ const cat = [
                 "iconColor": "#ff4500"
             },
             {
-                "name": "pediatric-drop-&-syrup",
+                "name": "paediatric-drop-&-syrup",
                 "route": "patent-medicine/paediatric-drop-and-syrup",
                 "bg": "#ffe8e8",
                 "icon": "water-outline",

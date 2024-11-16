@@ -11,7 +11,6 @@ function MainLayout() {
         <Navbar/>
         <Outlet />
         <Footer/>
-        <ToastContainer autoClose={1500}/>
     </div>
   )
 }

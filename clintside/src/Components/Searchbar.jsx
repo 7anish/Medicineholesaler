@@ -13,9 +13,11 @@ const Searchbar = ({ data, fun }) => {
         return item.name.toLowerCase().includes(Search.toLowerCase())
     })
 
-    const handlesearch = (searchquerry) => {
-        if(!(searchquerry.length == 0)){
-            navigate(`/search?search=${searchquerry}`)   
+    const handlesearch = (e,searchquerry) => {
+        if ( e.key == "Enter"){
+            if(!(searchquerry.length == 0)){
+                navigate(`/search?search=${searchquerry}`)   
+            }
         }
     }
     return (
@@ -24,14 +26,15 @@ const Searchbar = ({ data, fun }) => {
                 <div className='flex items-center justify-between border rounded-2xl border-black   relative'>
                     <input
                         type="text"
-                        className='w-[250px] outline-none pl-2 focus:w-[300px] inputwidt rounded-l-2xl'
+                        className='w-[250px] outline-none pl-2 sm:focus:w-[300px] inputwidt rounded-l-2xl'
                         placeholder='Search Products'
                         value={Search}
                         onChange={(e) => setsearch(e.target.value)}
                         onFocus={() => setOpen(true)}
                         onBlur={() => setOpen(false)}
+                        onKeyDown={(e)=> handlesearch(e , Search)}
                     />
-                    <div className=' bg-gray-200 py-2 px-5 rounded-r-2xl flex justify-end cursor-pointer'  onClick={()=> handlesearch(Search)}>
+                    <div className=' bg-gray-200 py-2 px-5 rounded-r-2xl flex justify-end cursor-pointer'>
                     <FaSearch className=' text-green-500 ' size={20}  />
                     </div>
                 </div>

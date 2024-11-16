@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const data = () => {
     try {
@@ -80,9 +80,11 @@ const cartitem = createSlice({
                 suming()
             })();
             sessionStorage.setItem('cartitem', JSON.stringify(state.allcartitem))
-            toast.success("Product Added to Cart", {
-                position: "bottom-center"
-            })
+            toast.success("Product Added to Cart" ,
+                {
+                    duration: 1000,
+                }
+            )
         },
 
         deletefmcart(state, action) {
@@ -117,9 +119,11 @@ const cartitem = createSlice({
             })();
 
             sessionStorage.setItem('cartitem', JSON.stringify(state.allcartitem))
-            toast.success("Product Removed From Cart", {
-                position: "bottom-center"
-            })
+            toast.success("Product Removed From Cart" ,
+                {
+                    duration: 1000,
+                }
+            )
         },
 
         increasequat(state, action) {

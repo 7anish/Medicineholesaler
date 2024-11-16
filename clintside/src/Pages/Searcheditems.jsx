@@ -31,6 +31,7 @@ const Searcheditems = () => {
         setloading(true)
         try {
           const { data } = await axios.get(`${Url}/api/v1/med/getproduct`)
+          console.log(data)
           setdata(data);
           setloading(false)
         } catch (e) {
@@ -43,8 +44,9 @@ const Searcheditems = () => {
 
 
     const filterData = data?.filter((item) => {
-        return item.name.toLowerCase().includes((searchparams.get('search')).toLowerCase())
-    })
+        return item.name.toLowerCase().includes((searchparams.get('search')).toLowerCase()) || item.composition.toLowerCase().includes((searchparams.get('search')).toLowerCase()) || item.companyName.toLowerCase().includes((searchparams.get('search')).toLowerCase())
+     })
+    console.log(filterData)
     if (error) {
       return (
         <>
