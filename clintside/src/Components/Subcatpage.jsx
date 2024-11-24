@@ -26,7 +26,7 @@ const Subcatpage = () => {
     }, [])
 
     const handleclick = (route) => {
-        if (route.split("/")[1] == "other") {
+        if (route.split("/")[1] == "all") {
             navigate(`/products?category=${route.split("/")[0]}`)
         }
         else {

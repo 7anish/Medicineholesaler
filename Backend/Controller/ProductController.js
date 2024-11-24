@@ -9,7 +9,7 @@ const handleaddproduct = async (req, res) => {
         let img = []
         if (req.files && req.files.length > 0) {
             img = req.files.map((file) => ({
-                imageurl: `http://localhost:8001/public/${file.filename}`,
+                imageurl: `http://api.medicinewholesale.in/public/${file.filename}`,
             }));
         }
         const result = await product.create({
@@ -42,14 +42,19 @@ const handleaddproduct = async (req, res) => {
 const handleupdateproduct = async (req, res) => {
     try {
         const id = req.params.id
+        const range = JSON.parse(req.body.range)
+        let img = []
+        if (req.files && req.files.length > 0) {
+            img = req.files.map((file) => ({
+                imageurl: `http://api.medicinewholesale.in/public/${file.filename}`,
+            }));
+        }
 
-        // image update latter on
+        
+        const data = img.length === 0 ? {...req.body , range: range} : {...req.body , productimage : img , range: range}
 
+        const result = await product.findByIdAndUpdate(id, data)
 
-        // const productimage =  req?.file?.path
-        // const data = productimage ?  {...req.body , productimage} : req.body;
-
-        const result = await product.findByIdAndUpdate(id, req.body)
         if (!result) return res.status(404).json({ "error": "Error in deleting the Product" });
         return res.status(200).json({ "Message": "Product Updated Sucesfully" });
     } catch (e) {

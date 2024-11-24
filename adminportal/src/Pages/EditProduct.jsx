@@ -49,8 +49,14 @@ function EditProduct() {
                 value: ''
             }
         ],
+        images: [],
         featured: false
     });
+
+    const handleFileChange = (e) => {
+        const files = Array.from(e.target.files);
+        setData({ ...data, images: files });
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -82,8 +88,25 @@ function EditProduct() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setloading(true)
+
+        const formdata = new FormData();
+        for (let key in data) {
+            if (key === "images") {
+                data[key].forEach((image) => {
+                    formdata.append("images", image);
+                });
+            }
+            if (key === "range") {
+                formdata.append('range', JSON.stringify(data.range))
+            }
+            else {
+                formdata.append(key, data[key])
+            }
+        }
+        console.log(Object.fromEntries(formdata))
+
         try {
-            const res = await axios.patch(`${Url}/api/v1/med/updateproduct/${params.id}`, data, {
+            const res = await axios.patch(`${Url}/api/v1/med/updateproduct/${params.id}`, formdata, {
                 headers: {
                     "Authorization": "Bearer " + cookie.get('lgthusr')
                 }
@@ -245,6 +268,17 @@ function EditProduct() {
                             <label className="block text-gray-700 font-semibold">Value 3:</label>
                             <input type="tel" name="value2" value={data.range[2].value} onChange={(e) => setData({ ...data, range: [{ min: data.range[0].min, max: data.range[0].max, value: data.range[0].value }, { min: data.range[1].min, max: data.range[1].max, value: data.range[1].value }, { min: data.range[2].min, max: data.range[2].max, value: e.target.value }] })} required className="mt-1 p-2  border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder='380' />
                         </div>
+                    </div>
+                    <div>
+                        <h3 className="text-lg font-semibold">Images</h3>
+                        <input
+                            type="file"
+                            name="images"
+                            multiple
+                            onChange={handleFileChange}
+                            className="border border-gray-600 rounded p-2"
+                            required
+                        />
                     </div>
                     <button type="submit" className="submit-button  p-2 w-full bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         {

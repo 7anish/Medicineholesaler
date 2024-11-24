@@ -11,19 +11,19 @@ function ShopPage() {
   const [error, seterror] = useState(false)
   const [loading, setloading] = useState(true)
   const [btntext, setbtntext] = useState('Load More')
-  const [lastindex, setlastindex] = useState(50)
+  const [lastindex, setlastindex] = useState(48)
   const [firstindex , setfirstindex] = useState(0)
 
   const forward = () => {
     setbtntext('Loading...')
     setfirstindex(lastindex)
-    setlastindex(lastindex + 50)
+    setlastindex(lastindex + 48)
     setbtntext('Load More')
   }
   const backward = ()=>{
     setbtntext('Loading...')
     setlastindex(firstindex)
-    setfirstindex(firstindex - 50)
+    setfirstindex(firstindex - 48)
     setbtntext('Load More')
   }
 

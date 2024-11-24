@@ -24,10 +24,6 @@ function BrowseByCat() {
 
         fetchcat()
     }, [])
-    const navigation = useNavigate();
-    const handleClick = (subcategory) => {
-        navigation(`/category/#${subcategory}`)
-    }
 
     if (error) {
         return (

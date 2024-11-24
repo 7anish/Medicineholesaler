@@ -13,8 +13,8 @@ const Searchbar = ({ data, fun }) => {
         return item.name.toLowerCase().includes(Search.toLowerCase())
     })
 
-    const handlesearch = (e,searchquerry) => {
-        if ( e.key == "Enter"){
+    const handlesearch = (e,searchquerry , key) => {
+        if ( e.key == "Enter" || key=="anish" ){
             if(!(searchquerry.length == 0)){
                 navigate(`/search?search=${searchquerry}`)   
             }
@@ -34,7 +34,7 @@ const Searchbar = ({ data, fun }) => {
                         onBlur={() => setOpen(false)}
                         onKeyDown={(e)=> handlesearch(e , Search)}
                     />
-                    <div className=' bg-gray-200 py-2 px-5 rounded-r-2xl flex justify-end cursor-pointer'>
+                    <div className=' bg-gray-200 py-2 px-5 rounded-r-2xl flex justify-end cursor-pointer'  onClick={(e)=>handlesearch(e, Search ,"anish")}>
                     <FaSearch className=' text-green-500 ' size={20}  />
                     </div>
                 </div>

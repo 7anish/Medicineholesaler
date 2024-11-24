@@ -23,6 +23,7 @@ import Orderhistory from './Pages/Orderhistory';
 import About from './Pages/About';
 import InstantCheckOut from './Pages/InstantCheckOut';
 import Searcheditems from './Pages/Searcheditems';
+import Resetpassword from './Pages/Resetpassword';
 export default function App() {
   const dispatch = useDispatch()
   useEffect(() => {
@@ -51,6 +52,7 @@ export default function App() {
         <Route path='/orderhistory' element={<Orderhistory />} />
         <Route path='/about-us' element={<About />} />
         <Route path='/search' element={<Searcheditems />} />
+        <Route path='/resetpassword' element={<Resetpassword />} />
       </Routes>
       <Footer />
     </Router>

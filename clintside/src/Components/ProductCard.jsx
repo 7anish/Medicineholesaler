@@ -127,7 +127,7 @@ function ProductCard({ id, name, cat, subcat, actualprice, img, index, discountp
             }
 
             <div className='flex flex-col gap-4'>
-                <img src={imageUrl} alt="" className='sm:w-full  h-32 w-full   sm:h-60 object-cover rounded-md cursor-pointer border border-black' onClick={() => navigate(`/product/${id}`)} />
+                <img src={imageUrl} alt="" className='sm:w-full  h-32 w-full   sm:h-60 object-contain rounded-md cursor-pointer border border-black' onClick={() => navigate(`/product/${id}`)} />
                 <div className='flex flex-col sm:gap-1'>
                     {/* <h2 className='text-[10px] sm:text-sm font-bold cursor-pointer hover:text-blue-500'>{companyname}</h2> */}
                     <h1 className='text-sm sm:text-xl font-bold cursor-pointer hover:text-blue-500 leading-normal whitespace-normal'>{name} <span className='text-[10px] sm:text-sm'>{size ? `|| ${size}` : ""}</span></h1>

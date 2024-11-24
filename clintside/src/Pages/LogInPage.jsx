@@ -105,10 +105,15 @@ function LogInPage() {
                             <label className="block text-gray-700">Email ID:</label>
                             <input type="email" name="email" required className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-shadow duration-300" />
                         </div>
-                        <div className="mb-4">
+                        <div className="mb-1">
                             <label className="block text-gray-700">Password:</label>
                             <input name='password' type="password" required className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-shadow duration-300" />
                         </div>
+                        <div className="text-right mb-4">
+                        <NavLink to={'/resetpassword'} className="text-blue-500 hover:text-blue-700 transition-colors duration-300" >
+                             Forgot Password ?
+                        </NavLink>
+                    </div>
                         <button type="submit" className="w-full bg-green-500 text-white py-2 mb-4 rounded hover:bg-green-600 shadow-md transition-all duration-300 items-center flex justify-center">
                             {
                                 isporocessing ? 

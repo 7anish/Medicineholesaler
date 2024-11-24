@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { createHmac, randomBytes } = require('crypto');
+const { type } = require('os');
 
 
 const adminSchema = new mongoose.Schema({
@@ -32,6 +33,10 @@ const adminSchema = new mongoose.Schema({
         enum: ['ADMIN', 'SUPERADMIN', 'NONE'],
         default: 'NONE',
     },
+    answer : {
+        type :String,
+        required : true
+    },
     wishlist: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -63,6 +68,20 @@ adminSchema.static('matchpassword', async function (email, password) {
 
     if (generatedPassword !== admin.password) throw "Incorrect password";
     return admin
+})
+
+adminSchema.static("resetpass" , async function (body){
+
+    const salt = randomBytes(8).toString('hex');
+    const generatedpassword = createHmac('sha256' , salt)
+                                .update(body.password)
+                                .digest('hex')
+    const result = await this.findOneAndUpdate({answer : body.answer , email : body.email } , {password : generatedpassword , salt : salt})
+    console.log(result)
+    if(!result) throw "Invalid Crenditial"
+
+    return "changed"
+
 })
 
 const admin = mongoose.model('admin', adminSchema);

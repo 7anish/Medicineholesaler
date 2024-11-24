@@ -49,6 +49,13 @@ const cat = [
                 "bg": "#ffe8e8",
                 "icon": "ellipsis-horizontal-outline",
                 "iconColor": "#ff6347"
+            },
+            {
+                "name": "All Products",
+                "route": "cosmetic-products/all",
+                "bg": "#ffe8e8",
+                "icon": "apps-outline",
+                "iconColor": "#ff6347"
             }
         ]
     },
@@ -84,6 +91,13 @@ const cat = [
                 "route": "surgical-items/others",
                 "bg": "#ffe8e8",
                 "icon": "ellipsis-horizontal-outline",
+                "iconColor": "#2dd1dd"
+            },
+            {
+                "name": "All Products",
+                "route": "surgical-items/all",
+                "bg": "#ffe8e8",
+                "icon": "apps-outline",
                 "iconColor": "#2dd1dd"
             }
         ]
@@ -124,7 +138,7 @@ const cat = [
             },
             {
                 "name": "paediatric-drop-&-syrup",
-                "route": "patent-medicine/paediatric-drop-and-syrup",
+                "route": "patent-medicine/peadiatric-drop-and-syrup",
                 "bg": "#ffe8e8",
                 "icon": "water-outline",
                 "iconColor": "#ff6347"
@@ -134,6 +148,13 @@ const cat = [
                 "route": "patent-medicine/others",
                 "bg": "#ffe8e8",
                 "icon": "ellipsis-horizontal-outline",
+                "iconColor": "#ff6347"
+            },
+            {
+                "name": "All Products",
+                "route": "patent-medicine/all",
+                "bg": "#ffe8e8",
+                "icon": "apps-outline",
                 "iconColor": "#ff6347"
             }
         ]
@@ -174,7 +195,7 @@ const cat = [
             },
             {
                 "name": "paediatric-drop-&-syrup",
-                "route": "generic-medicine/paediatric-drop-and-syrup",
+                "route": "generic-medicine/pediatric-drop-and-syrup",
                 "bg": "#ffe8e8",
                 "icon": "water-outline",
                 "iconColor": "#ff6347"
@@ -185,7 +206,15 @@ const cat = [
                 "bg": "#ffe8e8",
                 "icon": "ellipsis-horizontal-outline",
                 "iconColor": "#ff6347"
-            }
+            },
+            
+            {
+                "name": "All Products",
+                "route": "generic-medicine/all",
+                "bg": "#ffe8e8",
+                "icon": "apps-outline",
+                "iconColor": "#ff6347"
+            },
         ]
     },    
     {
@@ -220,6 +249,13 @@ const cat = [
                 "route": "ayurvedic-product/others",
                 "bg": "#ffe8e8",
                 "icon": "ellipsis-horizontal-outline",
+                "iconColor": "#228b22"
+            },
+            {
+                "name": "All Products",
+                "route": "ayurvedic-product/all",
+                "bg": "#ffe8e8",
+                "icon": "apps-outline",
                 "iconColor": "#228b22"
             },
         ]

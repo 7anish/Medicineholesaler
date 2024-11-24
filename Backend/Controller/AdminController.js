@@ -1,5 +1,6 @@
 const admin = require('../Modal/AdminModal')
 const { generateToken } = require('../Config/Jwtauthentication');
+const { json } = require('express');
 
 const handleCreateAdmin = async (req, res) => {
     try {
@@ -9,7 +10,8 @@ const handleCreateAdmin = async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
-            lcno: req.body?.lcno
+            lcno: req.body?.lcno,
+            answer : req.body.answer,
         })
         return res.status(201).json({ Message: "Account Created Sucessfully" })
     } catch (e) {
@@ -31,7 +33,7 @@ const handleLoginAsAdmin = async (req, res) => {
         // if(result.role === 'NONE') return res.status(403).json({ error: "Unauthorised" });
         const token = generateToken(result.email, result._id, result.role); // Generatin the Jwt tokern
 
-        return res.status(200).json({ token: token, name: result.name, email: result.email, phonenumber: result.phonenumber, role: result.role, id: result._id , wishlist : result.wishlist});
+        return res.status(200).json({ token: token, name: result.name, email: result.email, phonenumber: result.phonenumber, role: result.role, id: result._id, wishlist: result.wishlist });
 
     } catch (e) {
         console.log(e);
@@ -45,10 +47,10 @@ const handleaddtowishlist = async (req, res) => {
         const id = req.params.id;
         if (Object.keys(data).length == 0) return res.status(400).json({ error: "All fields are required" });
 
-        const result = await admin.findByIdAndUpdate(id ,{ $addToSet : {wishlist : req.body.productid}})
+        const result = await admin.findByIdAndUpdate(id, { $addToSet: { wishlist: req.body.productid } })
         if (!result) return res.status(404).json(("Unable to add to wish list"))
-        return res.status(200).json({message : "Product added to wishlist"})
-    } catch(e) {
+        return res.status(200).json({ message: "Product added to wishlist" })
+    } catch (e) {
         console.log(e);
         return res.status(500).json({ "Error": "Internal Server Error" })
     }
@@ -60,26 +62,39 @@ const handleremovefromwishlist = async (req, res) => {
         const data = req.body
         const id = req.params.id;
         if (Object.keys(data).length == 0) return res.status(400).json({ error: "All fields are required" });
-        const result = await admin.findByIdAndUpdate(id, {$pull : {wishlist : req.body.productid}})
+        const result = await admin.findByIdAndUpdate(id, { $pull: { wishlist: req.body.productid } })
         if (!result) return res.status(404).json(("Unable to remove from wishlist"))
-        return res.status(200).json({message : "Product Removed from wishlist"})
-    } catch (e){
+        return res.status(200).json({ message: "Product Removed from wishlist" })
+    } catch (e) {
         console.log(e);
         return res.status(500).json({ "Error": "Internal Server Error" })
     }
 }
 
 
-const handlegetwishlist =async (req,res)=>{
+const handlegetwishlist = async (req, res) => {
     try {
         const id = req.params.id;
         const result = await admin.findById(id).populate('wishlist')
 
-        if(!result) return res.status(404).json({"Error" : "No Wishlist item found"});
+        if (!result) return res.status(404).json({ "Error": "No Wishlist item found" });
         return res.status(200).json(result.wishlist)
-    } catch(e){
+    } catch (e) {
         console.log(e);
         return res.status(500).json({ "Error": "Internal Server Error" })
+    }
+}
+
+const handelresetpassword = async (req,res) => {
+    try {
+        if (!req.body || !req.body.email || !req.body.password || !req.body.answer) return res.status(400).json({"Error" :  "All fields are required"});
+        const result = await admin.resetpass(req.body)
+
+        if(result == "changed") return res.status(200).json({"Message" : "Password Chnaged SucessFully"});
+        
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({"Error" : "Internal server error"});
     }
 }
 
@@ -89,5 +104,6 @@ module.exports = {
     handleCreateAdmin,
     handleaddtowishlist,
     handlegetwishlist,
-    handleremovefromwishlist
+    handleremovefromwishlist,
+    handelresetpassword
 }
