@@ -51,7 +51,7 @@ function Footer() {
                 </div>
                 <div className='text-center text-xs md:text-sm mt-10'>© 2023 MedicineWholesale. All rights reserved.</div>
                 <hr className='my-3' />
-                <h1 className='flex  justify-center items-center gap-2' >Developed By <a href='https://github.com/7anish' target='_blank' className='flex gap-1 justify-center items-center hover:text-blue-500 hover:underline'><FaGithub />Anish</a></h1>
+                <h1 className='flex  justify-center items-center gap-2' >Developed By <a href='https://www.xcentic.in' target='_blank' className='flex gap-1 justify-center items-center hover:text-blue-500 hover:underline tracking-[5px] uppercase '>Xcentic</a></h1>
             </footer>
         </>
     )
