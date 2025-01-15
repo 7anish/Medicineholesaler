@@ -63,7 +63,7 @@ function Navbar() {
     const [open, setOpen] = useState(false);
     const linkClass = ({ isActive }) => isActive ? "text-green-600 text-lg rounded-md px-3 py-2" : "text-gray-500 text-lg hover:text-green-800  rounded-md px-3 py-2";
     return (
-        <nav className='w-full  m-0 md:pr-0 sm:py-4 md::py-4   bg-white font-poppins  pb-3'>
+        <nav className='w-full  m-0 md:pr-0 sm:py-4 md::py-4 bg-white font-poppins  pb-3'>
             <div className='xl:flex justify-between items-center font-poppins px-2  md:px-20'>
                 <div className='flex xl:justify-center items-center justify-between '>
                     <NavLink to={'/'}>
@@ -79,7 +79,11 @@ function Navbar() {
                         login ?
                             (
                                 <>
-                                    <NavLink to={'/login'} className='text-green-600 flex items-center hover:text-green-800 lg:text-lg px-5'>
+                                    <NavLink to={'/'} className='text-green-600 flex items-center hover:text-green-800  px-5'>
+                                        {/* <span className='text-lg'>(0)</span> */}
+                                        <button className='text-green-600 hover:text-green-800 rounded-xl' onClick={() => setOpen(!open)}>Home</button>
+                                    </NavLink>
+                                    <NavLink to={'/login'} className='text-green-600 flex items-center hover:text-green-800  px-5'>
                                         {/* <span className='text-lg'>(0)</span> */}
                                         <button className='text-green-600 hover:text-green-800 rounded-xl' onClick={() => setOpen(!open)}>Login</button>
                                     </NavLink>
@@ -91,17 +95,21 @@ function Navbar() {
                             )
                             : (
                                 <>
-                                    <NavLink to={'/wishlist'} className='text-green-600 flex items-center hover:text-green-800 gap-1 lg:text-lg px-5' onClick={() => setOpen(!open)}>
+                                    <NavLink to={'/'} className='text-green-600 flex items-center hover:text-green-800  px-5'>
+                                        {/* <span className='text-lg'>(0)</span> */}
+                                        <button className='text-green-600 hover:text-green-800 rounded-xl' onClick={() => setOpen(!open)}>Home</button>
+                                    </NavLink>
+                                    <NavLink to={'/wishlist'} className='text-green-600 flex items-center hover:text-green-800 gap-1  px-5' onClick={() => setOpen(!open)}>
                                         Wishlist<ion-icon name="heart-outline" className="font-extrabold "></ion-icon>
                                     </NavLink>
-                                    <NavLink to={'/orderhistory'} className='text-green-600 flex items-center hover:text-green-800 lg:text-lg px-5 gap-1' onClick={() => setOpen(!open)}>
+                                    <NavLink to={'/orderhistory'} className='text-green-600 flex items-center hover:text-green-800  px-5 gap-1' onClick={() => setOpen(!open)}>
                                         Order <ion-icon name="logo-dropbox" className="font-extrabold "></ion-icon>
                                     </NavLink>
                                     <NavLink to={'/cart'} className='text-green-600 hover:text-green-800 text-2xl px-5 flex items-center justify-center' onClick={() => setOpen(!open)}>
                                         <ion-icon name="cart-outline" size='large' className="font-extrabold "></ion-icon>
                                         <span className='text-lg'>{Quant.length}</span>
                                     </NavLink>
-                                    <div className='text-green-600 flex items-center hover:text-green-800 lg:text-lg px-5 cursor-pointer gap-1' onClick={() => handlelogout()}>
+                                    <div className='text-green-600 flex items-center hover:text-green-800  px-5 cursor-pointer gap-1' onClick={() => handlelogout()}>
                                         Logout<ion-icon name="log-out-outline" className="font-extrabold "></ion-icon>
                                     </div>
                                 </>

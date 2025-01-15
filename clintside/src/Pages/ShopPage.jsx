@@ -3,6 +3,7 @@ import ProductCard from "../Components/ProductCard";
 import DiscountShop from "../Components/DiscountShop";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
+import { GoMoveToTop } from "react-icons/go";
 import Url from "../../Url";
 
 function ShopPage() {
@@ -71,6 +72,9 @@ function ShopPage() {
   return (
     <div className="">
       <DiscountShop />
+      <div className='w-12 h-12 rounded-full  bg-green-600 fixed bottom-10 right-3 sm:right-10 flex items-center justify-center cursor-pointer' onClick={(e) => window.scroll(0,0)}>
+                      <GoMoveToTop className='text-2xl   font-extrabold' />
+      </div>
 
       {
         loading ?

@@ -140,7 +140,7 @@ function ProductCard({ id, name, cat, subcat, actualprice, img, index, discountp
             </div>
             <div className='flex gap-2 flex-wrap'>
                 {
-                    range?.map((range) => <p className='text-[10px] sm:text-[12px]'><span className='bg-gray-100 p-1  rounded-sm'>{range.min}-{range.max}pc</span> ₹&nbsp;{range.value} <span className='text-[8px] font-semibold text-green-600'>{((((+actualprice) - (+range.value)) / (+actualprice)) * 100).toFixed(1)}% off</span></p> )
+                    range?.map((range) => <p className='text-[10px] sm:text-[12px]'><span className='bg-gray-100 p-1  rounded-sm'>{range.min}-{range.max}pc</span> ₹&nbsp;{range.value} <span className='font-semibold text-green-600'>{((((+actualprice) - (+range.value)) / (+actualprice)) * 100).toFixed(1)}% off</span></p> )
                 }
             </div>
             <div className='flex  sm:flex-col justify-between sm:gap-2 tems-start '>

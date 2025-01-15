@@ -92,9 +92,13 @@ function EditProduct() {
         const formdata = new FormData();
         for (let key in data) {
             if (key === "images") {
-                data[key].forEach((image) => {
-                    formdata.append("images", image);
-                });
+                if(data[key].length == 0){
+                    
+                }else{
+                    data[key].forEach((image) => {
+                        formdata.append("images", image);
+                    });
+                }
             }
             if (key === "range") {
                 formdata.append('range', JSON.stringify(data.range))
@@ -277,7 +281,6 @@ function EditProduct() {
                             multiple
                             onChange={handleFileChange}
                             className="border border-gray-600 rounded p-2"
-                            required
                         />
                     </div>
                     <button type="submit" className="submit-button  p-2 w-full bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">

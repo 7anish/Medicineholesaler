@@ -1,4 +1,7 @@
+const { request } = require('express');
 const product = require('../Modal/Prductmodal');
+const { upload } = require('../Storage/Storage')
+
 
 const handleaddproduct = async (req, res) => {
     try {
@@ -44,14 +47,19 @@ const handleupdateproduct = async (req, res) => {
         const id = req.params.id
         const range = JSON.parse(req.body.range)
         let img = []
+
+        console.log(req.files)
+
         if (req.files && req.files.length > 0) {
+            
             img = req.files.map((file) => ({
                 imageurl: `http://api.medicinewholesale.in/public/${file.filename}`,
             }));
         }
-
         
-        const data = img.length === 0 ? {...req.body , range: range} : {...req.body , productimage : img , range: range}
+        const data = {...req.body , productimage : img , range: range};
+
+        0 === img.length ? delete data.productimage : "";
 
         const result = await product.findByIdAndUpdate(id, data)
 
